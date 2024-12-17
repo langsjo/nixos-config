@@ -94,7 +94,7 @@
   };
 
   home-manager = {
-    specialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs; };
     users = {
       "langsjo" = import ./home.nix;
     };
@@ -117,9 +117,6 @@
      zsh
      git
   ];
-
-  # main-user.enable = true;
-  # main-user.userName = "langsjo";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
