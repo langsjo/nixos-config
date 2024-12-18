@@ -3,9 +3,11 @@
 {
   imports =
     [ 
+      ../../modules/services/dwm.nix
+      ../common
+
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
-      ../../modules/services/dwm.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

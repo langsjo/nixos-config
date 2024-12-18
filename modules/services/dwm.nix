@@ -6,8 +6,8 @@
       src = pkgs.fetchFromGitHub {
 	owner = "bizrr";
 	repo  = "dwm";
-	rev   = "6d7794abf522562010a2625c2df8fb7225b9a8f7";
-	hash  = "iudfhgiuadfgriuaeguhuaehufguihafiughiuad";
+	rev   = "9d82be4f60f18d934502fab31c601ee9ac582c4a";
+	hash  = "sha256-M5IShX7EbXRuJWAJRas9VW9/8lh9mo4w7SXrQIgCFHA=";
       };
     };
   };
