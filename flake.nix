@@ -22,9 +22,19 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: {
+    nixosConfigurations.default = nixpkgs.lib.nixosSystem rec {
+      system = "x86_64-linux";
+
+      specialArgs = {
+        inherit inputs;
+
+	pkgs-unstable = import nixpkgs-unstable {
+	  inherit system;
+	  config.allowUnfree = true;
+	};
+      };
+
       modules = [
         ./hosts/default/configuration.nix
       ];

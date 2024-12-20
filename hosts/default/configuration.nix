@@ -34,7 +34,6 @@
     neovim
     vim
     wget
-    alacritty
     zsh
     oh-my-posh
     git
