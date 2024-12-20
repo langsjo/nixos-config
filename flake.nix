@@ -17,7 +17,7 @@
     };
 
     dwm = {
-      url = "github:bizrr/dwm";
+      url = "github:bizrr/dwm/my_dwm";
       flake = false;
     };
   };

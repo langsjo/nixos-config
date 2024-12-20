@@ -1,8 +1,10 @@
 { config, pkgs, inputs, ... }: {
+  fonts.packages = with pkgs; [
+    liberation_ttf
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
+  ];
 
   fonts.enableDefaultPackages = true;
-
-  fonts.packages = with pkgs; [
-    meslo-lgs-nf
-  ];
 }

@@ -3,6 +3,6 @@
     enable = true;
     package = pkgs.dwm.overrideAttrs {
       src = inputs.dwm;
-      };
+    };
   };
 }

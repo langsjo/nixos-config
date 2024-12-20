@@ -3,11 +3,11 @@
 {
   imports =
     [ 
+      ../common
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
 
-      ../common
-      ../../modules/services/dwm.nix
+      # ../../modules/services/dwm.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -36,13 +36,22 @@
     wget
     alacritty
     zsh
+    oh-my-posh
     git
+    zoxide
   ];
 
   programs.firefox.enable = true;
   programs.zsh.enable = true;
 
   services.openssh.enable = true;
+
+  services.xserver.windowManager.dwm = {
+    enable = true;
+    package = pkgs.dwm.overrideAttrs {
+      src = inputs.dwm;
+      };
+  };
 
  #########################################################
   nixpkgs.config.allowUnfree = true;
