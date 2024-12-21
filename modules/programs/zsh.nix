@@ -10,6 +10,8 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    
+
     history = {
       size = 20000;
       save = 20000;
@@ -18,11 +20,6 @@
       ignoreSpace = true;
     };
     historySubstringSearch.enable = true;
-
-    initExtra = ''
-      source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-      eval "$(zoxide init --cmd cd zsh)"
-    '';
 
     shellAliases = {
       grep = "grep --color=auto";
@@ -33,5 +30,19 @@
       c = "clear";
       n = "nvim";
     };
+
+    initExtra = ''
+      source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+      eval "$(zoxide init --cmd cd zsh)"
+      bindkey -e
+    '';
+
+    completionInit = ''
+      autoload -Uz compinit
+
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+      zstyle ':completion:*' menu no
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+    '';
   };
 }

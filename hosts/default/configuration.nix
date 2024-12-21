@@ -6,8 +6,6 @@
       ../common
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
-
-      # ../../modules/services/dwm.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -31,13 +29,13 @@
   };
   
   environment.systemPackages = with pkgs; [
-    neovim
     vim
     wget
     zsh
     oh-my-posh
     git
     zoxide
+    xsel
   ];
 
   programs.firefox.enable = true;

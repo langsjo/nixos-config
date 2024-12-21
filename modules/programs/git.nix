@@ -9,6 +9,7 @@
     };
 
     extraConfig = {
+      rerere.enabled = true;
       init.defaultBranch = "main";
       core.editor = "nvim";
       pull.rebase = true;

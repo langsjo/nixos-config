@@ -7,6 +7,8 @@
     ../../modules/programs/oh-my-posh.nix
     ../../modules/programs/zsh.nix
     ../../modules/programs/zoxide.nix
+
+    ../../modules/programs/neovim/neovim.nix
   ];
 
   home.username = "langsjo";
