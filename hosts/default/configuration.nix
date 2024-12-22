@@ -1,10 +1,11 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports =
     [ 
       ../common
       ./hardware-configuration.nix
+      ../../modules/services
       inputs.home-manager.nixosModules.default
     ];
 
@@ -15,10 +16,11 @@
     isNormalUser = true;
     description = "langsjo";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
+    packages = [
     ];
     shell = pkgs.zsh;
     useDefaultShell = true;
+    ignoreShellProgramCheck = true;
   };
 
   home-manager = {
@@ -29,26 +31,12 @@
   };
   
   environment.systemPackages = with pkgs; [
-    vim
     wget
-    zsh
-    oh-my-posh
-    git
-    zoxide
     xsel
   ];
 
   programs.firefox.enable = true;
-  programs.zsh.enable = true;
-
   services.openssh.enable = true;
-
-  services.xserver.windowManager.dwm = {
-    enable = true;
-    package = pkgs.dwm.overrideAttrs {
-      src = inputs.dwm;
-      };
-  };
 
  #########################################################
   nixpkgs.config.allowUnfree = true;

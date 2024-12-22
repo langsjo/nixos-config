@@ -1,6 +1,5 @@
-{ pkgs, ... }: {
+{ ... }: {
   imports = [
-    ./oneliners.nix
     ./neotree.nix
     ./debug.nix
     ./autopairs.nix
@@ -10,4 +9,11 @@
     ./lsp.nix
     ./cmp.nix
   ];
+
+  programs = {
+    ripgrep.enable = true;
+    nixvim.plugins = {
+      indent-blankline.enable = true;
+    };
+  };
 }

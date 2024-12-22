@@ -1,23 +1,15 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   imports = [
-    ../../modules/programs/git.nix
-    ../../modules/programs/alacritty.nix
-    ../../modules/programs/oh-my-posh.nix
-    ../../modules/programs/zsh.nix
-    ../../modules/programs/zoxide.nix
-
-    ../../modules/programs/neovim/neovim.nix
+    ../../modules/programs 
   ];
+
 
   home.username = "langsjo";
   home.homeDirectory = "/home/langsjo";
 
-  home.packages = with pkgs; [
-    zsh-fzf-history-search
-    zsh-fzf-tab
-    alacritty
+  home.packages = [
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

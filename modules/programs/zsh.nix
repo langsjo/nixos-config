@@ -1,4 +1,9 @@
 { pkgs, config, ...}: {
+  home.packages = with pkgs; [
+    zsh-fzf-history-search
+    zsh-fzf-tab
+  ];
+
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
@@ -9,8 +14,6 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-
-    
 
     history = {
       size = 20000;
