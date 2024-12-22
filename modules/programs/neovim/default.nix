@@ -28,7 +28,6 @@
       opts = {
         mouse = "a";
         showmode = false;
-        relativenumber = true;
         undofile = true;
         hlsearch = true;
         title = true;
@@ -37,6 +36,9 @@
 
         updatetime = 1000; # milliseconds of inaction till swap file is written
         timeoutlen = 500; # milliseconds till which-key pops up
+
+        number = true;
+        relativenumber = true;
 
         splitright = true;
         splitbelow = true;
@@ -67,6 +69,67 @@
           mode = "n";
           key = "<Esc>";
           action = "<cmd>noh<CR>";
+        }
+        # Move selected lines up/down
+        {
+          mode = "v";
+          key = "J";
+          action = "<CMD>undojoin<CR>:m '>+1<CR>gv=gv";
+        }
+        {
+          mode = "v";
+          key = "K";
+          action = "<CMD>undojoin<CR>:m '<-2<CR>gv=gv";
+        }
+
+        # Entering visual line mode breaks the last undo sequence so the moving lines up/down can be undone in one undo, since theyre joined together
+        {
+          mode = "n";
+          key = "V";
+          action = "aa<BS><ESC>V";
+        }
+
+        {
+          mode = [ "n" "v" ];
+          key = "j";
+          action = "gj";
+        }
+        {
+          mode = [ "n" "v" ];
+          key = "k";
+          action = "gk";
+        }
+
+        # Tab related binds
+        {
+          mode = "n";
+          key = "H";
+          action = "<cmd>tabprevious<cr>";
+        }
+        {
+          mode = "n";
+          key = "L";
+          action = "<cmd>tabnext<cr>";
+        }
+        {
+          mode = "n";
+          key = "<C-Right>";
+          action = "<cmd>+tabm<cr>";
+        }
+        {
+          mode = "n";
+          key = "<C-Left>";
+          action = "<cmd>-tabm<cr>";
+        }
+        {
+          mode = "n";
+          key = "<PageUp>";
+          action = "<C-w>>";
+        }
+        {
+          mode = "n";
+          key = "<PageDown>";
+          action = "<C-w><";
         }
       ];
 

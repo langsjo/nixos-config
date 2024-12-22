@@ -16,7 +16,8 @@
     isNormalUser = true;
     description = "langsjo";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = [
+    packages = with pkgs; [
+      thefuck
     ];
     shell = pkgs.zsh;
     useDefaultShell = true;
