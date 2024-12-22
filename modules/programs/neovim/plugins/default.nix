@@ -8,6 +8,7 @@
     ./which-key.nix
     ./lsp.nix
     ./cmp.nix
+    ./tmux-navigator.nix
   ];
 
   programs = {

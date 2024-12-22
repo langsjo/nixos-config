@@ -6,5 +6,6 @@
     ./git.nix
     ./zoxide.nix
     ./oh-my-posh.nix
+    ./tmux.nix
   ];
 }
