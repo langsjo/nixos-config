@@ -35,10 +35,11 @@
     nix-prefetch-github
     wget
     xsel
+    wineWowPackages.stable
   ];
 
-  programs.firefox.enable = true;
-  services.openssh.enable = true;
+  # programs.firefox.enable = true;
+  # services.openssh.enable = true;
 
  #########################################################
   nixpkgs.config.allowUnfree = true;
