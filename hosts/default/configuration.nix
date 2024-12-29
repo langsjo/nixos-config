@@ -39,6 +39,8 @@
     wineWowPackages.stable
   ];
 
+  programs.slock.enable = true;
+
   # programs.firefox.enable = true;
   # services.openssh.enable = true;
 
@@ -54,7 +56,7 @@
   time.timeZone = "Europe/Helsinki";
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    supportedLocales = [ "en_US.UTF-8" "fi_FI.UTF-8" ];
+    supportedLocales = [ "en_US.UTF-8/UTF-8" "fi_FI.UTF-8/UTF-8" ];
     extraLocaleSettings = {
       LC_ADDRESS = "fi_FI.UTF-8";
       LC_IDENTIFICATION = "fi_FI.UTF-8";

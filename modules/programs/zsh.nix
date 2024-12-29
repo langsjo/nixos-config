@@ -24,6 +24,11 @@
     };
     historySubstringSearch.enable = true;
 
+    sessionVariables = {
+      MANPAGER="nvim +Man!";
+      EDITOR="nvim";
+    };
+
     shellAliases = {
       grep = "grep --color=auto";
       ls = "ls --color=auto";
@@ -33,8 +38,6 @@
       c = "clear";
       n = "nvim";
     };
-
-
 
     initExtra = ''
       source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
