@@ -16,7 +16,7 @@
       };
 
       font = {
-        size = 12.0;
+        size = 9.0;
         bold = {
           family = "MesloLGM Nerd Font";
           style = "Heavy";
