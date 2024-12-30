@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.tmux = {
     enable = true;
-    shortcut = "b";
+    shortcut = "Space";
     baseIndex = 1;
     clock24 = true;
     keyMode = "vi";

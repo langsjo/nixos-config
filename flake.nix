@@ -24,6 +24,11 @@
       url = "github:bizrr/dwm/my_dwm";
       flake = false;
     };
+
+    my-apps = {
+      url = "github:bizrr/apps";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, nixpkgs-unstable, ... }@inputs: {

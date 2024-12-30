@@ -7,5 +7,6 @@
   # small configs go here
   services = {
     openssh.enable = true;
+    upower.enable = true;
   };
 }

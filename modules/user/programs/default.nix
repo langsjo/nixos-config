@@ -16,6 +16,7 @@
     firefox.enable = true;
     zathura.enable = true;
     rofi.enable = true;
+    thefuck.enable = true;
 
     direnv = {
       enable = true;

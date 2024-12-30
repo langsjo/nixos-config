@@ -1,10 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   programs.alacritty = {
     enable = true;
 
     settings = {
       general.import = [
-        ../../dotfiles/alacritty-catppuccin-mocha.toml
+        "${inputs.self}/dotfiles/alacritty-catppuccin-mocha.toml"
       ];
 
       terminal.shell = "${pkgs.zsh}/bin/zsh";

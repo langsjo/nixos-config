@@ -1,11 +1,10 @@
 { pkgs, inputs, ... }:
-
 {
   imports =
     [ 
       ../common
       ./hardware-configuration.nix
-      ../../modules/services
+      "${inputs.self}/modules/system"
       inputs.home-manager.nixosModules.default
     ];
 
@@ -16,8 +15,8 @@
     isNormalUser = true;
     description = "langsjo";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      thefuck
+    packages = with pkgs;[
+      telegram-desktop
     ];
     shell = pkgs.zsh;
     useDefaultShell = true;
@@ -32,6 +31,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    vim
     nix-prefetch-github
     wget
     xorg.libXft

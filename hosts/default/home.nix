@@ -1,8 +1,8 @@
-{ ... }:
+{ inputs, ... }:
 
 {
   imports = [
-    ../../modules/programs 
+    "${inputs.self}/modules/user"
   ];
 
 
