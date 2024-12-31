@@ -18,6 +18,12 @@
         pylsp.enable = true;
         metals.enable = true;
         lua_ls.enable = true;
+        rust_analyzer = {
+          enable = true;
+          installCargo = true;
+          installRustc = true;
+          settings.check.command = "clippy";
+        };
       };
 
       keymaps = {
