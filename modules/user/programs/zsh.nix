@@ -37,6 +37,7 @@
       ":qa" = "tmux kill-session";
       c = "clear";
       n = "nvim";
+      open = "xdg-open";
     };
 
     initExtra = ''

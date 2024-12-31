@@ -8,8 +8,8 @@
     keymaps = [
       {
         action = "<Plug>(leap)";
-        key = "<CR>";
-        mode = "n";
+        key = "gl";
+        mode = [ "n" "x" ];
       }
       {
         # Remote leaps
