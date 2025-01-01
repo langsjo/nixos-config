@@ -14,9 +14,10 @@
   users.users.langsjo = {
     isNormalUser = true;
     description = "langsjo";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs;[
       telegram-desktop
+      rofi-screenshot
     ];
     shell = pkgs.zsh;
     useDefaultShell = true;
@@ -39,10 +40,8 @@
     wineWowPackages.stable
     libnotify
     dunst
-    xorg.xbacklight
   ];
 
-  programs.slock.enable = true;
 
   # programs.firefox.enable = true;
   # services.openssh.enable = true;
