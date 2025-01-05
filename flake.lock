@@ -26,13 +26,13 @@
       "locked": {
         "lastModified": 1735756327,
         "narHash": "sha256-YRZ807lNJV4tTZRF0Z5JdaPrDtmzR3ph9z5QOqJz990=",
-        "owner": "bizrr",
+        "owner": "langsjo",
         "repo": "dwm",
         "rev": "dbdc4f0bb4eb826f1ac7dd591a4c3668b767fdc4",
         "type": "github"
       },
       "original": {
-        "owner": "bizrr",
+        "owner": "langsjo",
         "ref": "my_dwm",
         "repo": "dwm",
         "type": "github"
@@ -214,22 +214,6 @@
         "type": "github"
       }
     },
-    "my-apps": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1735512390,
-        "narHash": "sha256-RtX2Olt4tARBKh5unFuzcgvFSdM31QZPVLKVCg0zt04=",
-        "owner": "bizrr",
-        "repo": "apps",
-        "rev": "4d968556349782c427e885a43ad097a9b28e238c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "bizrr",
-        "repo": "apps",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -359,7 +343,6 @@
       "inputs": {
         "dwm": "dwm",
         "home-manager": "home-manager",
-        "my-apps": "my-apps",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",

@@ -21,12 +21,7 @@
     };
 
     dwm = {
-      url = "github:bizrr/dwm/my_dwm";
-      flake = false;
-    };
-
-    my-apps = {
-      url = "github:bizrr/apps";
+      url = "github:langsjo/dwm/my_dwm";
       flake = false;
     };
   };
