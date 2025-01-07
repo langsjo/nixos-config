@@ -24,6 +24,15 @@
           installRustc = true;
           settings.check.command = "clippy";
         };
+        dartls = {
+          enable = true;
+          rootDir = ''
+            function(fname)
+              local util = require('lspconfig.util')
+              return util.root_pattern(".git")(fname) or util.path.dirname(fname)
+            end
+          '';
+        };
       };
 
       keymaps = {
