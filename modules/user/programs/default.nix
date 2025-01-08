@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ pkgs, inputs, ... }: {
   imports = [
     ./neovim
     ./alacritty.nix
@@ -9,6 +9,10 @@
     ./networkmanager-dmenu.nix
 
     inputs.nix-index-database.hmModules.nix-index
+  ];
+
+  home.packages = [
+    (import ./lmath.nix {inherit pkgs;})
   ];
 
   # small configurations here
