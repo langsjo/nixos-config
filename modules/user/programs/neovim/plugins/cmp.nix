@@ -22,8 +22,8 @@
           "<C-f>" = "cmp.mapping.confirm { select = true }";
 
           # Scroll the documentation window [b]ack / [f]orward
-          "<C-e>" = "cmp.mapping.scroll_docs(-4)";
-          "<C-y>" = "cmp.mapping.scroll_docs(4)";
+          "<C-j>" = "cmp.mapping.scroll_docs(4)";
+          "<C-k>" = "cmp.mapping.scroll_docs(-4)";
 
           "<C-l>" = ''
             cmp.mapping(function()
