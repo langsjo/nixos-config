@@ -32,6 +32,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    tree
     vim
     nix-prefetch-github
     wget

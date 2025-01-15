@@ -1,6 +1,10 @@
-{ ... }: {
+{ pkgs, ... }: {
 
   imports = [
+  ];
+
+  users.users.langsjo.packages = with pkgs; [
+    zoom-us
   ];
 
   environment.systemPackages = [
