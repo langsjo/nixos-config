@@ -16,13 +16,16 @@
   # Small configurations here
   programs = {
     ripgrep.enable = true;
-    nixvim.plugins = {
-      indent-blankline.enable = true;
-      comment.enable = true;
+    nixvim = {
+      plugins = {
+        indent-blankline.enable = true;
+        comment.enable = true;
+        markdown-preview.enable = true;
 
-      tmux-navigator = {
-        enable = true;
-        settings.no_wrap = 1;
+        tmux-navigator = {
+          enable = true;
+          settings.no_wrap = 1;
+        };
       };
     };
   };

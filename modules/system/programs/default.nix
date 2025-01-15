@@ -14,4 +14,6 @@
     slock.enable = true;
     light.enable = true;
   };
+
+  virtualisation.docker.enable = true;
 }

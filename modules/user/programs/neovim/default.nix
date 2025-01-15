@@ -28,6 +28,7 @@
       opts = {
         mouse = "a";
         showmode = false;
+        wrap = false;
         undofile = true;
         hlsearch = true;
         title = true;
