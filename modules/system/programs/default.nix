@@ -3,11 +3,9 @@
   imports = [
   ];
 
-  users.users.langsjo.packages = with pkgs; [
-    zoom-us
-  ];
-
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
+    unzip
+    zip
   ];
 
   programs = {
