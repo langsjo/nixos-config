@@ -14,6 +14,7 @@
   home.packages = [
     (import ./lmath.nix {inherit pkgs;})
     pkgs-unstable.zoom-us
+    pkgs.feh
   ];
 
   # small configurations here
