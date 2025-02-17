@@ -15,7 +15,7 @@
       servers = {
         clangd.enable = true;
         nixd.enable = true;
-        pylsp.enable = true;
+        pyright.enable = true;
         metals.enable = true;
         lua_ls.enable = true;
         rust_analyzer = {
