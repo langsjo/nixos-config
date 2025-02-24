@@ -15,10 +15,12 @@
     (import ./lmath.nix {inherit pkgs;})
     pkgs-unstable.zoom-us
     pkgs.feh
+    pkgs.libqalculate
   ];
 
   # small configurations here
   programs = {
+
     firefox.enable = true;
     zathura.enable = true;
     rofi.enable = true;
