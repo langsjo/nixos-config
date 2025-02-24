@@ -43,6 +43,11 @@
     dunst
   ];
 
+  zramSwap = {
+    enable = true;
+    priority = 9999;
+    memoryPercent = 100;
+  };
 
   # programs.firefox.enable = true;
   # services.openssh.enable = true;
