@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [
     ./dwm.nix
     ./keyd.nix
@@ -16,6 +16,12 @@
         disableWhileTyping = true;
         tapping = false;
       };
+    };
+
+    locate = {
+      enable = true;
+      package = pkgs.plocate;
+      localuser = null;
     };
   };
 }
