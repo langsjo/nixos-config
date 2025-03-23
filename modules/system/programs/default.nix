@@ -12,6 +12,7 @@
   programs = {
     slock.enable = true;
     light.enable = true;
+    thunar.enable = true;
   };
 
   virtualisation.docker.enable = true;

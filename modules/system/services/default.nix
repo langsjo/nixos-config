@@ -4,10 +4,15 @@
     ./keyd.nix
   ];
 
+  environment.systemPackages = with pkgs; [
+    powertop
+  ];
+
   # small configs go here
   services = {
     openssh.enable = true;
     upower.enable = true;
+    tlp.enable = true;
 
     libinput = {
       enable = true;
@@ -24,4 +29,6 @@
       localuser = null;
     };
   };
+
+  powerManagement.powertop.enable = true;
 }

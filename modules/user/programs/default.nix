@@ -20,7 +20,6 @@
 
   # small configurations here
   programs = {
-
     firefox.enable = true;
     zathura.enable = true;
     rofi.enable = true;
