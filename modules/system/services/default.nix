@@ -5,7 +5,6 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    powertop
   ];
 
   # small configs go here
