@@ -10,6 +10,7 @@
   ];
 
   programs = {
+    steam.enable = true;
     slock.enable = true;
     light.enable = true;
     thunar.enable = true;
