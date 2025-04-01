@@ -8,7 +8,10 @@
       inputs.home-manager.nixosModules.default
     ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ "@wheel" ];
+  };
 
 
   users.users.langsjo = {
