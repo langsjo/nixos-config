@@ -1,10 +1,10 @@
 { pkgs }:
 let
   pname = "lmath";
-  version = "r1.10.10";
+  version = "r1.10.11";
   src = pkgs.fetchurl {
     url = "https://github.com/lehtoroni/lmath-issues/releases/download/${version}/LMath_Linux_${version}-release.AppImage";
-    sha256 = "sha256-2ZF+vpj5M/HPrG3Lno4DSnceiz9Oo1fDGoKA2IyG4xg=";
+    sha256 = "sha256-w2/0WUZ2AzpFtwlvn3zXBNQxKN3JY/OXomZtWkSlf4I=";
   };
 
 in
