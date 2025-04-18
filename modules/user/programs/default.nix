@@ -16,6 +16,7 @@
     pkgs-unstable.zoom-us
     pkgs.feh
     pkgs.libqalculate
+    pkgs.google-chrome
   ];
 
   # small configurations here

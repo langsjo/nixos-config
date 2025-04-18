@@ -9,6 +9,7 @@
   home.username = "langsjo";
   home.homeDirectory = "/home/langsjo";
 
+  nixpkgs.config.allowUnfree = true;
   home.packages = [
   ];
 
