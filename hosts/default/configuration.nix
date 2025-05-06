@@ -49,7 +49,7 @@
   zramSwap = {
     enable = true;
     priority = 9999;
-    memoryPercent = 100;
+    memoryPercent = 200;
   };
 
   # programs.firefox.enable = true;
