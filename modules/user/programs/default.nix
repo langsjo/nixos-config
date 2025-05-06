@@ -21,6 +21,7 @@
 
   # small configurations here
   programs = {
+    gh.enable = true;
     firefox.enable = true;
     zathura.enable = true;
     rofi.enable = true;
