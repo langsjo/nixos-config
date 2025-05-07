@@ -11,12 +11,12 @@
     inputs.nix-index-database.hmModules.nix-index
   ];
 
-  home.packages = [
+  home.packages = with pkgs;[
     (import ./lmath.nix {inherit pkgs;})
     pkgs-unstable.zoom-us
-    pkgs.feh
-    pkgs.libqalculate
-    pkgs.google-chrome
+    feh
+    libqalculate
+    google-chrome
   ];
 
   # small configurations here

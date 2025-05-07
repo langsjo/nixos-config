@@ -7,6 +7,7 @@
     unzip
     zip
     comma
+    btop
   ];
 
   programs = {
