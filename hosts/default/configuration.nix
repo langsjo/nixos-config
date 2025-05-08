@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, inputs, ... }:
+{ pkgs, pkgs-unstable, inputs, config, ... }:
 {
   imports =
     [ 
@@ -52,8 +52,9 @@
     memoryPercent = 200;
   };
 
-  # programs.firefox.enable = true;
-  # services.openssh.enable = true;
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
 
   #########################################################
   nixpkgs.config.allowUnfree = true;
