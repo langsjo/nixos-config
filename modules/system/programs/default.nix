@@ -8,6 +8,7 @@
     zip
     comma
     btop
+    nixpkgs-review
   ];
 
   programs = {
