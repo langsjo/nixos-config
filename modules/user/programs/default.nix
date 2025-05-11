@@ -7,6 +7,7 @@
     ./oh-my-posh.nix
     ./tmux.nix
     ./networkmanager-dmenu.nix
+    ./matrix.nix
 
     inputs.nix-index-database.hmModules.nix-index
   ];
