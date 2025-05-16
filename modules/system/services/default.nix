@@ -2,9 +2,11 @@
   imports = [
     ./dwm.nix
     ./keyd.nix
+    ./sxwm-module.nix
   ];
 
   environment.systemPackages = with pkgs; [
+    # (callPackage ./sxwm.nix { })
   ];
 
   # small configs go here
@@ -27,6 +29,8 @@
       package = pkgs.plocate;
       localuser = null;
     };
+
+    xserver.windowManager.sxwm.enable = true;
   };
 
   powerManagement.powertop.enable = true;
