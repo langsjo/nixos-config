@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, ... }: {
 
   imports = [
   ];
@@ -16,6 +16,10 @@
     slock.enable = true;
     light.enable = true;
     thunar.enable = true;
+    nh = {
+      enable = true;
+      flake = inputs.self;
+    };
   };
 
   virtualisation.docker.enable = true;
