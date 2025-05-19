@@ -33,6 +33,7 @@
       grep = "grep --color=auto";
       ls = "ls --color=auto";
       la = "ls -A --color=auto";
+      ll = "ls -al --color=auto";
       ":q" = "exit";
       ":qa" = "tmux kill-session";
       c = "clear";
