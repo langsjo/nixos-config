@@ -28,6 +28,12 @@
     rofi.enable = true;
     thefuck.enable = true;
 
+    programs.direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
+
     zoxide = {
       enable = true;
       enableZshIntegration = true;

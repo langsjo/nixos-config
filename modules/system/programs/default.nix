@@ -21,11 +21,11 @@
       flake = inputs.self;
     };
 
-    direnv = {
-      enable = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
-    };
+    # direnv = {
+    #   enable = true;
+    #   enableZshIntegration = true;
+    #   nix-direnv.enable = true;
+    # };
   };
 
   virtualisation.docker.enable = true;
