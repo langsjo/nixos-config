@@ -26,22 +26,23 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, ... }@inputs: {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem rec {
+  outputs = { nixpkgs, nixpkgs-unstable, ... }@inputs: 
+    let
       system = "x86_64-linux";
-
-      specialArgs = {
-        inherit inputs;
-
-        pkgs-unstable = import nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
       };
+    in
+      {
+      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs pkgs-unstable;
+        };
 
-      modules = [
-        ./hosts/default/configuration.nix
-      ];
+        modules = [
+          ./hosts/default/configuration.nix
+        ];
+      };
     };
-  };
 }
