@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{pkgs, ... }: {
 
   imports = [
   ];
@@ -9,6 +9,8 @@
     comma
     btop
     nixpkgs-review
+    nix-output-monitor
+    nixfmt-rfc-style
   ];
 
   programs = {
@@ -16,16 +18,6 @@
     slock.enable = true;
     light.enable = true;
     thunar.enable = true;
-    nh = {
-      enable = true;
-      flake = inputs.self;
-    };
-
-    # direnv = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    #   nix-direnv.enable = true;
-    # };
   };
 
   virtualisation.docker.enable = true;
