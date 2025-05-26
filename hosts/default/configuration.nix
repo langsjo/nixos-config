@@ -98,14 +98,9 @@
   };
 
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm = {
+
+  services.displayManager.ly = {
     enable = true;
-    settings = {
-      greeter = {
-        IncludeAll = true;
-        Include = "langsjo";
-      };
-    };
   };
 
   # services.xserver.desktopManager.gnome.enable = true;
