@@ -1,8 +1,14 @@
-{ config, pkgs, lib, ... }: 
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   sxwm = pkgs.callPackage ./sxwm.nix { };
   cfg = config.services.xserver.windowManager.sxwm;
-in {
+in
+{
   options.services.xserver.windowManager.sxwm = {
     enable = lib.mkEnableOption "sxwm window manager";
     package = lib.mkOption {
@@ -27,4 +33,3 @@ in {
     ];
   };
 }
-

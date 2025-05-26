@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     element-desktop
     matrix-appservice-irc
@@ -10,4 +11,3 @@
   };
 
 }
-

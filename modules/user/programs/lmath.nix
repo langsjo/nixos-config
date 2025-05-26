@@ -8,19 +8,19 @@ let
   };
 
 in
-  pkgs.appimageTools.wrapType2 {
-    inherit pname version src;
+pkgs.appimageTools.wrapType2 {
+  inherit pname version src;
 
-    extraInstallCommands = ''
-      mkdir -p $out/share/applications
+  extraInstallCommands = ''
+    mkdir -p $out/share/applications
 
-      cat > $out/share/applications/lmath.desktop <<EOF
-      [Desktop Entry]
-      Name=L'Math
-      Exec=$out/bin/${pname}
-      Type=Application
-      Categories=Utility;
-      Terminal=false
-      EOF
-    '';
-  }
+    cat > $out/share/applications/lmath.desktop <<EOF
+    [Desktop Entry]
+    Name=L'Math
+    Exec=$out/bin/${pname}
+    Type=Application
+    Categories=Utility;
+    Terminal=false
+    EOF
+  '';
+}

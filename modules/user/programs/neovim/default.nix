@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
 
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
@@ -91,12 +92,18 @@
         }
 
         {
-          mode = [ "n" "v" ];
+          mode = [
+            "n"
+            "v"
+          ];
           key = "j";
           action = "gj";
         }
         {
-          mode = [ "n" "v" ];
+          mode = [
+            "n"
+            "v"
+          ];
           key = "k";
           action = "gk";
         }

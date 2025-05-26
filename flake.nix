@@ -26,7 +26,8 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, ... }@inputs: 
+  outputs =
+    { nixpkgs, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs-unstable = import nixpkgs-unstable {
@@ -34,7 +35,9 @@
         config.allowUnfree = true;
       };
     in
-      {
+    {
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
+
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs pkgs-unstable;

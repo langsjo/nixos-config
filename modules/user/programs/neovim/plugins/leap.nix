@@ -9,7 +9,10 @@
       {
         action = "<Plug>(leap)";
         key = "gl";
-        mode = [ "n" "x" ];
+        mode = [
+          "n"
+          "x"
+        ];
       }
       {
         # Remote leaps

@@ -1,4 +1,5 @@
-{ pkgs, pkgs-unstable, ... }: {
+{ pkgs, pkgs-unstable, ... }:
+{
   fonts.packages = [
     pkgs.liberation_ttf
     pkgs.noto-fonts

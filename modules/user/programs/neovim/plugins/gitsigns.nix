@@ -3,11 +3,21 @@
     plugins.gitsigns = {
       enable = true;
       settings.signs = {
-        add = {text = "+";};
-        change = {text = "~";};
-        delete = {text = "_";};
-        topdelete = {text = "‾";};
-        changedelete = {text = "~";};
+        add = {
+          text = "+";
+        };
+        change = {
+          text = "~";
+        };
+        delete = {
+          text = "_";
+        };
+        topdelete = {
+          text = "‾";
+        };
+        changedelete = {
+          text = "~";
+        };
       };
     };
 
@@ -19,7 +29,7 @@
           function()
             require('gitsigns').blame_line()
           end
-          '';
+        '';
         options = {
           desc = "git [b]lame line";
         };
@@ -32,7 +42,7 @@
           function()
             require('gitsigns').stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
           end
-          '';
+        '';
         options = {
           desc = "git [s]tage hunk";
         };

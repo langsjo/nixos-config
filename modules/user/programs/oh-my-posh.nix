@@ -1,4 +1,5 @@
-{ inputs, ... } : {
+{ inputs, ... }:
+{
 
   programs.oh-my-posh = {
     enable = true;

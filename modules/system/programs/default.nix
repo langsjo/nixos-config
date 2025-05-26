@@ -1,4 +1,5 @@
-{pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   imports = [
   ];
@@ -10,7 +11,6 @@
     btop
     nixpkgs-review
     nix-output-monitor
-    nixfmt-rfc-style
   ];
 
   programs = {

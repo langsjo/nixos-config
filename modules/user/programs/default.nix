@@ -1,4 +1,10 @@
-{ pkgs, pkgs-unstable, inputs, ... }: {
+{
+  pkgs,
+  pkgs-unstable,
+  inputs,
+  ...
+}:
+{
   imports = [
     ./neovim
     ./alacritty.nix
@@ -12,8 +18,8 @@
     inputs.nix-index-database.hmModules.nix-index
   ];
 
-  home.packages = with pkgs;[
-    (import ./lmath.nix {inherit pkgs;})
+  home.packages = with pkgs; [
+    (import ./lmath.nix { inherit pkgs; })
     pkgs-unstable.zoom-us
     feh
     libqalculate

@@ -1,4 +1,5 @@
-{ pkgs, config, ...}: {
+{ pkgs, config, ... }:
+{
   home.packages = with pkgs; [
     zsh-fzf-history-search
     zsh-fzf-tab
@@ -25,8 +26,8 @@
     historySubstringSearch.enable = true;
 
     sessionVariables = {
-      MANPAGER="nvim +Man!";
-      EDITOR="nvim";
+      MANPAGER = "nvim +Man!";
+      EDITOR = "nvim";
     };
 
     shellAliases = {

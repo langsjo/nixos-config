@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.tmux = {
     enable = true;
     shortcut = "Space";
@@ -22,25 +23,25 @@
     ];
 
     extraConfig = ''
-        # The color setting on this line needs to be the same as in alacritty/whatever terminal is used
-        set -ag terminal-overrides ",xterm-256color:Tc"
+      # The color setting on this line needs to be the same as in alacritty/whatever terminal is used
+      set -ag terminal-overrides ",xterm-256color:Tc"
 
-        bind -n M-C-h previous-window
-        bind -n M-C-l next-window
-        bind -n M-C-j swap-window -t -1\; select-window -t -1
-        bind -n M-C-k swap-window -t +1\; select-window -t +1
-        bind -T copy-mode-vi v send-keys -X begin-selection
-        bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
-        bind -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+      bind -n M-C-h previous-window
+      bind -n M-C-l next-window
+      bind -n M-C-j swap-window -t -1\; select-window -t -1
+      bind -n M-C-k swap-window -t +1\; select-window -t +1
+      bind -T copy-mode-vi v send-keys -X begin-selection
+      bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
+      bind -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
-        # Open new panes/windows in CWD
-        bind '"' split-window -v -c "#{pane_current_path}"
-        bind % split-window -h -c "#{pane_current_path}"
-        bind c new-window -c "#{pane_current_path}"
+      # Open new panes/windows in CWD
+      bind '"' split-window -v -c "#{pane_current_path}"
+      bind % split-window -h -c "#{pane_current_path}"
+      bind c new-window -c "#{pane_current_path}"
 
 
-        # is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-        #   grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|\.?n?vim?x?(-wrapped)?)(diff)?$'"
+      # is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+      #   grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|\.?n?vim?x?(-wrapped)?)(diff)?$'"
     '';
   };
 }

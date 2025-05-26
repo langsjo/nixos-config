@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   programs.git = {
     enable = true;
     userName = "langsjo";
@@ -22,6 +23,6 @@
         condition = "gitdir:~/Kurssit/**";
       }
     ];
-        
+
   };
 }

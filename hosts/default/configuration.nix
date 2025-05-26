@@ -1,25 +1,37 @@
-{ pkgs, pkgs-unstable, inputs, config, ... }:
 {
-  imports =
-    [ 
-      ../common
-      ./hardware-configuration.nix
-      "${inputs.self}/modules/system"
-      inputs.home-manager.nixosModules.default
-    ];
+  pkgs,
+  pkgs-unstable,
+  inputs,
+  config,
+  ...
+}:
+{
+  imports = [
+    ../common
+    ./hardware-configuration.nix
+    "${inputs.self}/modules/system"
+    inputs.home-manager.nixosModules.default
+  ];
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     trusted-users = [ "@wheel" ];
     allow-import-from-derivation = false;
   };
 
-
   users.users.langsjo = {
     isNormalUser = true;
     description = "langsjo";
-    extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
-    packages = with pkgs;[
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "docker"
+    ];
+    packages = with pkgs; [
       telegram-desktop
       rofi-screenshot
     ];
@@ -53,7 +65,6 @@
     memoryPercent = 200;
   };
 
-
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
 
@@ -69,7 +80,10 @@
   time.timeZone = "Europe/Helsinki";
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    supportedLocales = [ "en_US.UTF-8/UTF-8" "fi_FI.UTF-8/UTF-8" ];
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "fi_FI.UTF-8/UTF-8"
+    ];
     extraLocaleSettings = {
       LC_ADDRESS = "fi_FI.UTF-8";
       LC_IDENTIFICATION = "fi_FI.UTF-8";
