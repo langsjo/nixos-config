@@ -66,6 +66,12 @@
         };
       };
 
+      # Configure how diagnostics are shown
+      diagnostic.settings = {
+        virtual_lines = true;
+        severity_sort = true;
+      };
+
       keymaps = [
         {
           mode = "n";

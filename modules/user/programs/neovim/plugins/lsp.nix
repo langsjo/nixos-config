@@ -12,6 +12,7 @@
 
     plugins.lsp = {
       enable = true;
+      inlayHints = true;
 
       servers = {
         clangd.enable = true;
