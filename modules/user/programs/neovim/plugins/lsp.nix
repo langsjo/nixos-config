@@ -28,22 +28,11 @@
 
         java_language_server = {
           enable = true;
-          rootDir = ''
-            function(fname)
-              local util = require('lspconfig.util')
-              return util.root_pattern(".git")(fname) or util.path.dirname(fname)
-            end
-          '';
-        };
-
-        dartls = {
-          enable = true;
-          rootDir = ''
-            function(fname)
-              local util = require('lspconfig.util')
-              return util.root_pattern(".git")(fname) or util.path.dirname(fname)
-            end
-          '';
+          rootMarkers = [
+            ".envrc"
+            ".git"
+            "*.nix"
+          ];
         };
       };
 

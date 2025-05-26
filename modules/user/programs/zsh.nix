@@ -42,7 +42,7 @@
       tmpdir = "cd $(mktemp -d)";
     };
 
-    initExtra = ''
+    initContent = ''
       source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
       eval "$(zoxide init --cmd cd zsh)"
       bindkey -e

@@ -1,20 +1,15 @@
 {
   programs.nixvim = {
-    plugins.dap = {
-      enable = true;
-
-      extensions = {
-        dap-ui = {
-          enable = true;
+    plugins = {
+      dap = {
+        enable = true;
+        adapters = {
+        };
+        configurations = {
         };
       };
 
-      adapters = {
-      };
-
-      configurations = {
-      };
-
+      dap-ui.enable = true;
     };
 
     keymaps = [
