@@ -11,6 +11,7 @@
     btop
     nixpkgs-review
     nix-output-monitor
+    devenv
   ];
 
   programs = {
