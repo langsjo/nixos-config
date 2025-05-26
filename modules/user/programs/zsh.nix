@@ -39,6 +39,7 @@
       c = "clear";
       n = "nvim";
       open = "xdg-open";
+      tmpdir = "cd $(mktemp -d)";
     };
 
     initExtra = ''
