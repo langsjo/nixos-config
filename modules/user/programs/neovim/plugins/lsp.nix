@@ -28,13 +28,8 @@
           settings.check.command = "clippy";
         };
 
-        java_language_server = {
+        jdtls = {
           enable = true;
-          rootMarkers = [
-            ".envrc"
-            ".git"
-            "*.nix"
-          ];
         };
       };
 
