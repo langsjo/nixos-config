@@ -12,7 +12,13 @@
 
   # small configs go here
   services = {
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+      };
+    };
+
     upower.enable = true;
     tlp.enable = true;
 

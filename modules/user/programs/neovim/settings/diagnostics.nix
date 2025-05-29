@@ -1,33 +1,21 @@
+let
+  diagnosticsConfigLua = ''
+    {
+      severity_sort = true,
+      virtual_lines = {
+          format = function(diagnostic)
+              return diagnostic.message
+          end,
+      },
+    }
+  '';
+in
 {
   programs.nixvim = {
     diagnostic.settings = {
-      virtual_lines = {
-        # Use virtual lines for errors
-        severity.min.__raw = "vim.diagnostic.severity.ERROR";
-
-        # Only show the diagnostic message, not the name of the error
-        format.__raw = ''
-          function(diagnostic)
-            return diagnostic.message
-          end
-        '';
-      };
-
-      virtual_text = {
-        # and virtual text for anything else
-        severity.max.__raw = "vim.diagnostic.severity.WARN";
-
-        # Only show the diagnostic message, not the name of the error
-        format.__raw = ''
-          function(diagnostic)
-            return diagnostic.message
-          end
-        '';
-      };
-
-      severity_sort = true;
+      # Have virtual lines off by default, enable with a toggle
+      virtual_lines = false;
     };
-
     keymaps = [
       {
         # Toggle virtual text and virtual lines
@@ -36,10 +24,13 @@
         action.__raw = ''
           function()
             local c = vim.diagnostic.config()
-            vim.diagnostic.config({
-              virtual_text = not c.virtual_text,
-              virtual_lines = not c.virtual_lines,
-            })
+            if not c.virtual_lines then
+              vim.diagnostic.config(${diagnosticsConfigLua})
+            else
+              vim.diagnostic.config({
+                virtual_lines = false,
+              })
+            end
           end
         '';
       }
