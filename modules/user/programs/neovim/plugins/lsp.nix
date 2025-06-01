@@ -44,6 +44,20 @@
         extra = [
           {
             mode = "n";
+            key = "<leader>xv";
+            action.__raw = ''
+              function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+              end
+            '';
+
+            options = {
+              desc = "Toggle inlay hints";
+            };
+          }
+
+          {
+            mode = "n";
             key = "gd";
             action.__raw = "require('telescope.builtin').lsp_definitions";
             options = {

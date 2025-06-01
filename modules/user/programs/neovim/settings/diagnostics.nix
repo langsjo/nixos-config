@@ -33,6 +33,9 @@ in
             end
           end
         '';
+        options = {
+          desc = "Toggle virtual lines";
+        };
       }
     ];
   };
