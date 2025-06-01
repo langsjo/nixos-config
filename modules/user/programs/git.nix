@@ -15,14 +15,5 @@
       core.editor = "nvim";
       pull.rebase = true;
     };
-
-    includes = [
-      {
-        contents.user.name = "langsjo";
-        contents.user.email = "104687438+langsjo@users.noreply.github.com";
-        condition = "gitdir:~/Kurssit/**";
-      }
-    ];
-
   };
 }
