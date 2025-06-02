@@ -19,7 +19,7 @@
   ];
 
   home.packages = with pkgs; [
-    (import ./lmath.nix { inherit pkgs; })
+    (pkgs.callPackage ./lmath.nix { })
     pkgs-unstable.zoom-us
     feh
     libqalculate

@@ -1,26 +1,27 @@
-{ pkgs }:
+{
+  fetchurl,
+  appimageTools,
+}:
 let
   pname = "lmath";
-  version = "r1.10.11";
-  src = pkgs.fetchurl {
+  version = "r1.10.13";
+  src = fetchurl {
     url = "https://github.com/lehtoroni/lmath-issues/releases/download/${version}/LMath_Linux_${version}-release.AppImage";
-    sha256 = "sha256-w2/0WUZ2AzpFtwlvn3zXBNQxKN3JY/OXomZtWkSlf4I=";
+    sha256 = "sha256-/41wZreUB5x33wmweDe0Dr5asgxv6W+cRQm0DIAy+8s=";
   };
 
+  appimageContents = appimageTools.extractType2 {
+    inherit pname version src;
+  };
 in
-pkgs.appimageTools.wrapType2 {
+appimageTools.wrapType2 {
   inherit pname version src;
 
   extraInstallCommands = ''
-    mkdir -p $out/share/applications
+    install -Dm 444 ${appimageContents}/${pname}.desktop $out/share/applications/${pname}.desktop
+    install -Dm 444 ${appimageContents}/${pname}.png $out/share/icons/hicolor/512x512/apps/${pname}.png
 
-    cat > $out/share/applications/lmath.desktop <<EOF
-    [Desktop Entry]
-    Name=L'Math
-    Exec=$out/bin/${pname}
-    Type=Application
-    Categories=Utility;
-    Terminal=false
-    EOF
+    substituteInPlace $out/share/applications/${pname}.desktop \
+      --replace-fail 'Exec=AppRun' 'Exec=${pname}'
   '';
 }
