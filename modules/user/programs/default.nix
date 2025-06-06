@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   inputs,
   ...
 }:
@@ -20,7 +19,6 @@
 
   home.packages = with pkgs; [
     (pkgs.callPackage ./lmath.nix { })
-    pkgs-unstable.zoom-us
     feh
     libqalculate
     google-chrome
