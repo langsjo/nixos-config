@@ -22,6 +22,7 @@
     feh
     libqalculate
     google-chrome
+    discord
   ];
 
   # small configurations here
