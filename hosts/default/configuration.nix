@@ -17,6 +17,7 @@
     experimental-features = [
       "nix-command"
       "flakes"
+      "pipe-operators"
     ];
     trusted-users = [ "@wheel" ];
     allow-import-from-derivation = false;
