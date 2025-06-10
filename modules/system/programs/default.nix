@@ -9,7 +9,6 @@
     zip
     comma
     btop
-    nixpkgs-review
     nix-output-monitor
     devenv
   ];
