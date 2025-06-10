@@ -1,6 +1,29 @@
 {
   description = "Nixos config flake";
 
+  outputs =
+    { nixpkgs, nixpkgs-unstable, ... }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in
+    {
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
+
+      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs pkgs-unstable;
+        };
+
+        modules = [
+          ./hosts/default/configuration.nix
+        ];
+      };
+    };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -25,27 +48,4 @@
       flake = false;
     };
   };
-
-  outputs =
-    { nixpkgs, nixpkgs-unstable, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
-      };
-    in
-    {
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
-
-      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs pkgs-unstable;
-        };
-
-        modules = [
-          ./hosts/default/configuration.nix
-        ];
-      };
-    };
 }
