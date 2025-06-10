@@ -8,6 +8,8 @@
   home.username = "langsjo";
   home.homeDirectory = "/home/langsjo";
 
+  xdg.enable = true;
+
   nixpkgs.config.allowUnfree = true;
   home.packages = [
   ];
