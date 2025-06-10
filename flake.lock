@@ -1,22 +1,5 @@
 {
   "nodes": {
-    "dwm": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1748881170,
-        "narHash": "sha256-wpGkTMyldEqWSGInKweU9kdrVVf14pzNSjuKAVCaYUk=",
-        "owner": "langsjo",
-        "repo": "dwm",
-        "rev": "0ab174a6e2b7753121042076aec96dfe5fea93ed",
-        "type": "github"
-      },
-      "original": {
-        "owner": "langsjo",
-        "ref": "my_dwm",
-        "repo": "dwm",
-        "type": "github"
-      }
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -206,7 +189,6 @@
     },
     "root": {
       "inputs": {
-        "dwm": "dwm",
         "home-manager": "home-manager",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",

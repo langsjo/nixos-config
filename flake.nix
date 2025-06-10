@@ -42,10 +42,5 @@
       url = "github:nix-community/nixvim/nixos-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    dwm = {
-      url = "github:langsjo/dwm/my_dwm";
-      flake = false;
-    };
   };
 }
