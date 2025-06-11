@@ -1,4 +1,9 @@
 {
+  services.xserver.xkb = {
+    layout = "fi";
+    variant = "nodeadkeys";
+  };
+
   services.keyd = {
     enable = true;
     keyboards.default = {

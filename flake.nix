@@ -13,14 +13,26 @@
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
 
-      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs pkgs-unstable;
+      nixosConfigurations = {
+        laptop = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs pkgs-unstable;
+          };
+
+          modules = [
+            ./hosts/laptop/configuration.nix
+          ];
         };
 
-        modules = [
-          ./hosts/default/configuration.nix
-        ];
+        desktop = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs pkgs-unstable;
+          };
+
+          modules = [
+            ./hosts/desktop/configuration.nix
+          ];
+        };
       };
     };
 

@@ -2,7 +2,7 @@
 {
   imports = [
     ./dwm.nix
-    ./keyd.nix
+    ./keyboard.nix
     ./sxwm-module.nix
   ];
 
