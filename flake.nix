@@ -14,7 +14,7 @@
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
-      optionDocs = pkgs.callPackage ./generate-docs.nix { };
+      optionDocs = pkgs.callPackage ./utils/generate-docs.nix { };
 
       nixosConfigurations = {
         laptop = nixpkgs.lib.nixosSystem {

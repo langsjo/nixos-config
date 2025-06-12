@@ -1,3 +1,4 @@
+# NOTE: This file does not contains documentation of Home manager options
 ## custom\.gaming\.enable
 
 Whether to enable Enable gaming related programs and services\.
@@ -18,7 +19,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/gaming](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/gaming)
+ - [./modules/system/gaming/default.nix](./modules/system/gaming/default.nix)
 
 
 
@@ -39,7 +40,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/gui](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/gui)
+ - [./modules/system/gui/default.nix](./modules/system/gui/default.nix)
 
 
 
@@ -65,7 +66,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/gui/ly\.nix](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/gui/ly.nix)
+ - [./modules/system/gui/ly\.nix](./modules/system/gui/ly.nix)
 
 
 
@@ -86,7 +87,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/programs/gui](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/programs/gui)
+ - [./modules/system/programs/gui/default.nix](./modules/system/programs/gui/default.nix)
 
 
 
@@ -112,7 +113,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/gui/dwm\.nix](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/gui/dwm.nix)
+ - [./modules/system/gui/dwm\.nix](./modules/system/gui/dwm.nix)
 
 
 
@@ -133,7 +134,7 @@ boolean
 ` config.custom.gui.windowManager.dwm.enable `
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/gui/dwm-status\.nix](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/gui/dwm-status.nix)
+ - [./modules/system/gui/dwm-status\.nix](./modules/system/gui/dwm-status.nix)
 
 
 
@@ -159,7 +160,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/gui/xserver\.nix](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/gui/xserver.nix)
+ - [./modules/system/gui/xserver\.nix](./modules/system/gui/xserver.nix)
 
 
 
@@ -180,7 +181,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/hardware/audio\.nix](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/hardware/audio.nix)
+ - [./modules/system/hardware/audio\.nix](./modules/system/hardware/audio.nix)
 
 
 
@@ -201,7 +202,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/hardware/bluetooth\.nix](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/hardware/bluetooth.nix)
+ - [./modules/system/hardware/bluetooth\.nix](./modules/system/hardware/bluetooth.nix)
 
 
 
@@ -241,7 +242,7 @@ attribute set of anything
 ```
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/user](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/user)
+ - [./modules/user/default.nix](./modules/user/default.nix)
 
 
 
@@ -267,7 +268,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/common/options\.nix](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/common/options.nix)
+ - [./modules/system/common/options\.nix](./modules/system/common/options.nix)
 
 
 
@@ -288,7 +289,7 @@ string
 ` "/home/{config.custom.user.username}" `
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/common/user\.nix](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/common/user.nix)
+ - [./modules/system/common/user\.nix](./modules/system/common/user.nix)
 
 
 
@@ -309,6 +310,6 @@ string
 ` "langsjo" `
 
 *Declared by:*
- - [/nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/common/user\.nix](file:///nix/store/4ngi52iqmszymy1vgdzpilyqrk00mgr5-source/modules/system/common/user.nix)
+ - [./modules/system/common/user\.nix](./modules/system/common/user.nix)
 
 
