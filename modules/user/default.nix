@@ -19,11 +19,11 @@ in
     '';
     default = {
       enable = true;
-    };
-
-    example = {
+    }; # Though the stateVersion default is not set here, it is set on the Home manager side
+    
+    defaultText = {
       enable = true;
-      stateVersion = "25.05";
+      stateVersion = "{config.system.stateVersion}";
     };
   };
 

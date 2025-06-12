@@ -227,17 +227,7 @@ attribute set of anything
 ```
 {
   enable = true;
-}
-```
-
-
-
-*Example:*
-
-```
-{
-  enable = true;
-  stateVersion = "25.05";
+  stateVersion = "{config.system.stateVersion}";
 }
 ```
 
