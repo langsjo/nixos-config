@@ -20,6 +20,15 @@ in
           rev = "0ab174a6e2b7753121042076aec96dfe5fea93ed";
           hash = "sha256-wpGkTMyldEqWSGInKweU9kdrVVf14pzNSjuKAVCaYUk=";
         };
+
+        patches = 
+          prevAttrs.patches ++ 
+          [(
+            pkgs.fetchpatch {
+              url = "https://dwm.suckless.org/patches/removeborder/dwm-removeborder-20220626-d3f93c7.diff"; # remove border from window if only 1 window on screen
+              hash = "sha256-0QUN+wfKyXxabXyKXIcpPcdnLkH4d0Oqx8pncjc+It4=";
+            }
+          )];
       });
     };
 
