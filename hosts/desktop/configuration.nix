@@ -3,11 +3,15 @@
   ...
 }:
 {
-  imports = [
-    ./hardware-configuration.nix
-    "${inputs.self}/modules"
-    inputs.home-manager.nixosModules.default
-  ];
+  imports = 
+    [
+      ./hardware-configuration.nix
+      "${inputs.self}/modules"
+      inputs.home-manager.nixosModules.default
+    ] ++ (with inputs.nixos-hardware; [
+      nixosModules.common-cpu-intel-cpu-only
+      (outPath + "/common/gpu/nvidia/pascal")
+    ]);
 
   custom = {
     isLaptop = false;
