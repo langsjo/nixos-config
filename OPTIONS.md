@@ -19,7 +19,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [./modules/system/gaming/default.nix](./modules/system/gaming/default.nix)
+ - [/modules/system/gaming/default\.nix](/modules/system/gaming/default.nix)
 
 
 
@@ -40,7 +40,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [./modules/system/gui/default.nix](./modules/system/gui/default.nix)
+ - [/modules/system/gui/default\.nix](/modules/system/gui/default.nix)
 
 
 
@@ -66,7 +66,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [./modules/system/gui/ly\.nix](./modules/system/gui/ly.nix)
+ - [/modules/system/gui/ly\.nix](/modules/system/gui/ly.nix)
 
 
 
@@ -87,7 +87,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [./modules/system/programs/gui/default.nix](./modules/system/programs/gui/default.nix)
+ - [/modules/system/programs/gui/default\.nix](/modules/system/programs/gui/default.nix)
 
 
 
@@ -113,7 +113,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [./modules/system/gui/dwm\.nix](./modules/system/gui/dwm.nix)
+ - [/modules/system/gui/dwm\.nix](/modules/system/gui/dwm.nix)
 
 
 
@@ -134,7 +134,7 @@ boolean
 ` config.custom.gui.windowManager.dwm.enable `
 
 *Declared by:*
- - [./modules/system/gui/dwm-status\.nix](./modules/system/gui/dwm-status.nix)
+ - [/modules/system/gui/dwm-status\.nix](/modules/system/gui/dwm-status.nix)
 
 
 
@@ -160,7 +160,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [./modules/system/gui/xserver\.nix](./modules/system/gui/xserver.nix)
+ - [/modules/system/gui/xserver\.nix](/modules/system/gui/xserver.nix)
 
 
 
@@ -181,7 +181,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [./modules/system/hardware/audio\.nix](./modules/system/hardware/audio.nix)
+ - [/modules/system/hardware/audio\.nix](/modules/system/hardware/audio.nix)
 
 
 
@@ -202,7 +202,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [./modules/system/hardware/bluetooth\.nix](./modules/system/hardware/bluetooth.nix)
+ - [/modules/system/hardware/bluetooth\.nix](/modules/system/hardware/bluetooth.nix)
 
 
 
@@ -242,7 +242,7 @@ attribute set of anything
 ```
 
 *Declared by:*
- - [./modules/user/default.nix](./modules/user/default.nix)
+ - [/modules/user/default\.nix](/modules/user/default.nix)
 
 
 
@@ -268,7 +268,28 @@ boolean
 ` true `
 
 *Declared by:*
- - [./modules/system/common/options\.nix](./modules/system/common/options.nix)
+ - [/modules/system/common/options\.nix](/modules/system/common/options.nix)
+
+
+
+## custom\.screen\.dpi
+
+
+
+The dpi of the screen
+
+
+
+*Type:*
+signed integer
+
+
+
+*Default:*
+` 96 `
+
+*Declared by:*
+ - [/modules/system/common/options\.nix](/modules/system/common/options.nix)
 
 
 
@@ -289,7 +310,7 @@ string
 ` "/home/{config.custom.user.username}" `
 
 *Declared by:*
- - [./modules/system/common/user\.nix](./modules/system/common/user.nix)
+ - [/modules/system/common/user\.nix](/modules/system/common/user.nix)
 
 
 
@@ -310,6 +331,6 @@ string
 ` "langsjo" `
 
 *Declared by:*
- - [./modules/system/common/user\.nix](./modules/system/common/user.nix)
+ - [/modules/system/common/user\.nix](/modules/system/common/user.nix)
 
 
