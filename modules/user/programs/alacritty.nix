@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  osConfig,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   programs.alacritty = {
     enable = true;
@@ -17,7 +22,7 @@
       };
 
       font = {
-        size = 9.0;
+        size = osConfig.custom.screen.dpi / 8.0;
         bold = {
           family = "MesloLGM Nerd Font";
           style = "Heavy";

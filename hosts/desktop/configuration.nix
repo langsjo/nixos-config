@@ -30,6 +30,8 @@
         status.enable = true;
       };
     };
+    
+    screen.dpi = 96;
 
     home-manager = {
       enable = true;
