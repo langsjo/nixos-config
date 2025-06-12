@@ -206,6 +206,27 @@ boolean
 
 
 
+## custom\.hardware\.graphics\.enable
+
+
+
+Whether to enable hardware accelerated graphis drivers
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` true `
+
+*Declared by:*
+ - [/modules/system/hardware/graphics\.nix](/modules/system/hardware/graphics.nix)
+
+
+
 ## custom\.home-manager
 
 

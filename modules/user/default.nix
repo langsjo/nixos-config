@@ -20,7 +20,7 @@ in
     default = {
       enable = true;
     }; # Though the stateVersion default is not set here, it is set on the Home manager side
-    
+
     defaultText = {
       enable = true;
       stateVersion = "{config.system.stateVersion}";

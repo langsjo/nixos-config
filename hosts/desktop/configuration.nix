@@ -3,12 +3,13 @@
   ...
 }:
 {
-  imports = 
+  imports =
     [
       ./hardware-configuration.nix
       "${inputs.self}/modules"
       inputs.home-manager.nixosModules.default
-    ] ++ (with inputs.nixos-hardware; [
+    ]
+    ++ (with inputs.nixos-hardware; [
       nixosModules.common-cpu-intel-cpu-only
       (outPath + "/common/gpu/nvidia/pascal")
     ]);
@@ -37,7 +38,7 @@
 
     home-manager = {
       enable = true;
-      # stateVersion = "25.05";
+      stateVersion = "25.05";
     };
 
     gaming = {
@@ -47,6 +48,7 @@
     hardware = {
       audio.enable = true;
       bluetooth.enable = true;
+      graphics.enable = true;
     };
   };
 
