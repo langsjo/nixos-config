@@ -64,6 +64,10 @@ in
         assertion = !config.custom.gui.enable -> !cfg.enable;
         message = "dwm-status cannot be enabled with gui disabled";
       }
+      {
+        assertion = !config.custom.gui.windowManager.dwm.enable -> !cfg.enable;
+        message = "dwm-status cannot be enabled with dwm disabled";
+      }
     ];
   };
 }
