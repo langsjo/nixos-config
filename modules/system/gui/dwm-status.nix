@@ -28,35 +28,36 @@ in
           "time"
         ];
 
-      extraConfig = ''
-        separator = "    "
+      extraConfig = # TOML
+        ''
+          separator = "    "
 
-        [audio]
-        mute = ""
-        template = "   {ICO} {VOL}%"
-        icons = ["󰕿", "󰖀", "󰕾"]
+          [audio]
+          mute = ""
+          template = "   {ICO} {VOL}%"
+          icons = ["󰕿", "󰖀", "󰕾"]
 
-        [backlight]
-        template = "{ICO} {BL}%"
-        icons = ["󰃞", "󰃟", "󰃠"]
+          [backlight]
+          template = "{ICO} {BL}%"
+          icons = ["󰃞", "󰃟", "󰃠"]
 
-        [battery]
-        discharging = ""
-        charging = ""
-        no_battery = ""
-        icons = ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+          [battery]
+          discharging = ""
+          charging = ""
+          no_battery = ""
+          icons = ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
 
-        enable_notifier = true
-        notifier_levels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 25]
+          enable_notifier = true
+          notifier_levels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
 
-        [cpu_load]
-        template = " {CL1}"
-        update_interval = 10
+          [cpu_load]
+          template = " {CL1}"
+          update_interval = 10
 
-        [time]
-        format = "󰥔 %H:%M %d.%m.%Y"
-        update_seconds = false
-      '';
+          [time]
+          format = "󰥔 %H:%M %d.%m.%Y"
+          update_seconds = false
+        '';
     };
 
     assertions = [
