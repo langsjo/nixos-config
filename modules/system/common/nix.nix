@@ -9,7 +9,11 @@
       ];
       trusted-users = [ "@wheel" ];
       allow-import-from-derivation = false;
-      auto-optimise-store = true;
+    };
+
+    optimise = {
+      automatic = true;
+      dates = [ "3:45" ];
     };
 
     registry.nixpkgs.flake = inputs.nixpkgs;
