@@ -19,7 +19,7 @@ in
       description = "User's home directory";
       type = lib.types.str;
       default = "/home/${cfg.username}";
-      defaultText = "/home/\${config.custom.user.username}";
+      defaultText = "/home/{config.custom.user.username}";
     };
   };
 

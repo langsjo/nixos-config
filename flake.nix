@@ -5,6 +5,8 @@
     { nixpkgs, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      lib = pkgs.lib;
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
@@ -12,6 +14,7 @@
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
+      optionDocs = pkgs.callPackage ./generate-docs.nix { };
 
       nixosConfigurations = {
         laptop = nixpkgs.lib.nixosSystem {
