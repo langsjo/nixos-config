@@ -15,6 +15,14 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # dwm-status.service fails on boot, but works afterwards. make it restart
+    systemd.user.services.dwm-status = { 
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+    };
+
     services.dwm-status = {
       enable = true;
       order =
