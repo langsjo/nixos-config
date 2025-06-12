@@ -1,7 +1,5 @@
 {
-  pkgs-unstable,
   inputs,
-  config,
   ...
 }:
 {
@@ -30,7 +28,7 @@
         status.enable = true;
       };
     };
-    
+
     screen.dpi = 96;
 
     home-manager = {
