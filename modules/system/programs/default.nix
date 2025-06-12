@@ -1,23 +1,30 @@
-{ pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   imports = [
+    ./gui
   ];
 
   environment.systemPackages = with pkgs; [
+    git
+    gh
     unzip
     zip
     comma
     btop
-    nix-output-monitor
+    nix-output-monitor # Maybe package the rebuild script?
     devenv
+    tree
+    vim
+    libqalculate
   ];
 
   programs = {
-    steam.enable = true;
-    slock.enable = true;
     light.enable = true;
-    thunar.enable = true;
   };
 
   virtualisation.docker.enable = true;

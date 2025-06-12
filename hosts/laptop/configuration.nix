@@ -1,48 +1,13 @@
 {
-  pkgs,
-  pkgs-unstable,
   inputs,
-  config,
   ...
 }:
 {
   imports = [
-    ../common/configuration.nix
     ./hardware-configuration.nix
-    "${inputs.self}/modules/system"
+    "${inputs.self}/modules"
     inputs.home-manager.nixosModules.default
   ];
-
-  users.users.langsjo = {
-    isNormalUser = true;
-    description = "langsjo";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "video"
-      "docker"
-    ];
-    packages = with pkgs; [
-      telegram-desktop
-      rofi-screenshot
-    ];
-    shell = pkgs.zsh;
-    useDefaultShell = true;
-    ignoreShellProgramCheck = true;
-  };
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs pkgs-unstable; };
-    users = {
-      "langsjo" = import ./home.nix;
-    };
-  };
-
-  zramSwap = {
-    enable = true;
-    priority = 9999;
-    memoryPercent = 200;
-  };
 
   networking.hostName = "laptop";
 

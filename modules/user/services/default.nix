@@ -1,6 +1,5 @@
 { ... }:
 {
   imports = [
-    ./dwm-status.nix
   ];
 }

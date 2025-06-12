@@ -6,5 +6,6 @@
     ./user.nix
 
     ./misc.nix
+    ./options.nix
   ];
 }

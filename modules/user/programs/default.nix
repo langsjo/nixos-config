@@ -7,31 +7,18 @@
   imports = [
     ./neovim
     ./alacritty.nix
-    ./zsh.nix
     ./git.nix
+    ./networkmanager-dmenu.nix
     ./oh-my-posh.nix
     ./tmux.nix
-    ./networkmanager-dmenu.nix
-    ./matrix.nix
+    ./zsh.nix
 
     inputs.nix-index-database.hmModules.nix-index
   ];
 
-  home.packages = with pkgs; [
-    (pkgs.callPackage ./lmath.nix { })
-    feh
-    libqalculate
-    google-chrome
-    discord
-  ];
-
   # small configurations here
   programs = {
-    gh.enable = true;
     firefox.enable = true;
-    zathura.enable = true;
-    rofi.enable = true;
-    thefuck.enable = true;
 
     direnv = {
       enable = true;

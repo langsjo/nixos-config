@@ -1,6 +1,4 @@
 {
-  networking.networkmanager.enable = true;
-
   time.timeZone = "Europe/Helsinki";
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -24,8 +22,4 @@
   security.rtkit.enable = true;
 
   console.keyMap = "fi";
-  services.xserver.xkb = {
-    layout = "fi";
-    variant = "nodeadkeys";
-  };
 }

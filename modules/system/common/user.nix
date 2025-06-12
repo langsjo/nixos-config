@@ -6,14 +6,20 @@
 }:
 let
   cfg = config.custom.user;
-  inherit (lib) types mkOption;
 in
 {
   options.custom.user = {
-    username = mkOption {
-      description = "Username";
-      type = types.str;
+    username = lib.mkOption {
+      description = "User's username";
+      type = lib.types.str;
       default = "langsjo";
+    };
+
+    homeDirectory = lib.mkOption {
+      description = "User's home directory";
+      type = lib.types.str;
+      default = "/home/${cfg.username}";
+      defaultText = "/home/\${config.custom.user.username}";
     };
   };
 
@@ -33,5 +39,7 @@ in
 
       defaultUserShell = pkgs.zsh;
     };
+
+    programs.zsh.enable = true;
   };
 }

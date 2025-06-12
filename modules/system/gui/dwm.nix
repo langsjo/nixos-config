@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.custom.gui.dwm;
+  cfg = config.custom.gui.windowManager.dwm;
 in
 {
-  options.custom.wm.dwm.enable = lib.mkEnableOption "Enable the dwm window manager";
+  options.custom.gui.windowManager.dwm.enable = lib.mkEnableOption "Enable the dwm window manager";
 
   config = lib.mkIf cfg.enable {
     services.xserver.windowManager.dwm = {
@@ -24,6 +24,13 @@ in
     };
 
     # dwm requires xserver, so enable custom xserver module by default
-    custom.services.xserver.enable = lib.mkDefault true;
+    custom.gui.xserver.enable = lib.mkDefault true;
+
+    assertions = [
+      {
+        assertion = !config.custom.gui.enable -> !cfg.enable;
+        message = "dwm cannot be enabled with gui disabled";
+      }
+    ];
   };
 }
