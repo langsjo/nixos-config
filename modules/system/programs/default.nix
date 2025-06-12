@@ -24,7 +24,7 @@
   ];
 
   programs = {
-    light.enable = true;
+    light.enable = config.custom.isLaptop;
   };
 
   virtualisation.docker.enable = true;

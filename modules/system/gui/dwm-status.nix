@@ -20,9 +20,8 @@ in
       order =
         [
           "audio"
-          "backlight"
         ]
-        ++ lib.optional config.custom.isLaptop "battery"
+        ++ lib.optionals config.custom.isLaptop [ "backlight" "battery" ]
         ++ [
           "cpu_load"
           "time"

@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   ...
 }:
 {
@@ -50,6 +51,24 @@
       bluetooth.enable = true;
       graphics.enable = true;
     };
+  };
+
+  services.xserver = {
+    xrandrHeads = [
+      {
+        output = "DP-4";
+        primary = true;
+      }
+      {
+        output = "HDMI-0";
+      }
+    ];
+
+    resolutions = [
+      { x = 1920; y = 1080; }
+    ];
+
+    dpi = config.custom.screen.dpi;
   };
 
   networking.hostName = "desktop";
