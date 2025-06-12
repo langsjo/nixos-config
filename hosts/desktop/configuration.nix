@@ -80,4 +80,16 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/0b5f8011-e95b-4e7d-8a50-aeaaf8c721de";
+    fsType = "btrfs";
+    neededForBoot = true;
+    options = [
+      "noatime"
+      "nodiratime"
+      "compress=zstd"
+      "subvol=@nix"
+    ];
+  };
 }
