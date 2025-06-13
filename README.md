@@ -14,11 +14,6 @@ The entry to the system config goes as follows:
   - do other extra configuration as necessary, that isn't part of defined modules
 
 
-Configuring a host is done as follows:  
-- Define a `nixosSystem` under `nixosConfigurations` in [`flake.nix`](/flake.nix)
-- Create a folder for the host in [`/hosts`](/hosts), which holds a `configuration.nix` and `hardware-configuration.nix`
-- 
-
 ## Structure
 ```bash
 .
