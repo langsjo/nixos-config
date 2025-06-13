@@ -3,11 +3,49 @@
   ...
 }:
 {
-  imports = [
-    ./hardware-configuration.nix
-    "${inputs.self}/modules"
-    inputs.home-manager.nixosModules.default
-  ];
+  imports =
+    [
+      ./hardware-configuration.nix
+      "${inputs.self}/modules"
+      inputs.home-manager.nixosModules.default
+    ]
+    ++ (with inputs.nixos-hardware.nixosModules; [
+      common-cpu-intel
+    ]);
+
+  custom = {
+    isLaptop = true;
+
+    user = {
+      username = "langsjo";
+      homeDirectory = "/home/langsjo";
+    };
+
+    gui = {
+      enable = true;
+      programs.enable = true;
+
+      displayManager.ly.enable = true;
+      xserver.enable = true;
+      windowManager.dwm = {
+        enable = true;
+        status.enable = true;
+      };
+    };
+
+    screen.dpi = 141;
+
+    home-manager = {
+      enable = true;
+      stateVersion = "24.11";
+    };
+
+    hardware = {
+      audio.enable = true;
+      bluetooth.enable = true;
+      graphics.enable = true;
+    };
+  };
 
   networking.hostName = "laptop";
 
