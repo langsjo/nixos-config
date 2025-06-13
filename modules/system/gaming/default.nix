@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -14,6 +15,10 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
-    programs.gamemode.enable = true;
+    services.ratbagd.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      piper
+    ];
   };
 }
