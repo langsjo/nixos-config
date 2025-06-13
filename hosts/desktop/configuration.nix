@@ -65,7 +65,10 @@
     ];
 
     resolutions = [
-      { x = 1920; y = 1080; }
+      {
+        x = 1920;
+        y = 1080;
+      }
     ];
 
     dpi = config.custom.screen.dpi;

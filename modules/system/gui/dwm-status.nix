@@ -16,7 +16,7 @@ in
 
   config = lib.mkIf cfg.enable {
     # dwm-status.service fails on boot, but works afterwards. make it restart
-    systemd.user.services.dwm-status = { 
+    systemd.user.services.dwm-status = {
       serviceConfig = {
         Restart = "on-failure";
         RestartSec = 5;
@@ -29,7 +29,10 @@ in
         [
           "audio"
         ]
-        ++ lib.optionals config.custom.isLaptop [ "backlight" "battery" ]
+        ++ lib.optionals config.custom.isLaptop [
+          "backlight"
+          "battery"
+        ]
         ++ [
           "cpu_load"
           "time"

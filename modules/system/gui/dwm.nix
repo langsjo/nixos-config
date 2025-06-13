@@ -34,30 +34,31 @@ let
 
   package = pkgs.dwm.overrideAttrs (prevAttrs: {
     inherit src;
-    patches = 
-      prevAttrs.patches ++ 
-      [(
-        pkgs.fetchpatch {
-          url = "https://dwm.suckless.org/patches/removeborder/dwm-removeborder-20220626-d3f93c7.diff"; # remove border from window if only 1 window on screen
-          hash = "sha256-0QUN+wfKyXxabXyKXIcpPcdnLkH4d0Oqx8pncjc+It4=";
-        }
-      )];
+    patches = prevAttrs.patches ++ [
+      (pkgs.fetchpatch {
+        url = "https://dwm.suckless.org/patches/removeborder/dwm-removeborder-20220626-d3f93c7.diff"; # remove border from window if only 1 window on screen
+        hash = "sha256-0QUN+wfKyXxabXyKXIcpPcdnLkH4d0Oqx8pncjc+It4=";
+      })
+    ];
   });
 in
 {
   options.custom.gui.windowManager.dwm.enable = lib.mkEnableOption "Enable the dwm window manager";
 
-  config = lib.mkIf cfg.enable ({
-    services.xserver.windowManager.dwm = {
-      enable = true;
-      inherit package;
-    };
+  config = lib.mkIf cfg.enable (
+    {
+      services.xserver.windowManager.dwm = {
+        enable = true;
+        inherit package;
+      };
 
-    assertions = [
-      {
-        assertion = !config.custom.gui.enable -> !cfg.enable;
-        message = "dwm cannot be enabled with gui disabled";
-      }
-    ];
-  } // extraNixosConfig);
+      assertions = [
+        {
+          assertion = !config.custom.gui.enable -> !cfg.enable;
+          message = "dwm cannot be enabled with gui disabled";
+        }
+      ];
+    }
+    // extraNixosConfig
+  );
 }
