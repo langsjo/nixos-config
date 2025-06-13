@@ -4,6 +4,9 @@
   inputs,
   ...
 }:
+let
+  fontSizePixels = 17.6;
+in
 {
   programs.alacritty = {
     enable = true;
@@ -22,7 +25,10 @@
       };
 
       font = {
-        size = osConfig.custom.screen.dpi / 8.0;
+        # Font size calculation for 16px font on screen's DPI
+        # One point is 1/72 of an inch
+        # ${fontSizePixels} pixels * 72 inch^-1 / (${dpi} pixels / inch) = font size in points
+        size = fontSizePixels * 72.0 / osConfig.custom.screen.dpi;
         bold = {
           family = "MesloLGM Nerd Font";
           style = "Heavy";
