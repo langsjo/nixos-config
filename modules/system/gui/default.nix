@@ -23,7 +23,6 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      xorg.libXft # NOTE: This might not be needed here, try later in dwm_status buildInputs
       dunst # For notifications
     ];
   };
