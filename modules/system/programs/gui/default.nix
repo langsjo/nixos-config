@@ -19,11 +19,8 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
-    programs.thunar.enable = true;
-
     environment.systemPackages = with pkgs; [
       zathura
-      rofi
       discord
       feh
       (pkgs.callPackage ./lmath.nix { })
