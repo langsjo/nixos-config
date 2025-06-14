@@ -57,6 +57,10 @@ in
           assertion = !config.custom.gui.enable -> !cfg.enable;
           message = "dwm cannot be enabled with gui disabled";
         }
+        {
+          assertion = !config.custom.gui.xserver.enable -> !cfg.enable;
+          message = "dwm cannot be enabled with xserver disabled";
+        }
       ];
     }
     // extraNixosConfig
