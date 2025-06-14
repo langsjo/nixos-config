@@ -47,6 +47,13 @@
     };
   };
 
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16 * 1024; # 16 GiB
+    }
+  ];
+
   networking.hostName = "laptop";
 
   # This value determines the NixOS release from which the default
