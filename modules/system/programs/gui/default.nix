@@ -25,6 +25,7 @@ in
       feh
       (pkgs.callPackage ./lmath.nix { })
       google-chrome
+      telegram-desktop
     ];
 
     assertions = [
