@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  lib,
+  inputs,
   ...
 }:
 {
@@ -16,11 +16,12 @@
     zip
     comma
     btop
-    nix-output-monitor # Maybe package the rebuild script?
     devenv
     tree
     vim
     libqalculate
+
+    (pkgs.callPackage "${inputs.self}/utils/rebuild-script.nix" { })
   ];
 
   programs = {
