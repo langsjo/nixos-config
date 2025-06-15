@@ -19,6 +19,7 @@ in
     ./dwm.nix
     ./dwm-status.nix
     ./xserver.nix
+    ./plasma6.nix
   ];
 
   config = lib.mkIf cfg.enable {

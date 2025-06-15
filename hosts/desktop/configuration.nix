@@ -27,12 +27,14 @@
       enable = true;
       programs.enable = true;
 
-      displayManager.ly.enable = true;
       xserver.enable = true;
+
+      displayManager.ly.enable = true;
       windowManager.dwm = {
         enable = true;
         status.enable = true;
       };
+      desktopManager.plasma6.enable = true;
     };
 
     screen.dpi = 96;
