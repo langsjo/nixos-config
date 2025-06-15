@@ -17,6 +17,16 @@ in
   config = lib.mkIf cfg.enable {
     services.ratbagd.enable = true;
 
+    programs.gamemode.enable = true;
+    users.users.${config.custom.user.username}.extraGroups = [ "gamemode" ];
+
+    programs.gamescope.enable = true;
+
+    # For Roblox :)
+    services.flatpak.enable = true;
+    xdg.portal.enable = true;
+    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal ];
+
     environment.systemPackages = with pkgs; [
       piper
     ];
