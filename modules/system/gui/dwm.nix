@@ -14,6 +14,8 @@ let
       rofi-screenshot
       alacritty
       networkmanager_dmenu
+
+      dunst # For notifications
     ];
 
     custom.gui.xserver.enable = lib.mkDefault true;
