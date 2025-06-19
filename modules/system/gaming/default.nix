@@ -20,7 +20,9 @@ in
     programs.gamemode.enable = true;
     users.users.${config.custom.user.username}.extraGroups = [ "gamemode" ];
 
-    programs.gamescope.enable = true;
+    programs.gamescope = {
+      enable = true;
+    };
 
     # For Roblox :)
     services.flatpak.enable = true;
