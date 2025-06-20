@@ -44,6 +44,32 @@ boolean
 
 
 
+## custom\.gui\.desktopManager\.plasma6\.enable
+
+
+
+Whether to enable Enable the Plasma 6 desktop environment\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+*Declared by:*
+ - [/modules/system/gui/plasma6\.nix](/modules/system/gui/plasma6.nix)
+
+
+
 ## custom\.gui\.displayManager\.ly\.enable
 
 
