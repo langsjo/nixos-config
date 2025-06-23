@@ -12,6 +12,7 @@ in
 
   imports = [
     ./steam.nix
+    ./fonts.nix
   ];
 
   config = lib.mkIf cfg.enable {
