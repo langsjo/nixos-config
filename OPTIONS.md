@@ -23,6 +23,27 @@ boolean
 
 
 
+## custom\.gaming\.osrs\.enable
+
+
+
+Enable OSRS related configuration, such as Bolt launcher
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` config.custom.gaming.enable `
+
+*Declared by:*
+ - [/modules/system/gaming/osrs\.nix](/modules/system/gaming/osrs.nix)
+
+
+
 ## custom\.gui\.enable
 
 

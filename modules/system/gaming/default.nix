@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 let
@@ -13,6 +14,7 @@ in
   imports = [
     ./steam.nix
     ./fonts.nix
+    ./osrs.nix
   ];
 
   config = lib.mkIf cfg.enable {

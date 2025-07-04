@@ -40,6 +40,10 @@
       stateVersion = "24.11";
     };
 
+    gaming = {
+      osrs.enable = true;
+    };
+
     hardware = {
       audio.enable = true;
       bluetooth.enable = true;
