@@ -23,6 +23,7 @@
       init.defaultBranch = "main";
       core.editor = "nvim";
       pull.rebase = true;
+      merge.tool = "nvimdiff";
     };
   };
 }
