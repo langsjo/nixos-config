@@ -25,18 +25,17 @@ in
 
     services.dwm-status = {
       enable = true;
-      order =
-        [
-          "audio"
-        ]
-        ++ lib.optionals config.custom.isLaptop [
-          "backlight"
-          "battery"
-        ]
-        ++ [
-          "cpu_load"
-          "time"
-        ];
+      order = [
+        "audio"
+      ]
+      ++ lib.optionals config.custom.isLaptop [
+        "backlight"
+        "battery"
+      ]
+      ++ [
+        "cpu_load"
+        "time"
+      ];
 
       extraConfig = # TOML
         ''

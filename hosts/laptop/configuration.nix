@@ -3,15 +3,14 @@
   ...
 }:
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      "${inputs.self}/modules"
-      inputs.home-manager.nixosModules.default
-    ]
-    ++ (with inputs.nixos-hardware.nixosModules; [
-      common-cpu-intel
-    ]);
+  imports = [
+    ./hardware-configuration.nix
+    "${inputs.self}/modules"
+    inputs.home-manager.nixosModules.default
+  ]
+  ++ (with inputs.nixos-hardware.nixosModules; [
+    common-cpu-intel
+  ]);
 
   custom = {
     isLaptop = true;
