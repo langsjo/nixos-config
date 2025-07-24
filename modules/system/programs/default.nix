@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   inputs,
   ...
 }:
@@ -14,7 +15,7 @@
     gh
     unzip
     zip
-    comma
+    pkgs-unstable.comma
     btop
     devenv
     tree
