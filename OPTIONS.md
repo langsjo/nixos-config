@@ -1,5 +1,31 @@
 # NOTE: This file does not contains documentation of Home manager options
+## custom\.dev\.cursor\.enable
+
+Whether to enable Enable the Cursor IDE\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+*Declared by:*
+ - [/modules/system/programs/gui/cursor\.nix](/modules/system/programs/gui/cursor.nix)
+
+
+
 ## custom\.gaming\.enable
+
+
 
 Whether to enable Enable gaming related programs and services\.
 
