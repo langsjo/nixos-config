@@ -24,6 +24,7 @@ in
       zathura
       discord
       feh
+      vlc
       (pkgs.callPackage ./lmath.nix { })
       google-chrome
       telegram-desktop
