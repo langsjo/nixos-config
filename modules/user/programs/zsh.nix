@@ -41,6 +41,9 @@
       n = "nvim";
       open = "xdg-open";
       tmpdir = "cd $(mktemp -d)";
+
+      nish = "nix-shell --run zsh";
+      nire = "nix repl -f '<nixpkgs>'";
     };
 
     initContent = ''
