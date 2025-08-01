@@ -1,42 +1,42 @@
 {
   description = "Nixos config flake";
 
-  outputs =
-    { nixpkgs, nixpkgs-unstable, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
-      };
-    in
-    {
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
-      optionDocs = pkgs.callPackage ./utils/generate-docs.nix { };
-
-      nixosConfigurations = {
-        laptop = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs pkgs-unstable;
-          };
-
-          modules = [
-            ./hosts/laptop/configuration.nix
-          ];
-        };
-
-        desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs pkgs-unstable;
-          };
-
-          modules = [
-            ./hosts/desktop/configuration.nix
-          ];
-        };
-      };
-    };
+  outputs = _: { };
+    # { nixpkgs, nixpkgs-unstable, ... }@inputs:
+    # let
+    #   system = "x86_64-linux";
+    #   pkgs = nixpkgs.legacyPackages.${system};
+    #   pkgs-unstable = import nixpkgs-unstable {
+    #     inherit system;
+    #     config.allowUnfree = true;
+    #   };
+    # in
+    # {
+    #   formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
+    #   optionDocs = pkgs.callPackage ./utils/generate-docs.nix { };
+    #
+    #   nixosConfigurations = {
+    #     laptop = nixpkgs.lib.nixosSystem {
+    #       specialArgs = {
+    #         inherit inputs pkgs-unstable;
+    #       };
+    #
+    #       modules = [
+    #         ./hosts/laptop/configuration.nix
+    #       ];
+    #     };
+    #
+    #     desktop = nixpkgs.lib.nixosSystem {
+    #       specialArgs = {
+    #         inherit inputs pkgs-unstable;
+    #       };
+    #
+    #       modules = [
+    #         ./hosts/desktop/configuration.nix
+    #       ];
+    #     };
+    #   };
+    # };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -46,6 +46,8 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-compat.url = "https://git.lix.systems/lix-project/flake-compat/archive/main.tar.gz";
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";

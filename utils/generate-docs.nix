@@ -39,7 +39,7 @@ let
       let
         matches = builtins.match "^/nix/store/[^/]+(.*)" path;
       in
-      if matches == [ ] then path else addDefaultNix (builtins.head matches)
+      if matches == null then path else addDefaultNix (builtins.head matches)
     );
 
   # Replace all attributes with key 'declarations' with that path in relative form
