@@ -5,6 +5,16 @@
   inputs,
   ...
 }:
+let
+  gpuType = config.custom.hardware.gpuType;
+  btop' =
+    if gpuType == "nvidia" then
+      pkgs.btop-cuda
+    else if gpuType == "amd" then
+      pkgs.btop-rocm
+    else
+      pkgs.btop;
+in
 {
   imports = [
     ./gui
@@ -16,12 +26,12 @@
     unzip
     zip
     pkgs-unstable.comma
-    btop
     devenv
     tree
     vim
     libqalculate
 
+    btop'
     (pkgs.callPackage "${inputs.self}/utils/rebuild-script.nix" { })
   ];
 

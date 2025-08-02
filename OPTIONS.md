@@ -279,6 +279,32 @@ boolean
 
 
 
+## custom\.hardware\.gpuType
+
+
+
+What type of GPU the host has
+
+
+
+*Type:*
+null or one of “nvidia”, “amd”, “intel”
+
+
+
+*Default:*
+` null `
+
+
+
+*Example:*
+` "nvidia" `
+
+*Declared by:*
+ - [/modules/system/hardware/default\.nix](/modules/system/hardware/default.nix)
+
+
+
 ## custom\.hardware\.graphics\.enable
 
 

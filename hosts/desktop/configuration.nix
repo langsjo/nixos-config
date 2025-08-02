@@ -51,6 +51,7 @@
       audio.enable = true;
       bluetooth.enable = true;
       graphics.enable = true;
+      gpuType = "nvidia";
     };
   };
 
