@@ -42,7 +42,7 @@
       open = "xdg-open";
       tmpdir = "cd $(mktemp -d)";
 
-      nish = "nix-shell --run zsh";
+      nish = "nix-shell --run zsh -p";
       nire = "nix repl -f '<nixpkgs>'";
     };
 
