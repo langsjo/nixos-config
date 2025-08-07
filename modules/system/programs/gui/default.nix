@@ -11,7 +11,8 @@ in
   options.custom.gui.programs.enable = lib.mkOption {
     type = lib.types.bool;
     description = "Enable programs that require a GUI";
-    default = true;
+    default = config.custom.gui.enable;
+    defaultText = lib.literalExpression "config.custom.gui.enable";
   };
 
   imports = [
