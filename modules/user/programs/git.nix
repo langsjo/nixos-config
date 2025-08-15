@@ -12,6 +12,7 @@
       co = "checkout";
       s = "status";
       d = "diff";
+      ds = "diff --staged";
 
       rbi = "rebase -i";
       rbc = "rebase --continue";
