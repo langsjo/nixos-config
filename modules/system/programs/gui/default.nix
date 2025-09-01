@@ -26,7 +26,7 @@ in
       discord
       feh
       vlc
-      (pkgs.callPackage ./lmath.nix { })
+      lmath
       google-chrome
       telegram-desktop
     ];
