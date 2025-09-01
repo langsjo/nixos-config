@@ -157,7 +157,7 @@ boolean
 
 
 *Default:*
-` true `
+` config.custom.gui.enable `
 
 *Declared by:*
  - [/modules/system/programs/gui/default\.nix](/modules/system/programs/gui/default.nix)
