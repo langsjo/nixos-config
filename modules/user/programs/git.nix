@@ -14,6 +14,7 @@
       d = "diff";
       ds = "diff --staged";
 
+      rb = "rebase";
       rbi = "rebase -i";
       rbc = "rebase --continue";
       rba = "rebase --abort";
