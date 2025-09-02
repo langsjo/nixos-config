@@ -4,7 +4,7 @@
   ...
 }:
 let
-  cfg = config.custom.hardware;
+  nvidiaEnabled = lib.elem "nvidia" config.services.xserver.videoDrivers;
 in
 {
   options.custom.hardware = {
@@ -16,7 +16,8 @@ in
           "amd"
           "intel"
         ]);
-      default = null;
+      default = if nvidiaEnabled then "nvidia" else null;
+      defaultText = lib.literalExpression ''"nvidia" if nvidia drivers enabled, null otherwise'';
       description = "What type of GPU the host has";
       example = "nvidia";
     };

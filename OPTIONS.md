@@ -293,7 +293,7 @@ null or one of “nvidia”, “amd”, “intel”
 
 
 *Default:*
-` null `
+` "nvidia" if nvidia drivers enabled, null otherwise `
 
 
 
