@@ -5,8 +5,8 @@
 }:
 {
   imports = [
+    ./gui
     ./neovim
-    ./alacritty.nix
     ./git.nix
     ./networkmanager-dmenu.nix
     ./oh-my-posh.nix
@@ -18,8 +18,6 @@
 
   # small configurations here
   programs = {
-    firefox.enable = true;
-
     direnv = {
       enable = true;
       enableZshIntegration = true;
