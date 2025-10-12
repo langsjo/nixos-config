@@ -30,6 +30,7 @@ in
     tree
     vim
     libqalculate
+    dust
 
     btop'
     (pkgs.callPackage "${inputs.self}/utils/rebuild-script.nix" { })
