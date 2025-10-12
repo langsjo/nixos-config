@@ -16,7 +16,11 @@
       dates = [ "3:45" ];
     };
 
-    registry.nixpkgs.flake = inputs.nixpkgs;
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+      unstable.flake = inputs.nixpkgs-unstable;
+    };
+
   };
 
   nixpkgs.config.allowUnfree = true;
