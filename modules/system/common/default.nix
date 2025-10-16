@@ -7,5 +7,6 @@
     ./activation-scripts.nix
     ./misc.nix
     ./options.nix
+    ./wrappers
   ];
 }

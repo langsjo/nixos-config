@@ -1,5 +1,7 @@
 {
+  pkgs,
   lib,
+  name,
   ...
 }:
 let
@@ -10,14 +12,15 @@ let
     ;
 
   fileBuilderType = types.attrsOf (types.submodule (import ./envpath-options.nix));
+  pathConstructor = pkgs.callPackage ./path-constructor.nix { wrapperName = name; };
 in
 {
   options = {
     install = mkOption {
       description = "Whether to add the resulting wrapper to environment.systemPackages";
       type = types.bool;
-      default = true;
-      example = false;
+      default = false;
+      example = true;
     };
 
     basePackage = mkOption {
@@ -92,6 +95,7 @@ in
         '';
         type = fileBuilderType;
         default = { };
+        apply = builtins.mapAttrs pathConstructor;
         example = literalExample ''
           {
             "--config-dir" = {
@@ -120,10 +124,6 @@ in
               The value of each variable can be either a string, integer, path,
               or a list of the aforementioned. A list will be concatenated with
               colon characters as separators.
-
-              If you wish to pass a path without copying that path to the store,
-              represent it as a string or convert it to a string with `toString` 
-              first.
             '';
             default = { };
             type =
@@ -192,6 +192,7 @@ in
           '';
           type = fileBuilderType;
           default = { };
+          apply = builtins.mapAttrs pathConstructor;
           example = literalExample ''
             {
               CONFIG_DIR = {

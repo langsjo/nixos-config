@@ -18,8 +18,4 @@ in
     type = wrapperType;
     default = { };
   };
-
-  config = lib.pipe cfg [
-    (lib.mapAttrs (name: def: { }))
-  ];
 }
