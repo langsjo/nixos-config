@@ -66,7 +66,8 @@ in
 
       realValue = mkOption {
         description = "Hidden value that is the real one used for generation";
-        type = types.attrs;
+        type = with types; nullOr attrs;
+        default = null;
         visible = false;
         internal = true;
       };
