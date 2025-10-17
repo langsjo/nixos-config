@@ -23,5 +23,19 @@ in
     environment.systemPackages = lib.mkMerge (
       lib.mapAttrsToList (_: wrapper: lib.mkIf wrapper.install [ wrapper.result ]) config.wrappers
     );
+
+    wrappers.hello = {
+      basePackage = pkgs.hello;
+
+      env.paths.XDG_CONFIG_FILE = {
+        "/".yaml = {
+          myVal = 5;
+          val2 = {
+            hey = "hi";
+            yay = 2;
+          };
+        };
+      };
+    };
   };
 }
