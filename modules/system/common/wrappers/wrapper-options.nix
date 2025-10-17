@@ -1,8 +1,6 @@
 {
-  pkgs,
-}:
-{
   config,
+  pkgs,
   lib,
   name,
   ...
@@ -15,7 +13,12 @@ let
     ;
 
   fileBuilderType = types.attrsOf (
-    types.attrsOf (types.submodule (import ./envpath-options.nix { inherit pkgs; }))
+    types.attrsOf (
+      types.submodule [
+        ./envpath-options.nix
+        { _module.args.pkgs = pkgs; }
+      ]
+    )
   );
   pathConstructor = pkgs.callPackage ./path-constructor.nix { wrapperName = name; };
 in

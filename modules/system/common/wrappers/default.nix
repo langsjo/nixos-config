@@ -10,7 +10,12 @@ let
     types
     ;
 
-  wrapperType = types.attrsOf (types.submodule (import ./wrapper-options.nix { inherit pkgs; }));
+  wrapperType = types.attrsOf (
+    types.submodule [
+      ./wrapper-options.nix
+      { _module.args.pkgs = pkgs; }
+    ]
+  );
 in
 {
   options.wrappers = mkOption {
