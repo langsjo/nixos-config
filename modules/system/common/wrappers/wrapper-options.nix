@@ -236,7 +236,7 @@ in
               # If the flag is something like `--config-dir=`, there can't be a space between the path and the flag
               separator = if lib.hasSuffix "=" flag then "" else " ";
             in
-            ''--add-flags "${escapeQuotes flag}${separator}\"${escapeQuotes path}\""''
+            ''--add-flags "${escapeQuotes flag}${separator}${escapeQuotes path}"''
           ) config.flags.path;
         };
         collectArgs = lib.concatMapAttrsStringSep " " (_: args: args);
