@@ -31,7 +31,7 @@ in
       example = true;
     };
 
-    basePackage = mkOption {
+    package = mkOption {
       description = "The base package to wrap";
       type = types.package;
       example = literalExample "pkgs.hello";
@@ -222,7 +222,7 @@ in
     result =
       let
         makeWrapperPkg = if config.useBinaryWrapper then pkgs.makeBinaryWrapper else pkgs.makeWrapper;
-        versionSuffix = if config.basePackage ? version then "-${config.basePackage.version}" else "";
+        versionSuffix = if config.package ? version then "-${config.package.version}" else "";
 
         escapeQuotes = s: lib.escape [ ''"'' ] (toString s);
         collectFlags =
@@ -266,7 +266,7 @@ in
       in
       pkgs.symlinkJoin {
         name = "${name}-wrapped${versionSuffix}";
-        paths = [ config.basePackage ];
+        paths = [ config.package ];
         nativeBuildInputs = [ makeWrapperPkg ];
 
         postBuild = ''
