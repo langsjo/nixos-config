@@ -18,6 +18,7 @@ in
   imports = [
     ./matrix.nix
     ./cursor.nix
+    ./alacritty.nix
   ];
 
   config = lib.mkIf cfg.enable {

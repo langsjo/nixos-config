@@ -12,7 +12,7 @@ let
     environment.systemPackages = with pkgs; [
       rofi
       rofi-screenshot
-      alacritty
+      config.wrappers.alacritty.result
       networkmanager_dmenu
 
       dunst # For notifications

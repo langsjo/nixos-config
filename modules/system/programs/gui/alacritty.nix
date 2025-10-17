@@ -1,24 +1,22 @@
 {
-  osConfig,
-  lib,
-  pkgs,
   inputs,
+  lib,
+  config,
   ...
 }:
 let
   fontSizePixels = 17.6;
 in
 {
-  config = lib.mkIf osConfig.custom.gui.programs.enable {
-    programs.alacritty = {
-      enable = true;
+  wrappers.alacritty = {
+    install = lib.mkIf config.custom.gui.programs.enable true;
 
-      settings = {
+    flags.path = {
+      "--config-file"."/".toml = {
         general.import = [
           "${inputs.self}/dotfiles/alacritty-catppuccin-mocha.toml"
         ];
 
-        terminal.shell = "${pkgs.zsh}/bin/zsh";
         env.TERM = "xterm-256color";
         window = {
           decorations = "none";
@@ -30,7 +28,7 @@ in
           # Font size calculation for 16px font on screen's DPI
           # One point is 1/72 of an inch
           # ${fontSizePixels} pixels * 72 inch^-1 / (${dpi} pixels / inch) = font size in points
-          size = fontSizePixels * 72.0 / osConfig.custom.screen.dpi;
+          size = fontSizePixels * 72.0 / config.custom.screen.dpi;
           bold = {
             family = "MesloLGM Nerd Font";
             style = "Heavy";
