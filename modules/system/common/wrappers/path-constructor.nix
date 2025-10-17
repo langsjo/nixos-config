@@ -5,7 +5,7 @@
 }:
 envVar: manifest:
 let
-  drvName = "${wrapperName}-${envVar}";
+  drvName = "${wrapperName}-wrapped_${envVar}";
 in
 runCommand drvName { } ''
   printerr() {
