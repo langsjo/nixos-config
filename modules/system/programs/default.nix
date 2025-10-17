@@ -18,10 +18,10 @@ in
 {
   imports = [
     ./gui
+    ./git.nix
   ];
 
   environment.systemPackages = with pkgs; [
-    git
     gh
     unzip
     zip

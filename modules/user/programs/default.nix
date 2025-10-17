@@ -7,7 +7,6 @@
   imports = [
     ./gui
     ./neovim
-    ./git.nix
     ./networkmanager-dmenu.nix
     ./oh-my-posh.nix
     ./tmux.nix
