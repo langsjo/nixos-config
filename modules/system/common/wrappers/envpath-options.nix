@@ -1,6 +1,8 @@
 {
-  config,
   pkgs,
+}:
+{
+  config,
   name,
   lib,
   ...
@@ -17,7 +19,7 @@ in
   options = {
     source = mkOption {
       description = "Path of the source file or directory";
-      type = with types; nullOr path;
+      type = types.path;
     };
 
     text = mkOption {
@@ -26,6 +28,7 @@ in
         alternative to using `source`, where `source` takes precedent.
       '';
       type = with types; nullOr lines;
+      default = null;
     };
 
     executable = mkOption {
@@ -34,6 +37,7 @@ in
         If null, uses the permission of the source file.
       '';
       type = with types; nullOr bool;
+      default = null;
     };
   };
 
@@ -43,7 +47,11 @@ in
         pkgs.writeTextFile {
           inherit (config) text;
           executable = config.executable == true;
-          name = builtins.baseNameOf name;
+          name =
+            let
+              basename = builtins.baseNameOf name;
+            in
+            if basename != "" then basename else "root-file";
         }
       )
     );

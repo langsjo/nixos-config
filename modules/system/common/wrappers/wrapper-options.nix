@@ -1,5 +1,8 @@
 {
   pkgs,
+}:
+{
+  config,
   lib,
   name,
   ...
@@ -11,7 +14,9 @@ let
     types
     ;
 
-  fileBuilderType = types.attrsOf (types.submodule (import ./envpath-options.nix));
+  fileBuilderType = types.attrsOf (
+    types.attrsOf (types.submodule (import ./envpath-options.nix { inherit pkgs; }))
+  );
   pathConstructor = pkgs.callPackage ./path-constructor.nix { wrapperName = name; };
 in
 {
@@ -25,8 +30,7 @@ in
 
     basePackage = mkOption {
       description = "The base package to wrap";
-      type = with types; nullOr package;
-      default = null;
+      type = types.package;
       example = literalExample "pkgs.hello";
     };
 
@@ -208,6 +212,68 @@ in
             }
           '';
         };
+      };
+  };
+
+  config = {
+    result =
+      let
+        makeWrapperPkg = if config.useBinaryWrapper then pkgs.makeBinaryWrapper else pkgs.makeWrapper;
+        versionSuffix = if config.basePackage ? version then "-${config.basePackage.version}" else "";
+
+        escapeQuotes = s: lib.escape [ ''"'' ] (toString s);
+        collectFlags =
+          flagType: flags: lib.concatMapStringsSep " " (flag: ''${flagType} "${escapeQuotes flag}"'') flags;
+
+        flags = {
+          normal = collectFlags "--add-flags" config.flags.normal;
+          path = lib.concatMapAttrsStringSep " " (
+            flag: path:
+            let
+              # If the flag is something like `--config-dir=`, there can't be a space between the path and the flag
+              separator = if lib.hasSuffix "=" flag then "" else " ";
+            in
+            ''--add-flags "${escapeQuotes flag}${separator}\"${escapeQuotes path}\""''
+          ) config.flags.path;
+        };
+        collectArgs = lib.concatMapAttrsStringSep " " (_: args: args);
+        flagArgs = collectArgs flags;
+
+        collectEnvVars =
+          flagType: separator: vars:
+          lib.concatMapAttrsStringSep " " (
+            var: value: ''${flagType} "${escapeQuotes var}" ${separator} "${escapeQuotes value}" ''
+          ) vars;
+
+        env = {
+          vars = collectEnvVars "--set" "" config.env.vars;
+          paths = collectEnvVars "--set" "" config.env.paths;
+          prefixes = collectEnvVars "--prefix" ":" config.env.prefixes;
+          suffixes = collectEnvVars "--suffix" ":" config.env.suffixes;
+        };
+
+        envArgs = collectArgs env;
+
+        makeWrapperArgs = lib.concatStringsSep " " [
+          flagArgs
+          envArgs
+          (toString config.extraMakeWrapperArgs)
+        ];
+
+      in
+      pkgs.symlinkJoin {
+        name = "${name}-wrapped${versionSuffix}";
+        paths = [ config.basePackage ];
+        nativeBuildInputs = [ makeWrapperPkg ];
+
+        postBuild = ''
+          for bin in "$out"/bin/*; do
+            if [[ ! -x "$bin" ]] ; then
+              continue
+            fi
+            wrapProgram "$bin" ${makeWrapperArgs}
+          done
+        '';
       };
   };
 }
