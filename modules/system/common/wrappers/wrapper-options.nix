@@ -7,8 +7,9 @@
 }:
 let
   inherit (lib)
-    literalExample
+    literalExpression
     mkOption
+    mkPackageOption
     types
     ;
 
@@ -31,10 +32,9 @@ in
       example = true;
     };
 
-    package = mkOption {
-      description = "The base package to wrap";
-      type = types.package;
-      example = literalExample "pkgs.hello";
+    package = mkPackageOption pkgs name {
+      extraDescription = ''The package to wrap. If not specified, defaults to `pkgs.<name of wrapper>`'';
+      example = literalExpression "pkgs.hello";
     };
 
     result = mkOption {
@@ -62,7 +62,7 @@ in
       '';
       type = with types; listOf str;
       default = [ ];
-      example = literalExample ''
+      example = literalExpression ''
         [
           "--chdir /nix/store"
           "--set-default XDG_CACHE_HOME /tmp"
@@ -77,7 +77,7 @@ in
         '';
         type = with types; listOf str;
         default = [ ];
-        example = literalExample ''
+        example = literalExpression ''
           [
             "-c"
             "--binary ''${lib.getExe pkgs.hello}"
@@ -103,7 +103,7 @@ in
         type = fileBuilderType;
         default = { };
         apply = builtins.mapAttrs pathConstructor;
-        example = literalExample ''
+        example = literalExpression ''
           {
             "--config-dir" = {
               "conf_file.conf".text = ''' # Define the text which will be placed in the file
@@ -200,7 +200,7 @@ in
           type = fileBuilderType;
           default = { };
           apply = builtins.mapAttrs pathConstructor;
-          example = literalExample ''
+          example = literalExpression ''
             {
               CONFIG_DIR = {
                 "conf_file.conf".text = ''' # Define the text which will be placed in the file

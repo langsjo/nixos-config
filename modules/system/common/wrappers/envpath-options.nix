@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib)
-    literalExample
+    literalExpression
     mkDefault
     mkIf
     mkMerge
@@ -46,7 +46,7 @@ in
         '';
         type = with types; nullOr attrs;
         default = null;
-        example = literalExample "pkgs.formats.toml { }";
+        example = literalExpression "pkgs.formats.toml { }";
       };
 
       generator = mkOption {
@@ -59,7 +59,7 @@ in
         '';
         type = with types; nullOr (functionTo package);
         default = null;
-        example = literalExample ''
+        example = literalExpression ''
           value: pkgs.writeText "my-json-config" (builtins.toJSON value)
         '';
       };
