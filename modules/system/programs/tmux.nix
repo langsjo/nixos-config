@@ -6,7 +6,6 @@
 {
   programs.tmux = {
     enable = true;
-    package = config.wrappers.tmux.result;
     shortcut = "Space";
     baseIndex = 1;
     clock24 = true;
