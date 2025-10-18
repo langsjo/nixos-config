@@ -266,9 +266,10 @@ in
       in
       pkgs.symlinkJoin {
         name = "${name}-wrapped${versionSuffix}";
+        inherit (config.package) meta passthru;
+
         paths = [ config.package ];
         nativeBuildInputs = [ makeWrapperPkg ];
-
         postBuild = ''
           for bin in "$out"/bin/*; do
             if [[ ! -x "$bin" ]] ; then
