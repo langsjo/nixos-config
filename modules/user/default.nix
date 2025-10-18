@@ -27,6 +27,10 @@ in
     };
   };
 
+  imports = [
+    inputs.home-manager.nixosModules.default
+  ];
+
   config = lib.mkIf cfg.enable {
     home-manager = {
       useGlobalPkgs = true;
