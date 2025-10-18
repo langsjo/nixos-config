@@ -263,10 +263,16 @@ in
           (toString config.extraMakeWrapperArgs)
         ];
 
+        hasMan = builtins.elem "man" config.package.outputs;
+        outputs = [ "out" ] ++ (lib.optional hasMan "man");
       in
       pkgs.symlinkJoin {
         name = "${name}-wrapped${versionSuffix}";
-        inherit (config.package) meta passthru;
+        inherit outputs;
+        inherit (config.package) passthru;
+        meta = config.package.meta // {
+          outputsToInstall = outputs;
+        };
 
         paths = [ config.package ];
         nativeBuildInputs = [ makeWrapperPkg ];
@@ -277,6 +283,10 @@ in
             fi
             wrapProgram "$bin" ${makeWrapperArgs}
           done
+
+          ${lib.optionalString hasMan ''
+            cp -rs ${config.package.man} $man
+          ''}
         '';
       };
   };
