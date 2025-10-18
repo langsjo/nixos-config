@@ -21,6 +21,7 @@
     {
       formatter = forAllSystems (pkgs: pkgs.nixfmt-tree);
       optionDocs = forAllSystems (pkgs: pkgs.callPackage ./utils/generate-docs.nix { });
+      packages = forAllSystems (pkgs: import ./packages { inherit inputs pkgs; });
 
       nixosConfigurations = {
         laptop = lib.nixosSystem {
