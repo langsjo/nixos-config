@@ -9,7 +9,6 @@
     ./neovim
     ./networkmanager-dmenu.nix
     ./oh-my-posh.nix
-    ./tmux.nix
     ./zsh.nix
 
     inputs.nix-index-database.homeModules.nix-index

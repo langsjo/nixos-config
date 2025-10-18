@@ -19,6 +19,7 @@ in
   imports = [
     ./gui
     ./git.nix
+    ./tmux.nix
   ];
 
   environment.systemPackages = with pkgs; [
