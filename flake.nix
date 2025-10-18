@@ -4,19 +4,26 @@
   outputs =
     { nixpkgs, nixpkgs-unstable, ... }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      lib = nixpkgs.lib;
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+      forAllSystems = func: lib.genAttrs systems (sys: func inputs.nixpkgs.legacyPackages.${sys});
+
       pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
+        system = "x86_64-linux";
         config.allowUnfree = true;
       };
     in
     {
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
-      optionDocs = pkgs.callPackage ./utils/generate-docs.nix { };
+      formatter = forAllSystems (pkgs: pkgs.nixfmt-tree);
+      optionDocs = forAllSystems (pkgs: pkgs.callPackage ./utils/generate-docs.nix { });
 
       nixosConfigurations = {
-        laptop = nixpkgs.lib.nixosSystem {
+        laptop = lib.nixosSystem {
           specialArgs = {
             inherit inputs pkgs-unstable;
           };
@@ -26,7 +33,7 @@
           ];
         };
 
-        desktop = nixpkgs.lib.nixosSystem {
+        desktop = lib.nixosSystem {
           specialArgs = {
             inherit inputs pkgs-unstable;
           };
