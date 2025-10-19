@@ -43,6 +43,18 @@ in
       readOnly = true;
     };
 
+    expose = mkOption {
+      description = ''
+        Whether this wrapper should be exposed ie. from a flake's packages.
+
+        NOTE: This option itself does nothing but allow one to check whether
+        a wrapper should be exposed. This is essentially just a flag variable.
+      '';
+      type = types.bool;
+      default = true;
+      example = false;
+    };
+
     useBinaryWrapper = mkOption {
       description = ''
         Whether to use `makeBinaryWrapper` instead of `makeWrapper` to create the wrapper.
