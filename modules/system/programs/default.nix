@@ -20,6 +20,7 @@ in
     ./gui
     ./git.nix
     ./tmux.nix
+    ./zsh.nix
   ];
 
   environment.systemPackages = with pkgs; [
