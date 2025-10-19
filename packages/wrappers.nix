@@ -27,7 +27,7 @@ let
     };
   };
 in
-  lib.pipe evaledModules.config.wrappers [
-    (lib.filterAttrs (_: wrapper: wrapper.expose))
-    (builtins.mapAttrs (_: wrapper: wrapper.result))
-  ]
+lib.pipe evaledModules.config.wrappers [
+  (lib.filterAttrs (_: wrapper: wrapper.expose))
+  (builtins.mapAttrs (_: wrapper: wrapper.result))
+]

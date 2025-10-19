@@ -4,16 +4,9 @@
   ...
 }:
 let
-  cfg = config.custom.gui.windowManager.dwm.status;
+  cfg = config.custom.gui.windowManager.dwm;
 in
 {
-  options.custom.gui.windowManager.dwm.status.enable = lib.mkOption {
-    description = "Enable the dwm-status statusbar";
-    type = lib.types.bool;
-    default = config.custom.gui.windowManager.dwm.enable;
-    defaultText = lib.literalExpression "config.custom.gui.windowManager.dwm.enable";
-  };
-
   config = lib.mkIf cfg.enable {
     # dwm-status.service fails on boot, but works afterwards. make it restart
     systemd.user.services.dwm-status = {
@@ -103,16 +96,5 @@ in
           update_seconds = false
         '';
     };
-
-    assertions = [
-      {
-        assertion = !config.custom.gui.enable -> !cfg.enable;
-        message = "dwm-status cannot be enabled with gui disabled";
-      }
-      {
-        assertion = !config.custom.gui.windowManager.dwm.enable -> !cfg.enable;
-        message = "dwm-status cannot be enabled with dwm disabled";
-      }
-    ];
   };
 }

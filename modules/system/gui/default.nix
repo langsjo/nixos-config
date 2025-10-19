@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }:
@@ -16,8 +15,7 @@ in
 
   imports = [
     ./ly.nix
-    ./dwm.nix
-    ./dwm-status.nix
+    ./dwm
     ./xserver.nix
     ./plasma6.nix
   ];

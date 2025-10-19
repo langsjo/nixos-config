@@ -30,7 +30,6 @@
       displayManager.ly.enable = true;
       windowManager.dwm = {
         enable = true;
-        status.enable = true;
       };
       desktopManager.plasma6.enable = true;
     };

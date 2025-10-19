@@ -27,7 +27,6 @@
       xserver.enable = true;
       windowManager.dwm = {
         enable = true;
-        status.enable = true;
       };
     };
 
