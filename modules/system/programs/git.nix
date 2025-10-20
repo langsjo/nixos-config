@@ -5,6 +5,7 @@
 {
   wrappers.git = {
     install = true;
+    expose = false;
 
     env.paths.GIT_CONFIG_GLOBAL."/" = {
       generate = {
