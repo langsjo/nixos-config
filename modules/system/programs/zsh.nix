@@ -58,6 +58,7 @@
       };
 
       interactiveShellInit = ''
+        source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         eval "$(${lib.getExe pkgs.oh-my-posh} init zsh --config ${inputs.self}/dotfiles/zen.omp.toml)"
 
         bindkey -e
