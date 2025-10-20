@@ -31,7 +31,7 @@
       syntaxHighlighting.enable = true;
 
       histSize = 20000;
-      histFile = "\${XDG_DATA_HOME:-$HOME}/zsh/history";
+      histFile = "\${XDG_DATA_HOME:-$HOME/.local/share}/zsh/history";
 
       setOptions = [
         "HIST_IGNORE_DUPS"
@@ -58,6 +58,10 @@
       };
 
       interactiveShellInit = ''
+        export XDG_CONFIG_HOME=$HOME/.config
+        export XDG_DATA_HOME=$HOME/.local/share
+        export XDG_STATE_HOME=$HOME/.local/state
+
         source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         eval "$(${lib.getExe pkgs.oh-my-posh} init zsh --config ${inputs.self}/dotfiles/zen.omp.toml)"
 
