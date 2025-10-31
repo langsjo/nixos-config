@@ -1,4 +1,8 @@
 {
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./fonts.nix
     ./nix.nix
@@ -8,5 +12,10 @@
     ./misc.nix
     ./options.nix
     ./wrappers
+  ];
+
+  environment.systemPackages = with pkgs; [
+    man-pages
+    man-pages-posix
   ];
 }
