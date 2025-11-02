@@ -15,7 +15,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     powerline_symbol = ""
     background = 'blue'
     foreground = 'white'
-    template = '{{ .Path }}'
+    template = '{{ .Path }}{{ with .Env.IN_NIX_SHELL }} [NS]{{ end }}'
 
     [blocks.segments.properties]
       style = 'full'
