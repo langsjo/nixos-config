@@ -42,6 +42,4 @@ in
     light.enable = config.custom.isLaptop;
     bat.enable = true;
   };
-
-  virtualisation.docker.enable = true;
 }

@@ -7,5 +7,6 @@
     ./gui
     ./hardware
     ./gaming
+    ./virtualisation
   ];
 }
