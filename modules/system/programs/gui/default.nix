@@ -29,7 +29,7 @@ in
       vlc
       lmath
       google-chrome
-      telegram-desktop
+      ayugram-desktop
     ];
 
     assertions = [
