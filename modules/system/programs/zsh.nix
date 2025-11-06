@@ -57,28 +57,31 @@
         nire = "nix repl -f '<nixpkgs>'";
       };
 
-      interactiveShellInit = ''
-        export XDG_CONFIG_HOME=$HOME/.config
-        export XDG_DATA_HOME=$HOME/.local/share
-        export XDG_STATE_HOME=$HOME/.local/state
+      interactiveShellInit = # bash
+        ''
+          export XDG_CONFIG_HOME=$HOME/.config
+          export XDG_DATA_HOME=$HOME/.local/share
+          export XDG_STATE_HOME=$HOME/.local/state
 
-        source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-        eval "$(${lib.getExe pkgs.oh-my-posh} init zsh --config ${inputs.self}/dotfiles/zen.omp.toml)"
+          source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+          eval "$(${lib.getExe pkgs.oh-my-posh} init zsh --config ${inputs.self}/dotfiles/zen.omp.toml)"
 
-        bindkey -e
+          bindkey -e
 
-        # Start tmux on startup
-        if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-          exec tmux
-        fi
+          # Start tmux on startup
+          if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+            exec tmux
+          fi
 
-        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-        zstyle ':completion:*' menu no
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+          zstyle ':completion:*' menu no
+          zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
-        unalias run-help
-        autoload -Uz run-help
-      '';
+          if alias run-help > /dev/null 2>&1 ; then
+            unalias run-help
+          fi
+          autoload -Uz run-help
+        '';
     };
   };
 
