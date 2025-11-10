@@ -9,6 +9,7 @@
       ];
       trusted-users = [ "@wheel" ];
       allow-import-from-derivation = false;
+      download-buffer-size = 128 * 1024 * 1024; # 128 MiB
     };
 
     optimise = {
