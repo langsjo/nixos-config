@@ -28,7 +28,6 @@ in
     unzip
     zip
     pkgs-unstable.comma
-    devenv
     tree
     vim
     libqalculate
