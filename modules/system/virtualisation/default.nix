@@ -10,6 +10,8 @@
     };
   };
 
+  custom.user.extraGroups = [ "docker" ];
+
   environment.systemPackages = [
     pkgs.distrobox
   ];

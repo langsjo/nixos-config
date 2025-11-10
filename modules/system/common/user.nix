@@ -15,6 +15,12 @@ in
       default = "langsjo";
     };
 
+    extraGroups = lib.mkOption {
+      description = "Extra groups to add the user to";
+      type = with lib.types; listOf str;
+      default = [ ];
+    };
+
     homeDirectory = lib.mkOption {
       description = "User's home directory";
       type = lib.types.str;
@@ -24,15 +30,15 @@ in
   };
 
   config = {
+    custom.user.extraGroups = [
+      "wheel"
+      "video"
+    ];
+
     users = {
       users.${cfg.username} = {
         isNormalUser = true;
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-          "video"
-          "docker"
-        ];
+        extraGroups = cfg.extraGroups;
 
         useDefaultShell = true;
       };

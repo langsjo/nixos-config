@@ -4,6 +4,8 @@
 }:
 {
   networking.networkmanager.enable = true;
+  custom.user.extraGroups = [ "networkmanager" ];
+
   services = {
     openssh = {
       enable = true;

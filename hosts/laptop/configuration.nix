@@ -16,6 +16,7 @@
 
     user = {
       username = "langsjo";
+      extraGroups = [ "dialout" ];
       homeDirectory = "/home/langsjo";
     };
 
