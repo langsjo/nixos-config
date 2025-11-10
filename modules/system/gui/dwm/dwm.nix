@@ -10,8 +10,8 @@ let
   src = pkgs.fetchFromGitHub {
     owner = "langsjo";
     repo = "dwm";
-    rev = "a9a2a3a241bfbc4d4bc613bce1a2f54de01aee99";
-    hash = "sha256-FmE27lI41OP0TQwH3ywI3StwsInp3l5YTeTf3nqLO50=";
+    rev = "19b72543759586618433a3c352f35712c9943002";
+    hash = "sha256-NvRSuHCken1+Lt4qRT/mun87P/WDbK/OgeFA6+peBrU=";
   };
 
   package = pkgs.dwm.overrideAttrs (prevAttrs: {
