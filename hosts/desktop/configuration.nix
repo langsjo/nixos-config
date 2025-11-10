@@ -43,6 +43,7 @@
 
     gaming = {
       enable = true;
+      osrs.enable = false;
     };
 
     hardware = {

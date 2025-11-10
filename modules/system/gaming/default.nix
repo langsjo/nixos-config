@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  pkgs-unstable,
   ...
 }:
 let
@@ -15,6 +14,7 @@ in
     ./steam.nix
     ./fonts.nix
     ./osrs.nix
+    ./light.nix
   ];
 
   config = lib.mkIf cfg.enable {
