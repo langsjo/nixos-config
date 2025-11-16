@@ -11,7 +11,7 @@ in
   options.custom.gaming.light.enable = lib.mkOption {
     description = "Whether to enable light gaming stuff";
     type = lib.types.bool;
-    default = config.custom.caming.enable;
+    default = config.custom.gaming.enable;
     defaultText = lib.literalExpression "config.custom.gaming.enable";
   };
 
