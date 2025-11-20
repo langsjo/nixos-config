@@ -32,6 +32,7 @@ in
     vim
     libqalculate
     dust
+    file
 
     btop'
     (pkgs.callPackage "${inputs.self}/utils/rebuild-script.nix" { })
