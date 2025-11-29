@@ -1,7 +1,7 @@
+
 {
   config,
   pkgs,
-  pkgs-unstable,
   inputs,
   ...
 }:
@@ -21,13 +21,14 @@ in
     ./git.nix
     ./tmux.nix
     ./zsh.nix
+
+    inputs.nix-index-database.nixosModules.nix-index
   ];
 
   environment.systemPackages = with pkgs; [
     gh
     unzip
     zip
-    pkgs-unstable.comma
     tree
     vim
     libqalculate
@@ -41,5 +42,7 @@ in
   programs = {
     light.enable = config.custom.isLaptop;
     bat.enable = true;
+
+    nix-index-database.comma.enable = true;
   };
 }
