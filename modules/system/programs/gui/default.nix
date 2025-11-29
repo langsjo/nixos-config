@@ -30,6 +30,7 @@ in
       lmath
       google-chrome
       ayugram-desktop
+      signal-desktop
     ];
 
     assertions = [
