@@ -7,22 +7,16 @@
 let
   cfg = config.custom.gui.windowManager.dwm;
 
-  src = pkgs.fetchFromGitHub {
-    owner = "langsjo";
-    repo = "dwm";
-    rev = "4c032c742e39ed92800c111a3c3a0781ca92c420";
-    hash = "sha256-rLbjlPhzs8eZaqMPbnSfR31JqH3UCw6F/HJWdAxrxp8=";
-  };
-
-  package = pkgs.dwm.overrideAttrs (prevAttrs: {
-    inherit src;
-    patches = prevAttrs.patches ++ [
-      (pkgs.fetchpatch {
-        url = "https://dwm.suckless.org/patches/removeborder/dwm-removeborder-20220626-d3f93c7.diff"; # remove border from window if only 1 window on screen
-        hash = "sha256-0QUN+wfKyXxabXyKXIcpPcdnLkH4d0Oqx8pncjc+It4=";
+  dwm' = pkgs.dwm.override {
+    conf = ./config/config.h;
+    patches = [
+      ./config/0001-increase-bar-height.patch
+      (pkgs.fetchpatch2 { # remove border from window if only 1 window on screen
+        url = "https://dwm.suckless.org/patches/removeborder/dwm-removeborder-20220626-d3f93c7.diff";
+        hash = "sha256-u19eRqUHTQf4c3ronjOBZkdzFHJqicIt89RKYBPkhsU=";
       })
     ];
-  });
+  };
 in
 {
   options.custom.gui.windowManager.dwm.enable = lib.mkEnableOption "Enable the dwm window manager";
@@ -30,7 +24,7 @@ in
   config = lib.mkIf cfg.enable {
     services.xserver.windowManager.dwm = {
       enable = true;
-      inherit package;
+      package = dwm';
     };
     custom.gui.xserver.enable = lib.mkDefault true;
 

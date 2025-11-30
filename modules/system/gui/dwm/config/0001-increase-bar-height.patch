@@ -1,0 +1,16 @@
+diff --git a/dwm.c b/dwm.c
+index 1443802..084d12f 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -1561,7 +1561,7 @@ setup(void)
+ 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
+ 		die("no fonts could be loaded.");
+ 	lrpad = drw->fonts->h;
+-	bh = drw->fonts->h + 2;
++	bh = drw->fonts->h + 13;
+ 	updategeom();
+ 	/* init atoms */
+ 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);
+-- 
+2.51.2
+
