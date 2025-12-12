@@ -19,6 +19,20 @@
           alias = {
             amend = "commit --amend --no-edit"; # Just add staged files to previous commit
             reword = "commit --amend --only"; # Just reword previous commit
+            fixup = ''
+              !f() {
+                if [ -z "$1" ] ; then
+                  echo "Provide a commit ref as argument" >&2
+                  exit 1
+                fi
+
+                git commit --fixup "$1" && git rebase "$1"^ --autosquash --autostash;
+              }; f'';
+            slog = ''
+              !f() {
+                NUM="''${1:-10}"
+                git log --color --oneline | head -n "$NUM";
+              }; f'';
 
             co = "checkout";
             s = "status";
