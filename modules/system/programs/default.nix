@@ -34,6 +34,7 @@ in
     libqalculate
     dust
     file
+    playerctl
 
     btop'
     (pkgs.callPackage "${inputs.self}/utils/rebuild-script.nix" { })
