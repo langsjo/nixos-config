@@ -55,6 +55,7 @@
 
         nish = "nix-shell --run zsh -p";
         nire = "nix repl -f '<nixpkgs>'";
+        nibu = ''() { nix build nixpkgs#"$1" --no-link --print-out-paths; }'';
       };
 
       interactiveShellInit = # bash
