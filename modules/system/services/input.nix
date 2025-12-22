@@ -1,8 +1,12 @@
 {
   services = {
-    xserver.xkb = {
-      layout = "fi";
-      variant = "nodeadkeys";
+    xserver = {
+      xkb = {
+        layout = "fi";
+        variant = "nodeadkeys";
+      };
+      autoRepeatDelay = 200;
+      autoRepeatInterval = 33;
     };
 
     keyd = {
