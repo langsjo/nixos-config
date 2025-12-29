@@ -6,7 +6,25 @@
   imports = [
     ./hardware-configuration.nix
     "${inputs.self}/modules"
+
+    # Using lenovo-thinkpad-14-amd directly uses software iommu which we don't need
+    "${inputs.nixos-hardware}/lenovo/thinkpad/e14"
+    "${inputs.nixos-hardware}/common/cpu/amd"
+    "${inputs.nixos-hardware}/common/gpu/amd"
   ];
+
+  services.logind.settings.Login = {
+    HandleLidSwitch = "hibernate";
+  };
+
+  boot.extraModprobeConfig = ''
+    options rtw89_pci disable_aspm_l1=y
+  '';
+
+  hardware.trackpoint = {
+    enable = true;
+    device = "TPPS/2 Elan TrackPoint";
+  };
 
   custom = {
     isLaptop = true;
@@ -28,7 +46,7 @@
       };
     };
 
-    screen.dpi = 141;
+    screen.dpi = 162;
 
     home-manager = {
       enable = true;
@@ -41,6 +59,7 @@
       audio.enable = true;
       bluetooth.enable = true;
       graphics.enable = true;
+      gpuType = "amd";
     };
   };
 
