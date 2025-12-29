@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.custom.user;
+  secrets = config.sops.secrets;
 in
 {
   options.custom.user = {
@@ -35,14 +36,28 @@ in
       "video"
     ];
 
+    sops.secrets = {
+      "users/hashed-user-pass" = {
+        neededForUsers = true;
+      };
+      "users/hashed-root-pass" = {
+        neededForUsers = true;
+      };
+    };
+
     users = {
-      users.${cfg.username} = {
+      users."root" = {
+        hashedPasswordFile = secrets."users/hashed-root-pass".path;
+      };
+
+      users."${cfg.username}" = {
         isNormalUser = true;
         extraGroups = cfg.extraGroups;
+        hashedPasswordFile = secrets."users/hashed-user-pass".path;
 
         useDefaultShell = true;
       };
-
+      mutableUsers = false;
       defaultUserShell = pkgs.zsh;
     };
 
