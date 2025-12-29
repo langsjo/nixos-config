@@ -21,7 +21,7 @@ let
     specialArgs = {
       inherit inputs;
       pkgs-unstable = import inputs.nixpkgs {
-        system = pkgs.system;
+        system = pkgs.stdenv.hostPlatform.system;
         config.allowUnfree = true;
       };
     };
