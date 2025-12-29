@@ -24,6 +24,16 @@
       packages = forAllSystems (pkgs: import ./packages { inherit inputs pkgs; });
 
       nixosConfigurations = {
+        kehvatsu = lib.nixosSystem {
+          specialArgs = {
+            inherit inputs pkgs-unstable;
+          };
+
+          modules = [
+            ./hosts/kehvatsu/configuration.nix
+          ];
+        };
+
         laptop = lib.nixosSystem {
           specialArgs = {
             inherit inputs pkgs-unstable;
