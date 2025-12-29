@@ -3,6 +3,7 @@ keys:
   - &hp-laptop-host age1j3n82enjgvacg7dhjhnfwhmvc76ce6l8wmg5w5kkx8f6f8qyt9cs3e6s7m
   - &desktop-langsjo age1gwpmfgjkhcwp8nlaljxfdr3pp0np02656eq9kjpmtt0u3al99smswuj8lp
   - &kehvatsu-host age19w9wmdra2frq9f7hv0883xprnzzgfulv29fru25wgyfgwuxt6yjqnsvg04
+  - &kehvatsu-langsjo age13y3kv3ees7xx8fkerfcvjk0sjaz0n6f5pztu6ply4gl2tfhdjulstj4d2u
 creation_rules:
   - path_regex: modules/secrets/[^/]+$
     key_groups:
@@ -10,4 +11,5 @@ creation_rules:
           - *hp-laptop-langsjo
           - *hp-laptop-host
           - *desktop-langsjo
+          - *kehvatsu-langsjo
           - *kehvatsu-host
