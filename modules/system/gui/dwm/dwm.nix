@@ -11,7 +11,8 @@ let
     conf = ./config/config.h;
     patches = [
       ./config/0001-increase-bar-height.patch
-      (pkgs.fetchpatch2 { # remove border from window if only 1 window on screen
+      (pkgs.fetchpatch2 {
+        # remove border from window if only 1 window on screen
         url = "https://dwm.suckless.org/patches/removeborder/dwm-removeborder-20220626-d3f93c7.diff";
         hash = "sha256-u19eRqUHTQf4c3ronjOBZkdzFHJqicIt89RKYBPkhsU=";
       })
