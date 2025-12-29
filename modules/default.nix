@@ -2,6 +2,6 @@
   imports = [
     ./system
     ./user
-    ./secrets
+    ./sops.nix
   ];
 }
