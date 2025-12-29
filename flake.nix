@@ -61,6 +61,14 @@
             nixfmt
             sops
           ];
+
+          shellHook = ''
+            if ! cmp --silent .git/hooks/pre-commit .pre-commit-hook.sh ; then 
+              set -x
+              install -Dm755 .pre-commit-hook.sh .git/hooks/pre-commit
+              set +x
+            fi
+          '';
         };
       });
     };
