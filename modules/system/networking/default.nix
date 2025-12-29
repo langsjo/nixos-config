@@ -1,8 +1,8 @@
 {
-  pkgs,
-  ...
-}:
-{
+  imports = [
+    ./nm-profiles
+  ];
+
   networking.networkmanager.enable = true;
   custom.user.extraGroups = [ "networkmanager" ];
 
@@ -15,8 +15,4 @@
     };
     fail2ban.enable = true;
   };
-
-  environment.systemPackages = with pkgs; [
-    wget
-  ];
 }

@@ -1,4 +1,3 @@
-
 {
   config,
   pkgs,
@@ -27,6 +26,7 @@ in
 
   environment.systemPackages = with pkgs; [
     gh
+    wget
     unzip
     zip
     tree

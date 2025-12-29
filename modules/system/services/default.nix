@@ -2,7 +2,6 @@
 {
   imports = [
     ./input.nix
-    ./networking.nix
   ];
 
   services = {
