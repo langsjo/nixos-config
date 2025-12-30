@@ -19,41 +19,26 @@
       };
     in
     {
-      formatter = forAllSystems (pkgs: pkgs.nixfmt-tree);
-      packages = forAllSystems (pkgs: import ./packages { inherit inputs pkgs; });
-      wrappers = forAllSystems (pkgs: import ./packages/wrappers.nix { inherit inputs pkgs; });
-
       nixosConfigurations = {
         kehvatsu = lib.nixosSystem {
-          specialArgs = {
-            inherit inputs pkgs-unstable;
-          };
-
-          modules = [
-            ./hosts/kehvatsu/configuration.nix
-          ];
+          specialArgs = { inherit inputs pkgs-unstable; };
+          modules = [ ./hosts/kehvatsu/configuration.nix ];
         };
 
         laptop = lib.nixosSystem {
-          specialArgs = {
-            inherit inputs pkgs-unstable;
-          };
-
-          modules = [
-            ./hosts/laptop/configuration.nix
-          ];
+          specialArgs = { inherit inputs pkgs-unstable; };
+          modules = [ ./hosts/laptop/configuration.nix ];
         };
 
         desktop = lib.nixosSystem {
-          specialArgs = {
-            inherit inputs pkgs-unstable;
-          };
-
-          modules = [
-            ./hosts/desktop/configuration.nix
-          ];
+          specialArgs = { inherit inputs pkgs-unstable; };
+          modules = [ ./hosts/desktop/configuration.nix ];
         };
       };
+
+      formatter = forAllSystems (pkgs: pkgs.nixfmt-tree);
+      packages = forAllSystems (pkgs: import ./packages { inherit inputs pkgs; });
+      wrappers = forAllSystems (pkgs: import ./packages/wrappers.nix { inherit inputs pkgs; });
 
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShellNoCC {
