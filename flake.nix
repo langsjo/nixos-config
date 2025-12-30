@@ -20,8 +20,8 @@
     in
     {
       formatter = forAllSystems (pkgs: pkgs.nixfmt-tree);
-      optionDocs = forAllSystems (pkgs: pkgs.callPackage ./utils/generate-docs.nix { });
       packages = forAllSystems (pkgs: import ./packages { inherit inputs pkgs; });
+      wrappers = forAllSystems (pkgs: import ./packages/wrappers.nix { inherit inputs pkgs; });
 
       nixosConfigurations = {
         kehvatsu = lib.nixosSystem {
