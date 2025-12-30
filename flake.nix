@@ -37,7 +37,7 @@
       };
 
       formatter = forAllSystems (pkgs: pkgs.nixfmt-tree);
-      packages = forAllSystems (pkgs: import ./packages { inherit inputs pkgs; });
+      packages = forAllSystems (pkgs: import ./packages { inherit pkgs; });
       wrappers = forAllSystems (pkgs: import ./packages/wrappers.nix { inherit inputs pkgs; });
 
       devShells = forAllSystems (pkgs: {
