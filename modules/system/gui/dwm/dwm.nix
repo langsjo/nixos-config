@@ -45,6 +45,18 @@ in
       slock.enable = true;
     };
 
+    systemd.services.slock-sleep = {
+      description = "Lock screen with slock on sleep";
+      wantedBy = [ "sleep.target" ];
+      before = [ "sleep.target" ];
+      serviceConfig = {
+        Type = "simple";
+        Environment = "DISPLAY=:0";
+        ExecCondition = "${lib.getExe' pkgs.procps "pgrep"} -x dwm"; # Only run if dwm is running
+        ExecStart = "/run/wrappers/bin/slock";
+      };
+    };
+
     assertions = [
       {
         assertion = !config.custom.gui.enable -> !cfg.enable;
