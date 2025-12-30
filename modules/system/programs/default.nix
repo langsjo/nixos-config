@@ -24,21 +24,25 @@ in
     inputs.nix-index-database.nixosModules.nix-index
   ];
 
-  environment.systemPackages = with pkgs; [
-    gh
-    wget
-    unzip
-    zip
-    tree
-    vim
-    libqalculate
-    dust
-    file
-    playerctl
+  environment.systemPackages =
+    (with pkgs; [
+      gh
+      wget
+      unzip
+      zip
+      tree
+      vim
+      libqalculate
+      dust
+      file
+      playerctl
 
-    btop'
-    (pkgs.callPackage "${inputs.self}/utils/rebuild-script.nix" { })
-  ];
+      btop'
+    ])
+    ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
+      rebuild
+      nm2nix
+    ]);
 
   programs = {
     light.enable = config.custom.isLaptop;
