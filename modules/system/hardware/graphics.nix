@@ -14,6 +14,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    hardware.graphics.enable = true;
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
   };
 }

@@ -48,8 +48,6 @@
       stateVersion = "25.11";
     };
 
-    gaming.light.enable = true;
-
     hardware = {
       audio.enable = true;
       bluetooth.enable = true;
