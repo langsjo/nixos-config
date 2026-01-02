@@ -46,4 +46,8 @@ in
 
     nix-index-database.comma.enable = true;
   };
+
+  services.locate = {
+    enable = true;
+  };
 }

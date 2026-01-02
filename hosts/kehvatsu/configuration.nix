@@ -21,11 +21,6 @@
     options rtw89_pci disable_aspm_l1=y
   '';
 
-  hardware.trackpoint = {
-    enable = true;
-    device = "TPPS/2 Elan TrackPoint";
-  };
-
   custom = {
     isLaptop = true;
 

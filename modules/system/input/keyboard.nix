@@ -19,14 +19,5 @@
         };
       };
     };
-
-    libinput = {
-      enable = true;
-      touchpad = {
-        clickMethod = "clickfinger";
-        disableWhileTyping = true;
-        tapping = false;
-      };
-    };
   };
 }

@@ -2,12 +2,12 @@
 {
   imports = [
     ./common
-    ./programs
-    ./services
+    ./gaming
     ./gui
     ./hardware
+    ./input
     ./networking
-    ./gaming
+    ./programs
     ./virtualisation
   ];
 }
