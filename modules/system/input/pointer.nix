@@ -15,6 +15,7 @@
   hardware.trackpoint = {
     enable = true;
     device = "TPPS/2 Elan TrackPoint";
+    drift_time = 100;
     sensitivity = 255;
     speed = 255;
   };
