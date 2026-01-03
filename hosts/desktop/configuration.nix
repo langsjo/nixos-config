@@ -36,11 +36,6 @@
 
     screen.dpi = 96;
 
-    home-manager = {
-      enable = true;
-      stateVersion = "25.05";
-    };
-
     gaming = {
       enable = true;
       osrs.enable = false;

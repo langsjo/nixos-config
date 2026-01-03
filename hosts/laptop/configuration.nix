@@ -33,11 +33,6 @@
 
     screen.dpi = 141;
 
-    home-manager = {
-      enable = true;
-      stateVersion = "24.11";
-    };
-
     gaming.light.enable = true;
 
     hardware = {

@@ -43,11 +43,6 @@
 
     screen.dpi = 162;
 
-    home-manager = {
-      enable = true;
-      stateVersion = "25.11";
-    };
-
     hardware = {
       audio.enable = true;
       bluetooth.enable = true;
