@@ -5,6 +5,7 @@
       touchpad = {
         disableWhileTyping = true;
         tapping = true;
+        naturalScrolling = true;
         accelProfile = "flat";
         accelSpeed = "0.5";
       };
@@ -15,7 +16,6 @@
   hardware.trackpoint = {
     enable = true;
     device = "TPPS/2 Elan TrackPoint";
-    drift_time = 100;
     sensitivity = 255;
     speed = 255;
   };
