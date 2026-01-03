@@ -17,6 +17,7 @@ in
 {
   imports = [
     ./gui
+    ./neovim
     ./git.nix
     ./tmux.nix
     ./zsh.nix
@@ -35,6 +36,7 @@ in
     dust
     file
     playerctl
+    ripgrep
 
     btop'
     inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.rebuild
