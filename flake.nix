@@ -78,5 +78,7 @@
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-templates.url = "github:langsjo/flake-templates";
   };
 }

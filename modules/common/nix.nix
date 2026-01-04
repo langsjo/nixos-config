@@ -10,6 +10,7 @@
       trusted-users = [ "@wheel" ];
       allow-import-from-derivation = false;
       download-buffer-size = 128 * 1024 * 1024; # 128 MiB
+      flake-registry = ""; # Disable the global flake registry
     };
 
     optimise = {
@@ -20,6 +21,7 @@
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
       unstable.flake = inputs.nixpkgs-unstable;
+      templates.flake = inputs.flake-templates;
     };
 
   };

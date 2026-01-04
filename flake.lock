@@ -21,6 +21,21 @@
         "type": "github"
       }
     },
+    "flake-templates": {
+      "locked": {
+        "lastModified": 1767555675,
+        "narHash": "sha256-2oSMuMrBlY6thYb1SvGin0o5UxVKqHM6ceEvQPzuXR0=",
+        "owner": "langsjo",
+        "repo": "flake-templates",
+        "rev": "5882e141653c2b39835ec20fd51ed9aa293c5565",
+        "type": "github"
+      },
+      "original": {
+        "owner": "langsjo",
+        "repo": "flake-templates",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -184,6 +199,7 @@
     },
     "root": {
       "inputs": {
+        "flake-templates": "flake-templates",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
