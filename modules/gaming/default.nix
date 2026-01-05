@@ -13,7 +13,6 @@ in
   imports = [
     ./steam.nix
     ./fonts.nix
-    ./osrs.nix
     ./light.nix
   ];
 
@@ -29,8 +28,11 @@ in
 
     # For Roblox :)
     services.flatpak.enable = true;
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal ];
+    xdg.portal = {
+      enable = true;
+      configPackages = [ pkgs.xdg-desktop-portal ];
+      extraPortals = [ pkgs.xdg-desktop-portal ];
+    };
 
     environment.systemPackages = with pkgs; [
       piper
