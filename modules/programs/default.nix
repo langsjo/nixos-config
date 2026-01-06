@@ -37,6 +37,7 @@ in
       playerctl
       ripgrep
       btop'
+      hydra-check
     ])
     ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
       rebuild
