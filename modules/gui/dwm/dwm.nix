@@ -8,7 +8,7 @@
 let
   cfg = config.custom.gui.windowManager.dwm;
 
-  networkmanager_dmenu-wrapped = inputs.wrapper-lib.lib.mkWrapper pkgs ./networkmanager-dmenu.nix;
+  networkmanager_dmenu-wrapped = inputs.wrapper-lib.lib.mkWrapper pkgs ./networkmanager_dmenu-wrapped.nix;
   dwm' = pkgs.dwm.override {
     conf = ./config/config.h;
     patches = [

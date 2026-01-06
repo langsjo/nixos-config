@@ -13,6 +13,8 @@ let
       pkgs.btop-rocm
     else
       pkgs.btop;
+
+  git-wrapped = inputs.wrapper-lib.lib.mkWrapper pkgs ./git-wrapped.nix;
 in
 {
   imports = [
@@ -36,12 +38,13 @@ in
       file
       playerctl
       ripgrep
-      btop'
       hydra-check
+
+      btop'
+      git-wrapped
     ])
     ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
       rebuild
-      git-wrapped
       tmux-wrapped
     ]);
 

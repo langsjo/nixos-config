@@ -11,7 +11,6 @@ let
 in
 {
   alacritty-wrapped = mkWrapper ./alacritty;
-  git-wrapped = mkWrapper ./git.nix;
   tmux-wrapped = mkWrapper ./tmux.nix;
   zsh-wrapped = mkWrapper ./zsh;
 }
