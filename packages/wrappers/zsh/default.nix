@@ -116,10 +116,10 @@ in
 
         # Disable some features to support TRAMP.
         if [ "$TERM" = dumb ]; then
-        unsetopt zle prompt_cr prompt_subst
-        unset RPS1 RPROMPT
-        PS1='$ '
-        PROMPT='$ '
+          unsetopt zle prompt_cr prompt_subst
+          unset RPS1 RPROMPT
+          PS1='$ '
+          PROMPT='$ '
         fi
       '';
   };
