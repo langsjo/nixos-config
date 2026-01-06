@@ -10,7 +10,6 @@
   };
 
   programs = {
-    zsh.enable = true;
     zoxide.enable = true;
     direnv = {
       enable = true;

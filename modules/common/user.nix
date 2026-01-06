@@ -30,6 +30,11 @@ in
     };
   };
 
+  # Ensure ZSH exists
+  imports = [
+    ../programs/zsh.nix
+  ];
+
   config = {
     custom.user.extraGroups = [
       "wheel"
@@ -48,6 +53,7 @@ in
     users = {
       users."root" = {
         hashedPasswordFile = secrets."users/hashed-root-pass".path;
+        ignoreShellProgramCheck = true;
       };
 
       users."${cfg.username}" = {
@@ -56,11 +62,10 @@ in
         hashedPasswordFile = secrets."users/hashed-user-pass".path;
 
         useDefaultShell = true;
+        ignoreShellProgramCheck = true;
       };
       mutableUsers = false;
       defaultUserShell = pkgs.zsh;
     };
-
-    programs.zsh.enable = true;
   };
 }
