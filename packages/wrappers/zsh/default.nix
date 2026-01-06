@@ -11,6 +11,8 @@
   zsh-syntax-highlighting,
   zoxide,
   oh-my-posh,
+
+  autostartTmux ? false,
 }:
 let
   nix-index-with-db =
@@ -27,10 +29,14 @@ in
 
     paths."ZDOTDIR".".zshrc".text = # bash
       ''
-        # Start tmux on startup
-        if command -v tmux &> /dev/null && [[ -n "$PS1" ]] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [[ -z "$TMUX" ]]; then
-        exec tmux
-        fi
+        # Start tmux on startup if
+        ${lib.optionalString autostartTmux ''
+          if command -v tmux &> /dev/null && \
+             [[ -n "$PS1" ]] && [[ ! "$TERM" =~ screen ]] && \
+             [[ ! "$TERM" =~ tmux ]] && [[ -z "$TMUX" ]]; then
+            exec tmux
+          fi
+        ''}
 
         setopt HIST_IGNORE_DUPS 
         setopt HIST_IGNORE_SPACE 

@@ -3,6 +3,11 @@
   pkgs,
   ...
 }:
+let
+  zsh-wrapped = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zsh-wrapped.override {
+    autostartTmux = true;
+  };
+in
 {
   environment.variables = {
     MANPAGER = "nvim +Man!";
@@ -19,6 +24,6 @@
 
   environment.systemPackages = [
     pkgs.fzf
-    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zsh-wrapped
+    zsh-wrapped
   ];
 }
