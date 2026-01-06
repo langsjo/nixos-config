@@ -11,7 +11,6 @@
     ./activation-scripts.nix
     ./misc.nix
     ./options.nix
-    ./wrappers
   ];
 
   environment.systemPackages = with pkgs; [

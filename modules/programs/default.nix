@@ -18,29 +18,31 @@ in
   imports = [
     ./gui
     ./neovim
-    ./git.nix
-    ./tmux.nix
     ./zsh.nix
 
     inputs.nix-index-database.nixosModules.nix-index
   ];
 
-  environment.systemPackages = with pkgs; [
-    gh
-    wget
-    unzip
-    zip
-    tree
-    vim
-    libqalculate
-    dust
-    file
-    playerctl
-    ripgrep
-
-    btop'
-    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.rebuild
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      gh
+      wget
+      unzip
+      zip
+      tree
+      vim
+      libqalculate
+      dust
+      file
+      playerctl
+      ripgrep
+      btop'
+    ])
+    ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
+      rebuild
+      git-wrapped
+      tmux-wrapped
+    ]);
 
   programs = {
     light.enable = config.custom.isLaptop;

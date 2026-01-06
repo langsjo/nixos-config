@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -7,6 +8,7 @@
 let
   cfg = config.custom.gui.windowManager.dwm;
 
+  networkmanager_dmenu-wrapped = inputs.wrapper-lib.lib.mkWrapper pkgs ./networkmanager-dmenu.nix;
   dwm' = pkgs.dwm.override {
     conf = ./config/config.h;
     patches = [
@@ -32,8 +34,7 @@ in
     environment.systemPackages = with pkgs; [
       rofi
       rofi-screenshot
-      config.wrappers.alacritty.result
-      config.wrappers.networkmanager_dmenu.result
+      networkmanager_dmenu-wrapped
 
       dunst # For notifications
     ];

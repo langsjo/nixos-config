@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -6,6 +7,11 @@
 }:
 let
   cfg = config.custom.gui.programs;
+  alacritty-wrapped =
+    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.alacritty-wrapped.override
+      {
+        screenDpi = config.custom.screen.dpi;
+      };
 in
 {
   options.custom.gui.programs.enable = lib.mkOption {
@@ -18,7 +24,6 @@ in
   imports = [
     ./matrix.nix
     ./cursor.nix
-    ./alacritty.nix
   ];
 
   config = lib.mkIf cfg.enable {
@@ -31,6 +36,8 @@ in
       google-chrome
       ayugram-desktop
       signal-desktop
+
+      alacritty-wrapped
     ];
 
     assertions = [
