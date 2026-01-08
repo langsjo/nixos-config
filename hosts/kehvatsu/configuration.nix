@@ -41,6 +41,8 @@
       };
     };
 
+    gaming.enable = true;
+
     screen.dpi = 162;
 
     hardware = {
