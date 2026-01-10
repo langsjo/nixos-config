@@ -13,10 +13,6 @@
     "${inputs.nixos-hardware}/common/gpu/amd"
   ];
 
-  services.logind.settings.Login = {
-    HandleLidSwitch = "hibernate";
-  };
-
   boot.extraModprobeConfig = ''
     options rtw89_pci disable_aspm_l1=y
   '';
