@@ -14,9 +14,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    hardware.graphics = {
-      enable = true;
-      enable32Bit = true;
+    hardware = {
+      graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
+
+      amdgpu.opencl.enable = true;
     };
   };
 }
