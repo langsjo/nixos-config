@@ -13,9 +13,16 @@
     "${inputs.nixos-hardware}/common/gpu/amd"
   ];
 
-  boot.extraModprobeConfig = ''
-    options rtw89_pci disable_aspm_l1=y
-  '';
+  boot = {
+    tmp = {
+      useTmpfs = true;
+      tmpfsSize = "30%";
+    };
+
+    extraModprobeConfig = ''
+      options rtw89_pci disable_aspm_l1=y
+    '';
+  };
 
   custom = {
     isLaptop = true;
