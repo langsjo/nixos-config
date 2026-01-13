@@ -53,19 +53,19 @@ in
     users = {
       users."root" = {
         hashedPasswordFile = secrets."users/hashed-root-pass".path;
-        ignoreShellProgramCheck = true;
       };
 
       users."${cfg.username}" = {
         isNormalUser = true;
         extraGroups = cfg.extraGroups;
         hashedPasswordFile = secrets."users/hashed-user-pass".path;
-
-        useDefaultShell = true;
+        shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
       };
+
       mutableUsers = false;
-      defaultUserShell = pkgs.zsh;
+      defaultUserShell = pkgs.bash;
     };
+    programs.bash.enable = true;
   };
 }
