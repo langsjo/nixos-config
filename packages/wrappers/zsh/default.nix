@@ -61,11 +61,16 @@ in
         alias -- ll='ls -al --color=auto'
         alias -- ls='ls --color=auto'
         alias -- n=nvim
-        alias -- nibu='() { nix build nixpkgs#"$1" --no-link --print-out-paths; }'
         alias -- nire="nix repl -f '<nixpkgs>'"
         alias -- nish='nix-shell --run zsh -p'
         alias -- open=xdg-open
         alias -- tmpdir='cd $(mktemp -d)'
+
+        function nibu() {
+          package=$1
+          shift
+          NIXPKGS_ALLOW_UNFREE=1 nix build nixpkgs#"$package" --no-link --print-out-paths --impure "$@"
+        }
 
         # Setup command line history.
         # Don't export these, otherwise other shells (bash) will try to use same HISTFILE.
