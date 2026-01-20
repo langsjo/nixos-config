@@ -24,6 +24,8 @@
         connection = {
           id = "eduroam";
           type = "wifi";
+          autoconnect = true;
+          autoconnect-priority = 100;
         };
         wifi.ssid = "eduroam";
         wifi-security.key-mgmt = "wpa-eap";
