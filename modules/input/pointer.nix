@@ -13,6 +13,13 @@
     };
   };
 
+  environment.etc."libinput/local-overrides.quirks".text = ''
+    [Serial Keyboards]
+    MatchUdevType=keyboard
+    MatchName=keyd virtual keyboard
+    AttrKeyboardIntegration=internal
+  '';
+
   hardware.trackpoint = {
     enable = true;
     device = "TPPS/2 Elan TrackPoint";
