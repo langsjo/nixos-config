@@ -29,7 +29,6 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       zathura
-      discord
       feh
       vlc
       lmath
