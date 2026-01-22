@@ -62,7 +62,7 @@ in
         alias -- ls='ls --color=auto'
         alias -- n=nvim
         alias -- nire="nix repl -f '<nixpkgs>'"
-        alias -- nish='nix-shell --run zsh -p'
+        alias -- nish='NIXPKGS_ALLOW_UNFREE=1 nix-shell --run zsh -p'
         alias -- open=xdg-open
         alias -- tmpdir='cd $(mktemp -d)'
 
