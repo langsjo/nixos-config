@@ -12,7 +12,7 @@ in
     systemd.user.services.dwm-status = {
       serviceConfig = {
         Restart = "on-failure";
-        RestartSec = 5;
+        RestartSec = 1;
       };
     };
 
