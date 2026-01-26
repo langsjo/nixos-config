@@ -23,7 +23,13 @@
                 exit 1
               fi
 
-              git commit --fixup "$1" && git rebase "$1"^ --autosquash --autostash;
+              rev=$(git rev-parse "$1")
+
+              if [ "$?" -ne 0 ] ; then
+                exit 1
+              fi
+
+              git commit --fixup "$rev" && git rebase "$rev"^ --autosquash --autostash;
             }; f'';
           slog = ''
             !f() {
