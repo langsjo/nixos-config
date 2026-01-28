@@ -1,11 +1,13 @@
 {
+  pkgs,
+  ...
+}:
+{
   programs.nixvim = {
     plugins.treesitter = {
       enable = true;
-
+      grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;
       settings = {
-        auto_install = true;
-
         highlight.enable = true;
         indent.enable = true;
       };
