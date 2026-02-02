@@ -23,7 +23,6 @@ in
 
   imports = [
     ./matrix.nix
-    ./cursor.nix
   ];
 
   config = lib.mkIf cfg.enable {
