@@ -49,6 +49,7 @@
   ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nix.settings.system-features = [ "gccarch-znver4" ];
   hardware.enableAllFirmware = true;
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
