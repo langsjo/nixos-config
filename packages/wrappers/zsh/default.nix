@@ -72,6 +72,14 @@ in
           NIXPKGS_ALLOW_UNFREE=1 nix build nixpkgs#"$package" --no-link --print-out-paths --impure "$@"
         }
 
+        function nixpkgs-review-gha() {
+          pr=$1
+          shift
+          gh workflow --repo langsjo/nixpkgs-review-gha run review.yml \
+            -f pr="$pr" \
+            "$@"
+        }
+
         # Setup command line history.
         # Don't export these, otherwise other shells (bash) will try to use same HISTFILE.
         SAVEHIST=50000
