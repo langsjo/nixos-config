@@ -13,14 +13,13 @@ let
       pkgs.btop-rocm
     else
       pkgs.btop;
-
-  git-wrapped = inputs.wrapper-lib.lib.mkWrapper pkgs ./git-wrapped.nix;
 in
 {
   imports = [
     ./gui
     ./neovim
     ./zsh.nix
+    ./git.nix
 
     inputs.nix-index-database.nixosModules.nix-index
   ];
@@ -41,7 +40,6 @@ in
       hydra-check
 
       btop'
-      git-wrapped
     ])
     ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
       rebuild
