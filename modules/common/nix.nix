@@ -20,7 +20,6 @@
 
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
-      unstable.flake = inputs.nixpkgs-unstable;
       templates.flake = inputs.flake-templates;
     };
 

@@ -2,7 +2,7 @@
   description = "Nixos config flake";
 
   outputs =
-    { nixpkgs, nixpkgs-unstable, ... }@inputs:
+    { nixpkgs, ... }@inputs:
     let
       lib = nixpkgs.lib;
       systems = [
@@ -12,26 +12,21 @@
         "aarch64-darwin"
       ];
       forAllSystems = func: lib.genAttrs systems (sys: func inputs.nixpkgs.legacyPackages.${sys});
-
-      pkgs-unstable = import nixpkgs-unstable {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
-      };
     in
     {
       nixosConfigurations = {
         kehvatsu = lib.nixosSystem {
-          specialArgs = { inherit inputs pkgs-unstable; };
+          specialArgs = { inherit inputs; };
           modules = [ ./hosts/kehvatsu/configuration.nix ];
         };
 
         laptop = lib.nixosSystem {
-          specialArgs = { inherit inputs pkgs-unstable; };
+          specialArgs = { inherit inputs; };
           modules = [ ./hosts/laptop/configuration.nix ];
         };
 
         desktop = lib.nixosSystem {
-          specialArgs = { inherit inputs pkgs-unstable; };
+          specialArgs = { inherit inputs; };
           modules = [ ./hosts/desktop/configuration.nix ];
         };
       };
@@ -58,8 +53,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -74,7 +68,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-25.11";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
