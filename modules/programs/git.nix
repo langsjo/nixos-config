@@ -32,6 +32,8 @@
             git log --color --oneline | head -n "$NUM";
           }; f'';
 
+        lol = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+
         co = "checkout";
         s = "status";
         d = "diff";
