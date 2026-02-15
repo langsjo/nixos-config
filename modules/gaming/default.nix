@@ -41,7 +41,7 @@ in
           p: with p; [
             gamemode
             proton-ge-bin
-            wineWowPackages.full
+            wineWow64Packages.full
           ];
       })
     ];
