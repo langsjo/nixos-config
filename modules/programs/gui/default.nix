@@ -44,6 +44,15 @@ in
       thunar.enable = true;
     };
 
+    custom.mimetypes = {
+      terminal = "Alacritty.desktop";
+      browser = "firefox.desktop";
+      fileChooser = "thunar.desktop";
+      pdfViewer = "org.pwmt.zathura.desktop";
+      imageViewer = "feh.desktop";
+      videoPlayer = "vlc.desktop";
+    };
+
     assertions = [
       {
         assertion = !config.custom.gui.enable -> !cfg.enable;

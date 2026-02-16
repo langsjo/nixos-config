@@ -13,6 +13,7 @@
       MANPAGER = "nvim +Man!";
       EDITOR = "nvim";
     };
+    custom.mimetypes.editor = "nvim.desktop";
 
     programs.nixvim = {
       enable = true;
