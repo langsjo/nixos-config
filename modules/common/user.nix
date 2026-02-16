@@ -59,7 +59,7 @@ in
         isNormalUser = true;
         extraGroups = cfg.extraGroups;
         hashedPasswordFile = secrets."users/hashed-user-pass".path;
-        shell = pkgs.zsh;
+        shell = config.custom.wrappers.zsh;
         ignoreShellProgramCheck = true;
       };
 

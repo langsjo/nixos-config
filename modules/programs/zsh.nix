@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   pkgs,
   ...
 }:
@@ -9,6 +10,8 @@ let
   };
 in
 {
+  custom.wrappers.zsh = zsh-wrapped;
+
   programs = {
     zoxide.enable = true;
     direnv = {
@@ -19,6 +22,6 @@ in
 
   environment.systemPackages = [
     pkgs.fzf
-    zsh-wrapped
+    config.custom.wrappers.zsh
   ];
 }

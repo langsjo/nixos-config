@@ -12,6 +12,7 @@
     ./misc.nix
     ./options.nix
     ./envvars.nix
+    ./wrappers.nix
   ];
 
   environment.systemPackages = with pkgs; [

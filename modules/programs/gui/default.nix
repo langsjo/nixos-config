@@ -26,6 +26,8 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
+    custom.wrappers.alacritty = alacritty-wrapped;
+
     environment.systemPackages = with pkgs; [
       zathura
       feh
