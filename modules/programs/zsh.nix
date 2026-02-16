@@ -9,11 +9,6 @@ let
   };
 in
 {
-  environment.variables = {
-    MANPAGER = "nvim +Man!";
-    EDITOR = "nvim";
-  };
-
   programs = {
     zoxide.enable = true;
     direnv = {

@@ -9,6 +9,11 @@
   ];
 
   config = {
+    environment.variables = {
+      MANPAGER = "nvim +Man!";
+      EDITOR = "nvim";
+    };
+
     programs.nixvim = {
       enable = true;
       defaultEditor = true;
