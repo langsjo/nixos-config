@@ -39,12 +39,7 @@ in
       dunst # For notifications
     ];
 
-    programs = {
-      light.enable = config.custom.isLaptop;
-      thunar.enable = true;
-      firefox.enable = true;
-      slock.enable = true;
-    };
+    programs.slock.enable = true;
 
     systemd.services.slock-sleep = {
       description = "Lock screen with slock on sleep";

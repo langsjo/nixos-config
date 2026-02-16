@@ -39,6 +39,10 @@ in
 
       alacritty-wrapped
     ];
+    programs = {
+      firefox.enable = true;
+      thunar.enable = true;
+    };
 
     assertions = [
       {
