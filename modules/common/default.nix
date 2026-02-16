@@ -11,6 +11,7 @@
     ./activation-scripts.nix
     ./misc.nix
     ./options.nix
+    ./envvars.nix
   ];
 
   environment.systemPackages = with pkgs; [
