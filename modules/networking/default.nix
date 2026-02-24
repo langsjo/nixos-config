@@ -11,6 +11,8 @@
       enable = true;
       settings = {
         PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no";
       };
     };
     fail2ban.enable = true;
