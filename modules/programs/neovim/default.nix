@@ -90,19 +90,12 @@
         {
           mode = "v";
           key = "J";
-          action = "<CMD>undojoin<CR>:m '>+1<CR>gv=gv";
+          action = ":m '>+1<CR>gv=gv";
         }
         {
           mode = "v";
           key = "K";
-          action = "<CMD>undojoin<CR>:m '<-2<CR>gv=gv";
-        }
-
-        # Entering visual line mode breaks the last undo sequence so the moving lines up/down can be undone in one undo, since theyre joined together
-        {
-          mode = "n";
-          key = "V";
-          action = "aa<BS><ESC>V";
+          action = ":m '<-2<CR>gv=gv";
         }
 
         {
