@@ -65,6 +65,7 @@ writeShellApplication {
       sudo -v
 
       sudo nixos-rebuild switch \
+          --max-jobs $(( $(nproc) * 2 )) \
           --log-format internal-json \
           "''${passthru[@]}" \
           --flake . |& nom --json
