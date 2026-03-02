@@ -7,7 +7,6 @@
         "flakes"
         "pipe-operators"
       ];
-      trusted-users = [ "@wheel" ];
       allow-import-from-derivation = false;
       download-buffer-size = 128 * 1024 * 1024; # 128 MiB
       flake-registry = ""; # Disable the global flake registry
