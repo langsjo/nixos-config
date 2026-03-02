@@ -38,6 +38,7 @@ in
       playerctl
       ripgrep
       hydra-check
+      libsecret
 
       btop'
     ])
@@ -53,7 +54,10 @@ in
     nix-index-database.comma.enable = true;
   };
 
-  services.locate = {
-    enable = true;
+  services = {
+    locate = {
+      enable = true;
+    };
+    gnome.gnome-keyring.enable = true;
   };
 }
