@@ -39,6 +39,7 @@ in
       ripgrep
       hydra-check
       libsecret
+      github-copilot-cli
 
       btop'
     ])
