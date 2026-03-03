@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }:
@@ -13,6 +14,19 @@ let
       pkgs.btop-rocm
     else
       pkgs.btop;
+
+  github-copilot-cli' = pkgs.symlinkJoin {
+    inherit (pkgs.github-copilot-cli)
+      pname
+      version
+      ;
+    paths = [ pkgs.github-copilot-cli ];
+    nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/copilot \
+        --prefix PATH : "${lib.makeBinPath [ pkgs.bashInteractive ]}"
+    '';
+  };
 in
 {
   imports = [
@@ -39,8 +53,8 @@ in
       ripgrep
       hydra-check
       libsecret
-      github-copilot-cli
 
+      github-copilot-cli'
       btop'
     ])
     ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
