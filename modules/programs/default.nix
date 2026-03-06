@@ -24,7 +24,8 @@ let
     nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
     postBuild = ''
       wrapProgram $out/bin/copilot \
-        --prefix PATH : "${lib.makeBinPath [ pkgs.bashInteractive ]}"
+        --prefix PATH : "${lib.makeBinPath [ pkgs.bashInteractive ]}" \
+        --add-flags "--alt-screen"
     '';
   };
 in
