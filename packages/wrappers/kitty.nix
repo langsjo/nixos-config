@@ -3,6 +3,9 @@
 }:
 {
   package = kitty;
+  excludeBins = [
+    "kitten"
+  ];
 
   flags.path."--config"."/".text = /* kitty */ ''
     hide_window_decorations yes
