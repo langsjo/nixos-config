@@ -7,11 +7,7 @@
 }:
 let
   cfg = config.custom.gui.programs;
-  alacritty-wrapped =
-    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.alacritty-wrapped.override
-      {
-        screenDpi = config.custom.screen.dpi;
-      };
+  ghostty-wrapped = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.ghostty-wrapped;
 in
 {
   options.custom.gui.programs.enable = lib.mkOption {
@@ -26,7 +22,7 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
-    custom.wrappers.alacritty = alacritty-wrapped;
+    custom.wrappers.ghostty = ghostty-wrapped;
 
     environment.systemPackages = with pkgs; [
       zathura
@@ -37,7 +33,7 @@ in
       ayugram-desktop
       signal-desktop
 
-      alacritty-wrapped
+      ghostty-wrapped
     ];
     programs = {
       firefox.enable = true;
@@ -45,7 +41,7 @@ in
     };
 
     custom.mimetypes = {
-      terminal = "Alacritty.desktop";
+      terminal = "com.mitchellh.ghostty.desktop";
       browser = "firefox.desktop";
       fileChooser = "thunar.desktop";
       pdfViewer = "org.pwmt.zathura.desktop";

@@ -13,4 +13,5 @@ in
   alacritty-wrapped = mkWrapper ./alacritty;
   tmux-wrapped = mkWrapper ./tmux.nix;
   zsh-wrapped = mkWrapper ./zsh;
+  ghostty-wrapped = mkWrapper ./ghostty.nix;
 }
