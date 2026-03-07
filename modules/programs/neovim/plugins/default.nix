@@ -20,6 +20,7 @@
       indent-blankline.enable = true;
       comment.enable = true;
       markdown-preview.enable = true;
+      kitty-scrollback.enable = true;
 
       tmux-navigator = {
         enable = true;

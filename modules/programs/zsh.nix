@@ -6,7 +6,7 @@
 }:
 let
   zsh-wrapped = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zsh-wrapped.override {
-    autostartTmux = true;
+    autostartTmux = false;
   };
 in
 {
