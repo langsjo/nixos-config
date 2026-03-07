@@ -12,6 +12,7 @@
         window-decoration = false;
         window-padding-x = 0;
         window-padding-y = 0;
+        confirm-close-surface = false;
 
         font-size = "13";
         font-family = "MesloLGM Nerd Font";
