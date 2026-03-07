@@ -27,6 +27,8 @@ in
     setw -g pane-base-index 1
     set  -g history-limit   50000
 
+    set -g allow-passthrough on
+
     set -g status-keys vi
     set -g mode-keys   vi
 
@@ -46,6 +48,7 @@ in
 
     # The color setting on this line needs to be the same as in alacritty/whatever terminal is used
     set -ag terminal-overrides ",xterm-256color:Tc"
+    set -as terminal-features ",*kitty:hyperlinks"
 
     bind -n M-C-h previous-window
     bind -n M-C-l next-window
