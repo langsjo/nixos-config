@@ -21,6 +21,10 @@
     bold_italic_font auto
     font_size        13.0
 
+    enable_audio_bell no
+
+    cursor_blink_interval 0
+
     background            #1e1e2e
     foreground            #cdd6f4
     cursor                #f5e0dc
