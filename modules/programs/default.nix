@@ -35,6 +35,7 @@ in
     ./neovim
     ./zsh.nix
     ./git.nix
+    ./yazi.nix
 
     inputs.nix-index-database.nixosModules.nix-index
   ];
@@ -54,6 +55,7 @@ in
       ripgrep
       hydra-check
       libsecret
+      ripdrag
 
       github-copilot-cli'
       btop'
