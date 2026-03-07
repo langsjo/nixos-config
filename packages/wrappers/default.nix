@@ -14,4 +14,5 @@ in
   tmux-wrapped = mkWrapper ./tmux.nix;
   zsh-wrapped = mkWrapper ./zsh;
   ghostty-wrapped = mkWrapper ./ghostty.nix;
+  kitty-wrapped = mkWrapper ./kitty.nix;
 }

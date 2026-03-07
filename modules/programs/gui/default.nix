@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.custom.gui.programs;
-  ghostty-wrapped = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.ghostty-wrapped;
+  kitty-wrapped = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.kitty-wrapped;
 in
 {
   options.custom.gui.programs.enable = lib.mkOption {
@@ -22,7 +22,7 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
-    custom.wrappers.ghostty = ghostty-wrapped;
+    custom.wrappers.kitty = kitty-wrapped;
 
     environment.systemPackages = with pkgs; [
       zathura
@@ -33,7 +33,7 @@ in
       ayugram-desktop
       signal-desktop
 
-      ghostty-wrapped
+      kitty-wrapped
     ];
     programs = {
       firefox.enable = true;
@@ -41,7 +41,7 @@ in
     };
 
     custom.mimetypes = {
-      terminal = "com.mitchellh.ghostty.desktop";
+      terminal = "kitty.desktop";
       browser = "firefox.desktop";
       fileChooser = "thunar.desktop";
       pdfViewer = "org.pwmt.zathura.desktop";
