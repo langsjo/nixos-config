@@ -40,13 +40,31 @@ in
       thunar.enable = true;
     };
 
-    custom.mimetypes = {
-      terminal = "kitty.desktop";
-      browser = "firefox.desktop";
-      fileChooser = "thunar.desktop";
-      pdfViewer = "org.pwmt.zathura.desktop";
-      imageViewer = "feh.desktop";
-      videoPlayer = "vlc.desktop";
+    custom.providers = {
+      terminal = {
+        program = "kitty";
+        desktop = "kitty.desktop";
+      };
+      browser = {
+        program = "firefox";
+        desktop = "firefox.desktop";
+      };
+      fileManager = {
+        program = "yazi";
+        desktop = "yazi.desktop";
+      };
+      pdfViewer = {
+        program = "zathura";
+        desktop = "org.pwmt.zathura.desktop";
+      };
+      imageViewer = {
+        program = "feh";
+        desktop = "feh.desktop";
+      };
+      videoPlayer = {
+        program = "vlc";
+        desktop = "vlc.desktop";
+      };
     };
 
     assertions = [

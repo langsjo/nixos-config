@@ -10,7 +10,7 @@ let
 
   networkmanager_dmenu-wrapped = inputs.wrapper-lib.lib.mkWrapper pkgs ./networkmanager_dmenu-wrapped.nix;
   dwm' = pkgs.dwm.override {
-    conf = ./config/config.h;
+    conf = pkgs.callPackage ./config/config.nix { inherit (config.custom) providers; };
     patches = [
       ./config/0001-increase-bar-height.patch
       (pkgs.fetchpatch2 {
