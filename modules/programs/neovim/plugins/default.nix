@@ -1,4 +1,3 @@
-{ ... }:
 {
   imports = [
     ./neotree.nix
@@ -20,12 +19,9 @@
       indent-blankline.enable = true;
       comment.enable = true;
       markdown-preview.enable = true;
-      kitty-scrollback.enable = true;
 
-      tmux-navigator = {
-        enable = true;
-        settings.no_wrap = 1;
-      };
+      kitty-scrollback.enable = true;
+      kitty-navigator.enable = true;
     };
   };
 }

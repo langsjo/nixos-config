@@ -32,13 +32,6 @@ in
     set -g status-keys vi
     set -g mode-keys   vi
 
-    # rebind main key: C-Space
-    unbind C-b
-    set -g prefix C-Space
-    bind Space send-prefix
-    bind C-Space last-window
-
-
     setw -g aggressive-resize off
     setw -g clock-mode-style  24
     set  -s escape-time       500
