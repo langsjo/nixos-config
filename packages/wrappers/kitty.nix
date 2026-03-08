@@ -92,10 +92,25 @@
       color15 #a6adc8
     '';
 
-    "open-actions.conf".text = /* kitty */ ''
-      protocol file
-      mime text/*
-      action launch --type=overlay -- sh -c 'exec nvim --cmd "cd ''${1%/*}"  "$1"' -- $FILE_PATH
-    '';
+    "open-actions.conf".text =
+      let
+        nvimAction = ''
+          launch --type=overlay -- sh -c 'exec nvim --cmd "cd ''${1%/*}"  "$1"' -- $FILE_PATH
+        '';
+      in
+      /* kitty */ ''
+        protocol file
+        mime text/*
+        action ${nvimAction}
+
+        protocol file
+        mime inode/directory
+        action launch --type=overlay -- yazi -- $FILE_PATH
+
+        # Any file without an extension
+        protocol file
+        url ^file://.*/[^.]+$
+        action ${nvimAction}
+      '';
   };
 }
