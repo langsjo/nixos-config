@@ -61,6 +61,8 @@ in
         alias -- nish='NIXPKGS_ALLOW_UNFREE=1 nix-shell --run zsh -p'
         alias -- open=xdg-open
         alias -- tmpdir='cd $(mktemp -d)'
+        alias -- icat="kitten icat"
+        alias -- rg="kitten hyperlinked-grep"
 
         function nibu() {
           package=$1
