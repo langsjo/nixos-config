@@ -49,10 +49,6 @@ in
         program = "firefox";
         desktop = "firefox.desktop";
       };
-      fileManager = {
-        program = "yazi";
-        desktop = "yazi.desktop";
-      };
       pdfViewer = {
         program = "zathura";
         desktop = "org.pwmt.zathura.desktop";

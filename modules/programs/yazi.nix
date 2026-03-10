@@ -4,6 +4,13 @@
   ...
 }:
 {
+  custom.providers = {
+    fileManager = {
+      program = "kitty yazi";
+      desktop = "yazi.desktop";
+    };
+  };
+
   programs.yazi = {
     enable = true;
     settings = {
