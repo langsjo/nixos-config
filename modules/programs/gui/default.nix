@@ -8,6 +8,12 @@
 let
   cfg = config.custom.gui.programs;
   kitty-wrapped = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.kitty-wrapped;
+  less685 = pkgs.less.overrideAttrs (old: {
+    version = "685";
+    src = old.src.overrideAttrs {
+      hash = "sha256-JwEEHnZ+aX7kIM4IJWQc7cjyC1FXar6Z2SwWZtMy6dw=";
+    };
+  });
 in
 {
   options.custom.gui.programs.enable = lib.mkOption {
@@ -33,6 +39,7 @@ in
       ayugram-desktop
       signal-desktop
 
+      less685 # newest less is broken with kitty
       kitty-wrapped
     ];
     programs = {
