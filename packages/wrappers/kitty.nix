@@ -58,7 +58,7 @@
       tab_separator             ""
       tab_bar_min_tabs          1
       tab_title_template        "{fmt.bg._89b4fa}{fmt.fg._1e1e2e} {index} {fmt.bg.tab}{fmt.fg.tab} {tab.active_exe:<3.20} {bell_symbol}"
-      active_tab_title_template "{fmt.bg._fab387}{fmt.fg._1e1e2e} {index} {fmt.bg.tab}{fmt.fg.tab} {(('/'.join(tab.active_wd.split('/')[-2:]) + f" {bell_symbol}") if tab.active_wd else title):<3.20}"
+      active_tab_title_template "{fmt.bg._fab387}{fmt.fg._1e1e2e} {index} {fmt.bg.tab}{fmt.fg.tab} {(('/'.join(tab.active_wd.split('/')[-2:]) + f" {bell_symbol}") if tab.active_wd else title):<3}"
       active_tab_foreground     #ffffff
       active_tab_background     #3a3a3a
       inactive_tab_foreground   #ffffff
