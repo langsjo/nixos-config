@@ -1,9 +1,19 @@
 {
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./nm-profiles
   ];
 
-  networking.networkmanager.enable = true;
+  programs.nm-applet.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    plugins = [
+      pkgs.networkmanager-openconnect
+    ];
+  };
   custom.user.extraGroups = [ "networkmanager" ];
 
   services = {
