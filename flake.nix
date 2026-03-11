@@ -2,7 +2,7 @@
   description = "Nixos config flake";
 
   outputs =
-    { nixpkgs, ... }@inputs:
+    { nixpkgs, home-manager, ... }@inputs:
     let
       lib = nixpkgs.lib;
       systems = [
@@ -31,6 +31,14 @@
         };
       };
 
+      homeConfigurations = {
+        "langsjr1" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [ ./hosts/l22-0167/home.nix ];
+          extraSpecialArgs = { inherit inputs; };
+        };
+      };
+
       formatter = forAllSystems (pkgs: pkgs.nixfmt-tree);
       packages = forAllSystems (pkgs: import ./packages { inherit pkgs inputs; });
 
@@ -54,6 +62,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    home-manager.url = "github:nix-community/home-manager";
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";

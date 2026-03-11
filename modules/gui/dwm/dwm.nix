@@ -40,6 +40,9 @@ in
     ];
 
     programs.slock.enable = true;
+    custom.providers.dwmLocker = {
+      program = "slock";
+    };
 
     systemd.services.slock-sleep = {
       description = "Lock screen with slock on sleep";

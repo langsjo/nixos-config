@@ -36,6 +36,8 @@ in
     imageViewer = mkProviderOption "imageViewer";
     videoPlayer = mkProviderOption "videoPlayer";
     pdfViewer = mkProviderOption "pdfViewer";
+
+    dwmLocker = mkProviderOption "dwmLocker";
   };
 
   config = {

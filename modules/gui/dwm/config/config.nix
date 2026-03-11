@@ -1,7 +1,11 @@
 {
+  lib,
   writeText,
   providers,
 }:
+let
+  makeCmd = program: lib.concatMapStringsSep ", " (s: ''"${s}"'') (lib.splitString " " program);
+in
 writeText "config.h" /* C */ ''
   /* appearance */
   static const unsigned int borderpx = 4; /* border pixel of windows */
@@ -89,14 +93,14 @@ writeText "config.h" /* C */ ''
 
   static char dmenumon[2] =
       "0"; /* component of dmenucmd, manipulated in spawn() */
-  static const char *rofimenucmd[] = {"rofi", "-show", "drun", NULL};
+  static const char *rofimenucmd[] = {"rofi", "-show", "drun", "-terminal", "xdg-terminal-exec", NULL};
   static const char *rofiscreenshotcmd[] = {"rofi-screenshot", NULL};
   static const char *dmenucmd[] = {
       "dmenu_run", "-m",      dmenumon, "-fn",    dmenufont, "-nb",     col_gray1,
       "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
   static const char *netmenucmd[] = {"networkmanager_dmenu", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL};
-  static const char *termcmd[] = {"${providers.terminal.program}", NULL};
-  static const char *filemancmd[] = {"${providers.fileManager.program}", NULL};
+  static const char *termcmd[] = {${makeCmd providers.terminal.program}, NULL};
+  static const char *filemancmd[] = {${makeCmd providers.fileManager.program}, NULL};
   // static const char *rssreadcmd[] = { "st", "-e", "newsboat", NULL };
   // static const char *brightnessupcmd[] = {"xbacklight", "-inc", "3%"};/* {
   // "sudo", "/usr/bin/brightnessctl", "set", "+5%", NULL }; */ static const char
@@ -119,8 +123,8 @@ writeText "config.h" /* C */ ''
                                   "tizonia-ctl.sh", "prev", NULL};
   static const char *playpausecmd[] = {"playerctl",      "play-pause", ";",
                                        "tizonia-ctl.sh", "pp",         NULL};
-  static const char *webcmd[] = {"${providers.browser.program}", NULL};
-  static const char *lockcmd[] = {"slock", NULL};
+  static const char *webcmd[] = {${makeCmd providers.browser.program}, NULL};
+  static const char *lockcmd[] = {${makeCmd providers.dwmLocker.program}, NULL};
 
 
   static Key keys[] = {
