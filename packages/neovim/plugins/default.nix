@@ -14,14 +14,12 @@
   ];
 
   # Small configurations here
-  programs.nixvim = {
-    plugins = {
-      indent-blankline.enable = true;
-      comment.enable = true;
-      markdown-preview.enable = true;
+  plugins = {
+    indent-blankline.enable = true;
+    comment.enable = true;
+    markdown-preview.enable = true;
 
-      kitty-scrollback.enable = true;
-      kitty-navigator.enable = true;
-    };
+    kitty-scrollback.enable = true;
+    kitty-navigator.enable = true;
   };
 }

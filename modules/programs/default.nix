@@ -31,7 +31,7 @@ in
 {
   imports = [
     ./gui
-    ./neovim
+    ./neovim.nix
     ./zsh.nix
     ./git.nix
     ./yazi.nix

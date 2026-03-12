@@ -21,20 +21,16 @@ let
   kitty-nixGL = pkgs.symlinkJoin {
     name = "kitty-nixGL";
     nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
-    paths = [ kitty-wrapped ];
+    paths = [ customPkgs.kitty-wrapped ];
     postBuild = ''
       rm $out/share/applications/*
-      cp ${kitty-wrapped}/share/applications/* $out/share/applications/
+      cp ${customPkgs.kitty-wrapped}/share/applications/* $out/share/applications/
       substituteInPlace $out/share/applications/* \
         --replace-fail "Exec=kitty" "Exec=${kitty-nixGL-script}"
     '';
   };
 
-  inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system})
-    kitty-wrapped
-    zsh-wrapped
-    tmux-wrapped
-    ;
+  customPkgs = inputs.self.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   home.packages = with pkgs; [
@@ -47,11 +43,11 @@ in
     rofi
     rofi-screenshot
 
-    zsh-wrapped
-    tmux-wrapped
+    customPkgs.neovim
+    customPkgs.zsh-wrapped
+    customPkgs.tmux-wrapped
     kitty-nixGL
     networkmanager-dmenu-wrapped
-    kehvatsu.config.programs.nixvim.build.package
     dwm'
   ];
 
