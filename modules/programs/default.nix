@@ -64,8 +64,8 @@ in
       tmux-wrapped
     ]);
 
+  hardware.acpilight.enable = config.custom.isLaptop;
   programs = {
-    light.enable = config.custom.isLaptop;
     bat.enable = true;
 
     nix-index-database.comma.enable = true;

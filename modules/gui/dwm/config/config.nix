@@ -101,28 +101,15 @@ writeText "config.h" /* C */ ''
   static const char *netmenucmd[] = {"networkmanager_dmenu", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL};
   static const char *termcmd[] = {${makeCmd providers.terminal.program}, NULL};
   static const char *filemancmd[] = {${makeCmd providers.fileManager.program}, NULL};
-  // static const char *rssreadcmd[] = { "st", "-e", "newsboat", NULL };
-  // static const char *brightnessupcmd[] = {"xbacklight", "-inc", "3%"};/* {
-  // "sudo", "/usr/bin/brightnessctl", "set", "+5%", NULL }; */ static const char
-  // *brightnessdowncmd[] = {"xbacklight", "-dec", "3%"};/*  { "sudo",
-  // "/usr/bin/brightnessctl", "set", "5%-", NULL }; */
-  #define brightnessupcmd "light -A 3"
-  #define brightnessdowncmd "light -U 3"
-  // static const char *raisevolumecmd[] = { "pactl", "set-sink-volume",
-  // "@DEFAULT_SINK@", "+5%", NULL }; static const char *lowervolumecmd[] = {
-  // "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL }; static const
-  // char *mutevolumecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@",
-  // "toggle", NULL };
+  #define brightnessupcmd "xbacklight -inc 3"
+  #define brightnessdowncmd "xbacklight -dec 3"
   #define raisevolumecmd "wpctl set-volume @DEFAULT_SINK@ 5%+ --limit 1"
   #define lowervolumecmd "wpctl set-volume @DEFAULT_SINK@ 5%- --limit 1"
   #define mutevolumecmd "wpctl set-mute @DEFAULT_SINK@ toggle"
 
-  static const char *nextcmd[] = {"playerctl",      "next", ";",
-                                  "tizonia-ctl.sh", "next", NULL};
-  static const char *prevcmd[] = {"playerctl",      "prev", ";",
-                                  "tizonia-ctl.sh", "prev", NULL};
-  static const char *playpausecmd[] = {"playerctl",      "play-pause", ";",
-                                       "tizonia-ctl.sh", "pp",         NULL};
+  static const char *nextcmd[]      = {"playerctl", "next", NULL};
+  static const char *prevcmd[]      = {"playerctl", "prev", NULL};
+  static const char *playpausecmd[] = {"playerctl", "play-pause", NULL};
   static const char *webcmd[] = {${makeCmd providers.browser.program}, NULL};
   static const char *lockcmd[] = {${makeCmd providers.dwmLocker.program}, NULL};
 
