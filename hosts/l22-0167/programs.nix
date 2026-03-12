@@ -9,7 +9,9 @@
 let
   networkmanager-dmenu-wrapped = inputs.wrapper-lib.lib.mkWrapper pkgs ../../modules/gui/dwm/networkmanager_dmenu-wrapped.nix;
   dwm' = kehvatsu.config.services.xserver.windowManager.dwm.package.override {
-    conf = pkgs.callPackage ../../modules/gui/dwm/config/config.nix { inherit (config.custom) providers; };
+    conf = pkgs.callPackage ../../modules/gui/dwm/config/config.nix {
+      inherit (config.custom) providers;
+    };
   };
 
   kitty-nixGL-script = pkgs.writeShellScript "kitty-via-nixGL" ''
@@ -71,11 +73,11 @@ in
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-    if [[ -z "$BASHRC_SOURCED" ]]; then
-      export BASHRC_SOURCED=1
-      systemctl --user start dwm-status.service
-      exec zsh
-    fi
+      if [[ -z "$BASHRC_SOURCED" ]]; then
+        export BASHRC_SOURCED=1
+        systemctl --user start dwm-status.service
+        exec zsh
+      fi
     '';
   };
 
