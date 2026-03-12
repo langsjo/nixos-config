@@ -8,7 +8,8 @@
         "pipe-operators"
       ];
       allow-import-from-derivation = false;
-      download-buffer-size = 128 * 1024 * 1024; # 128 MiB
+      download-buffer-size = 256 * 1024 * 1024; # 256 MiB
+      max-substitution-jobs = 32;
       flake-registry = ""; # Disable the global flake registry
     };
 
