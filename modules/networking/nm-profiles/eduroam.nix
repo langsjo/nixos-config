@@ -1,7 +1,27 @@
 {
   config,
+  lib,
   ...
 }:
+let
+  mkAaltoProfile = ssid: prio: {
+    connection = {
+      id = ssid;
+      type = "wifi";
+      autoconnect = true;
+      autoconnect-priority = prio;
+    };
+    wifi.ssid = ssid;
+    wifi-security.key-mgmt = "wpa-eap";
+
+    "802-1x" = {
+      eap = "peap;";
+      identity = "$EDUROAM_ID";
+      password = "$EDUROAM_PASS";
+      phase2-auth = "mschapv2";
+    };
+  };
+in
 {
   sops = {
     secrets = {
@@ -20,23 +40,8 @@
     ];
 
     profiles = {
-      "eduroam" = {
-        connection = {
-          id = "eduroam";
-          type = "wifi";
-          autoconnect = true;
-          autoconnect-priority = 100;
-        };
-        wifi.ssid = "eduroam";
-        wifi-security.key-mgmt = "wpa-eap";
-
-        "802-1x" = {
-          eap = "peap;";
-          identity = "$EDUROAM_ID";
-          password = "$EDUROAM_PASS";
-          phase2-auth = "mschapv2";
-        };
-      };
+      "eduroam" = mkAaltoProfile "eduroam" 100;
+      "aalto" = mkAaltoProfile "aalto" 150;
     };
   };
 }
