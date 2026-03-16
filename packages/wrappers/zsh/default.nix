@@ -56,6 +56,7 @@ in
         alias -- la='ls -A --color=auto'
         alias -- ll='ls -al --color=auto'
         alias -- ls='ls --color=auto --hyperlink=auto'
+        alias -- ip='ip --color'
         alias -- n=nvim
         alias -- nire="nix repl -f '<nixpkgs>'"
         alias -- nish='NIXPKGS_ALLOW_UNFREE=1 nix-shell --run zsh -p'
