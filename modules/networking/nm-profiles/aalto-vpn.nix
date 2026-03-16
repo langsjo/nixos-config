@@ -7,8 +7,9 @@
       };
       vpn = {
         gateway = "vpn1.aalto.fi";
-        protocol = "anyconnect";
         useragent = "AnyConnect-compatible OpenConnect VPN agent";
+        cookie-flags = 2;
+        service-type = "org.freedesktop.NetworkManager.openconnect";
       };
     };
   };
