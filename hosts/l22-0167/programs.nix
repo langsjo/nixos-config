@@ -73,11 +73,12 @@ in
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-      if [[ -z "$BASHRC_SOURCED" ]]; then
-        export BASHRC_SOURCED=1
-        systemctl --user start dwm-status.service
-        exec zsh
-      fi
+    xset r rate 200 30
+    if [[ -z "$BASHRC_SOURCED" ]]; then
+      export BASHRC_SOURCED=1
+      systemctl --user start dwm-status.service
+      exec zsh
+    fi
     '';
   };
 
