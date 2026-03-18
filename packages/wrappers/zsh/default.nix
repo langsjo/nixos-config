@@ -49,7 +49,9 @@ in
         # Setup aliases.
         alias -- :q=exit
         alias -- :qa='tmux kill-session'
-        alias -- c=clear
+
+        # magic control sequence to clear screen + scrollback buffer
+        alias -- c="printf '\033[2J\033[3J\033[1;1H'"
         alias -- grep='grep --color=auto'
         alias -- help=run-help
         alias -- l='ls -alh'
