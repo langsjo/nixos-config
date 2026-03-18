@@ -69,9 +69,10 @@ in
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-      xset r rate 200 30
       if [[ -z "$BASHRC_SOURCED" ]]; then
         export BASHRC_SOURCED=1
+        xset r rate 200 30
+        setxkbmap -layout fi -variant nodeadkeys
         systemctl --user start dwm-status.service
         exec zsh
       fi
