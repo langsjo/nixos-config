@@ -51,6 +51,7 @@ in
     dwm'
   ];
 
+  services.dunst.enable = true;
   services.dwm-status = {
     enable = true;
     order = kehvatsu.config.services.dwm-status.settings.order;
