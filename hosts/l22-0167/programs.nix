@@ -42,6 +42,8 @@ in
     kubectl
     rofi
     rofi-screenshot
+    gh
+    github-copilot-cli
 
     customPkgs.neovim
     customPkgs.zsh-wrapped

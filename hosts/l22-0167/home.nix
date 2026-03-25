@@ -29,6 +29,7 @@
   };
 
   fonts.fontconfig.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   home.username = "langsjr1";
   home.homeDirectory = "/u/94/langsjr1/unix";
