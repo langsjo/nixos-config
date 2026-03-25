@@ -66,6 +66,7 @@ in
         alias -- tmpdir='cd $(mktemp -d)'
         alias -- icat="kitten icat"
         alias -- rg="kitten hyperlinked-grep"
+        alias -- ssh="TERM=xterm-256color ssh" # for ssh with uncommon terminals
 
         function nibu() {
           package=$1
