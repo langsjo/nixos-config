@@ -19,6 +19,7 @@
       metals.enable = true;
       lua_ls.enable = true;
       ts_ls.enable = true;
+      terraformls.enable = true;
       rust_analyzer = {
         enable = true;
         installCargo = true;
