@@ -1,7 +1,14 @@
 {
+  pkgs,
+  ...
+}:
+{
+  environment.systemPackages = [
+    pkgs.git-lfs
+  ];
+
   programs.git = {
     enable = true;
-    lfs.enable = true;
     config = {
       user = {
         name = "langsjo";
