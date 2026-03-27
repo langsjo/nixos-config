@@ -20,6 +20,7 @@
       lua_ls.enable = true;
       ts_ls.enable = true;
       terraformls.enable = true;
+      yamlls.enable = true;
       rust_analyzer = {
         enable = true;
         installCargo = true;
