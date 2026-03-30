@@ -62,6 +62,7 @@ in
     ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
       rebuild
       tmux-wrapped
+      nixpkgs-review-gha
     ]);
 
   hardware.acpilight.enable = config.custom.isLaptop;
