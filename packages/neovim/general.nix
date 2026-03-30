@@ -34,7 +34,7 @@
     mouse = "a";
     showmode = false;
     wrap = false;
-    textwidth = 80;
+    textwidth = 100;
     undofile = true;
     hlsearch = true;
     title = true;
