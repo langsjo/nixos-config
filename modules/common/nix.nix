@@ -3,6 +3,20 @@
   inputs,
   ...
 }:
+let
+  mkNixpkgsRegistry = name: branch: {
+    from = {
+      id = name;
+      type = "indirect";
+    };
+    to = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+      ref = branch;
+    };
+  };
+in
 {
   sops = {
     secrets."github-pat" = { };
@@ -40,6 +54,9 @@
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
       templates.flake = inputs.flake-templates;
+      unstable = mkNixpkgsRegistry "unstable" "nixos-unstable";
+      stable = mkNixpkgsRegistry "stable" "nixos-25.11";
+      master = mkNixpkgsRegistry "master" "master";
     };
   };
 
