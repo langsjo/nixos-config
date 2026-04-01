@@ -14,6 +14,11 @@ let
     };
   };
 
+  monitorSetUp = pkgs.writeShellScriptBin "monitors" ''
+    xrandr --output eDP-1 --off
+    xrandr --output DP-2 --left-of DP-1
+  '';
+
   kitty-nixGL-script = pkgs.writeShellScript "kitty-via-nixGL" ''
     exec nixGL kitty "$@"
   '';
@@ -51,6 +56,7 @@ in
     kitty-nixGL
     networkmanager-dmenu-wrapped
     dwm'
+    monitorSetUp
   ];
 
   services.dunst.enable = true;
