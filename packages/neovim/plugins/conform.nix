@@ -1,34 +1,41 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }:
 let
-  formatters = {
-    nix = pkgs.nixfmt;
-  };
-
-  conformConfig = {
-    formatters_by_ft = builtins.mapAttrs (_: package: [ (lib.getName package) ]) formatters;
-    formatters = lib.mapAttrs' (_: package: {
-      name = lib.getName package;
-      value.command = lib.getExe package;
-    }) formatters;
-  };
+  fft = config.plugins.conform-nvim.settings.formatters_by_ft;
 in
 {
   plugins.conform-nvim = {
     enable = true;
-    settings = conformConfig // {
-      format_on_save.__raw = ''
-        function(bufnr)
-          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-            return
-          end
+    settings = lib.mkMerge [
+      {
+        formatters_by_ft.nix = [ "nixfmt" ];
+        formatters.nixfmt.command = lib.getExe pkgs.nixfmt;
+      }
+      {
+        formatters_by_ft.python = [
+          "ruff_format"
+          "ruff_fix"
+          "ruff_organize_imports"
+        ];
+        formatters = lib.genAttrs fft.python (formatter: {
+          command = lib.getExe pkgs.ruff;
+        });
+      }
+      {
+        format_on_save.__raw = ''
+          function(bufnr)
+            if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+              return
+            end
             return { timeout_ms = 500, lsp_format = "fallback" }
-        end
-      '';
-    };
+          end
+        '';
+      }
+    ];
   };
 
   extraConfigLua = ''
