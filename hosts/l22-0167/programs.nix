@@ -38,6 +38,10 @@ let
   customPkgs = inputs.self.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
+  imports = [
+    inputs.nix-index-database.homeModules.default
+  ];
+
   home.packages = with pkgs; [
     ripgrep
     zathura
@@ -87,6 +91,8 @@ in
       fi
     '';
   };
+
+  programs.nix-index-database.comma.enable = true;
 
   programs.git = {
     enable = true;
