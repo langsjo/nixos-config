@@ -29,6 +29,10 @@ let
 in
 {
   options.custom.providers = {
+    enable = lib.mkEnableOption "setting providers and mimetypes" // {
+      default = true;
+    };
+
     browser = mkProviderOption "browser";
     terminal = mkProviderOption "terminal";
     editor = mkProviderOption "editor";
@@ -40,7 +44,7 @@ in
     dwmLocker = mkProviderOption "dwmLocker";
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     xdg.mime.enable = true;
     xdg.mime.defaultApplications = {
       "text/html" = cfg.browser.desktop;

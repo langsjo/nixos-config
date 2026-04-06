@@ -35,7 +35,6 @@
 
     gui = {
       enable = true;
-      programs.enable = true;
 
       displayManager.ly.enable = true;
       xserver.enable = true;

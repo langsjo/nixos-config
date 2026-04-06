@@ -23,7 +23,6 @@
 
     gui = {
       enable = true;
-      programs.enable = true;
 
       xserver.enable = true;
 

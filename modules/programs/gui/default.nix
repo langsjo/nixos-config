@@ -6,7 +6,7 @@
   ...
 }:
 let
-  cfg = config.custom.gui.programs;
+  cfg = config.custom.programs.gui;
   kitty-wrapped = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.kitty-wrapped;
   less685 = pkgs.less.overrideAttrs (old: {
     version = "685";
@@ -16,11 +16,10 @@ let
   });
 in
 {
-  options.custom.gui.programs.enable = lib.mkOption {
+  options.custom.programs.gui.enable = lib.mkOption {
     type = lib.types.bool;
     description = "Enable programs that require a GUI";
-    default = config.custom.gui.enable;
-    defaultText = lib.literalExpression "config.custom.gui.enable";
+    default = config.custom.gui.enable && config.custom.programs.enable;
   };
 
   imports = [

@@ -16,6 +16,12 @@ in
       default = "langsjo";
     };
 
+    shell = lib.mkOption {
+      description = "User's login shell";
+      type = lib.types.package;
+      default = config.custom.wrappers.zsh;
+    };
+
     extraGroups = lib.mkOption {
       description = "Extra groups to add the user to";
       type = with lib.types; listOf str;
@@ -38,28 +44,24 @@ in
   config = {
     custom.user.extraGroups = [
       "wheel"
-      "video"
     ];
 
     sops.secrets = {
       "users/hashed-user-pass" = {
         neededForUsers = true;
       };
-      "users/hashed-root-pass" = {
-        neededForUsers = true;
-      };
     };
 
     users = {
       users."root" = {
-        hashedPasswordFile = secrets."users/hashed-root-pass".path;
+        hashedPassword = "!";
       };
 
       users."${cfg.username}" = {
         isNormalUser = true;
         extraGroups = cfg.extraGroups;
         hashedPasswordFile = secrets."users/hashed-user-pass".path;
-        shell = config.custom.wrappers.zsh;
+        shell = cfg.shell;
         ignoreShellProgramCheck = true;
       };
 

@@ -12,6 +12,7 @@
   zoxide,
   oh-my-posh,
 
+  withKitty ? true,
   autostartTmux ? false,
 }:
 let
@@ -64,8 +65,10 @@ in
         alias -- nish='NIXPKGS_ALLOW_UNFREE=1 nix-shell --run zsh -p'
         alias -- open=xdg-open
         alias -- tmpdir='cd $(mktemp -d)'
-        alias -- icat="kitten icat"
-        alias -- rg="kitten hyperlinked-grep"
+        ${lib.optionalString withKitty ''
+          alias -- icat="kitten icat"
+          alias -- rg="kitten hyperlinked-grep"
+        ''}
         alias -- ssh="TERM=xterm-256color ssh" # for ssh with uncommon terminals
 
         function rewi() {

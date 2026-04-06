@@ -21,5 +21,6 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
+    custom.user.extraGroups = [ "video" ];
   };
 }

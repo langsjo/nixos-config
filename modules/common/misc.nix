@@ -19,7 +19,5 @@
     };
   };
 
-  security.rtkit.enable = true;
-
   console.keyMap = "fi";
 }

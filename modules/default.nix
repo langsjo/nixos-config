@@ -4,6 +4,7 @@
     ./gaming
     ./gui
     ./hardware
+    ./hosting
     ./input
     ./networking
     ./programs

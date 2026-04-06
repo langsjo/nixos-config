@@ -1,19 +1,30 @@
 {
+  config,
+  lib,
   inputs,
   pkgs,
   ...
 }:
+let
+  cfg = config.custom.programs;
+in
 {
-  environment.systemPackages = [
-    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.neovim
-  ];
-
-  environment.sessionVariables = {
-    MANPAGER = "nvim +Man!";
+  options.custom.programs.nvim.enable = lib.mkEnableOption "neovim" // {
+    default = cfg.enable;
   };
 
-  custom.providers.editor = {
-    program = "nvim";
-    desktop = "nvim.desktop";
+  config = lib.mkIf cfg.nvim.enable {
+    environment.systemPackages = [
+      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.neovim
+    ];
+
+    environment.sessionVariables = {
+      MANPAGER = "nvim +Man!";
+    };
+
+    custom.providers.editor = {
+      program = "nvim";
+      desktop = "nvim.desktop";
+    };
   };
 }

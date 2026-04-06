@@ -5,7 +5,7 @@
   ...
 }:
 {
-  config = lib.mkIf config.custom.gui.programs.enable {
+  config = lib.mkIf config.custom.programs.gui.enable {
     environment.systemPackages = with pkgs; [
       element-desktop
       matrix-appservice-irc

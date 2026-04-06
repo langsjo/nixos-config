@@ -1,13 +1,16 @@
 {
   pkgs,
+  config,
+  lib,
   ...
 }:
 {
   imports = [
     ./nm-profiles
+    ./openssh.nix
   ];
 
-  programs.nm-applet.enable = true;
+  programs.nm-applet.enable = config.custom.gui.enable;
   networking.networkmanager = {
     enable = true;
     plugins = [
@@ -15,16 +18,4 @@
     ];
   };
   custom.user.extraGroups = [ "networkmanager" ];
-
-  services = {
-    openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = false;
-        KbdInteractiveAuthentication = false;
-        PermitRootLogin = "no";
-      };
-    };
-    fail2ban.enable = true;
-  };
 }
