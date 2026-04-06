@@ -68,6 +68,26 @@ in
         alias -- rg="kitten hyperlinked-grep"
         alias -- ssh="TERM=xterm-256color ssh" # for ssh with uncommon terminals
 
+        function rewi() {
+          local executable="$1"
+          if [[ -z "$executable" ]]; then
+            echo "fatal: must pass executable as first argument" >&2
+            return 1
+          fi
+
+          local file=$(which "$executable") || {
+            echo "fatal: '$executable' not found in PATH" >&2
+            return 1
+          }
+
+          realpath "$file"
+        }
+
+        function rewin() {
+          local file=$(rewi "$1") || return 1
+          nvim "$file"
+        }
+
         function nibu() {
           package=$1
           shift
