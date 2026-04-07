@@ -36,11 +36,14 @@
       map alt+ctrl+j   move_tab_backward
       map alt+ctrl+k   move_tab_forward
 
-      action_alias  kitty_navigator_nvim kitten '${vimPlugins.vim-kitty-navigator}/pass_keys.py'
-      map           ctrl+j kitty_navigator_nvim bottom ctrl+j
-      map           ctrl+k kitty_navigator_nvim top    ctrl+k
-      map           ctrl+h kitty_navigator_nvim left   ctrl+h
-      map           ctrl+l kitty_navigator_nvim right  ctrl+l
+      map           ctrl+h neighboring_window left
+      map           ctrl+j neighboring_window down
+      map           ctrl+k neighboring_window up
+      map           ctrl+l neighboring_window right
+      map           --when-focus-on var:IS_VIM=true ctrl+h
+      map           --when-focus-on var:IS_VIM=true ctrl+j
+      map           --when-focus-on var:IS_VIM=true ctrl+k
+      map           --when-focus-on var:IS_VIM=true ctrl+l
 
       map ctrl+space>c          new_tab_with_cwd
       map ctrl+space>shift+2    launch --location=hsplit --cwd=current
