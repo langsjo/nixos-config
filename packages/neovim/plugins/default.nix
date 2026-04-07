@@ -23,4 +23,8 @@
     kitty-scrollback.enable = true;
     kitty-navigator.enable = true;
   };
+
+  extraConfigVim = ''
+    packadd nvim.undotree
+  '';
 }
