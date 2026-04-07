@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  pkgs,
   ...
 }:
 let
@@ -33,11 +34,14 @@ in
   };
 
   nix = {
+    package = pkgs.lixPackageSets.stable.lix;
     settings = {
       experimental-features = [
         "nix-command"
         "flakes"
-        "pipe-operators"
+
+        # doesn't exist on Lix
+        # "pipe-operators"
       ];
       extra-substituters = [
         "https://cache.gorilla.gay/main"
@@ -49,8 +53,11 @@ in
       netrc-file = config.sops.secrets."attic-netrc-file".path;
       secret-key-files = [ config.sops.secrets."nix-signing-key".path ];
 
+      allowed-users = [ "@wheel" ];
       allow-import-from-derivation = false;
-      download-buffer-size = 256 * 1024 * 1024; # 256 MiB
+
+      # doesn't exist on Lix
+      # download-buffer-size = 256 * 1024 * 1024; # 256 MiB
       max-substitution-jobs = 32;
       flake-registry = ""; # Disable the global flake registry
     };
