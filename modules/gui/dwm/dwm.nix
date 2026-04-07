@@ -50,6 +50,7 @@ in
       before = [ "sleep.target" ];
       serviceConfig = {
         Type = "simple";
+        User = config.custom.user.username;
         Environment = "DISPLAY=:0";
         ExecCondition = "${lib.getExe' pkgs.procps "pgrep"} -x dwm"; # Only run if dwm is running
         ExecStart = "/run/wrappers/bin/slock";
