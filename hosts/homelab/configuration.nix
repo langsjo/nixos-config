@@ -37,6 +37,22 @@
       nvim.enable = true;
     };
   };
+  security.acme.acceptTerms = true;
+  services.nginx = {
+    enable = true;
+    virtualHosts = {
+      "gorilla.gay" = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          return = "200 gorilloidaan\n";
+          extraConfig = ''
+            add_header Content-Type text/plain;
+          '';
+        };
+      };
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     git

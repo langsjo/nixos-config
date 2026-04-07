@@ -1,5 +1,9 @@
 {
   networking = {
+    firewall.allowedTCPPorts = [
+      80
+      443
+    ];
     hostName = "homelab";
     nameservers = [
       "1.1.1.1"
