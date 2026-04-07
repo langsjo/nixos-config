@@ -21,6 +21,7 @@ in
   sops = {
     secrets."nix-signing-key" = { };
     secrets."github-pat" = { };
+    secrets."attic-netrc-file" = { };
     templates."access-tokens" = {
       owner = config.custom.user.username;
       group = config.users.users.${config.custom.user.username}.group;
@@ -38,9 +39,14 @@ in
         "flakes"
         "pipe-operators"
       ];
+      extra-substituters = [
+        "https://cache.gorilla.gay/main"
+      ];
       extra-trusted-public-keys = [
+        "main:K95Z16k90VtpAeOr3YEqNZgVLN2eP9lfIEfPuIAKKE0="
         "langsjo:2qKa0OoaaCteNFwPeMnKtPfLMLcWAtHj11RHuxyNFws="
       ];
+      netrc-file = config.sops.secrets."attic-netrc-file".path;
       secret-key-files = [ config.sops.secrets."nix-signing-key".path ];
 
       allow-import-from-derivation = false;

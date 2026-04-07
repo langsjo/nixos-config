@@ -23,11 +23,11 @@
       bluetooth.enable = false;
       graphics.enable = false;
     };
+    attic.enable = true;
     dyndns = {
       enable = true;
       domains = [
         "gorilla.gay"
-        "*.gorilla.gay"
       ];
     };
 
