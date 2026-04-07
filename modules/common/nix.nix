@@ -19,6 +19,7 @@ let
 in
 {
   sops = {
+    secrets."nix-signing-key" = { };
     secrets."github-pat" = { };
     templates."access-tokens" = {
       owner = config.custom.user.username;
@@ -37,11 +38,17 @@ in
         "flakes"
         "pipe-operators"
       ];
+      extra-trusted-public-keys = [
+        "langsjo:2qKa0OoaaCteNFwPeMnKtPfLMLcWAtHj11RHuxyNFws="
+      ];
+      secret-key-files = [ config.sops.secrets."nix-signing-key".path ];
+
       allow-import-from-derivation = false;
       download-buffer-size = 256 * 1024 * 1024; # 256 MiB
       max-substitution-jobs = 32;
       flake-registry = ""; # Disable the global flake registry
     };
+
     extraOptions = ''
       !include ${config.sops.templates."access-tokens".path}
     '';
