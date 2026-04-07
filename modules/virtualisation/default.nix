@@ -1,18 +1,28 @@
 {
+  config,
+  lib,
   pkgs,
   ...
 }:
+let
+  cfg = config.custom.virt;
+in
 {
-  virtualisation = {
-    docker.enable = true;
-    podman = {
-      enable = true;
-    };
+  options.custom.virt.enable = lib.mkEnableOption "virtualisation features" // {
+    default = true;
   };
+  config = lib.mkIf cfg.enable {
+    virtualisation = {
+      docker.enable = true;
+      podman = {
+        enable = true;
+      };
+    };
 
-  custom.user.extraGroups = [ "docker" ];
+    custom.user.extraGroups = [ "docker" ];
 
-  environment.systemPackages = [
-    pkgs.distrobox
-  ];
+    environment.systemPackages = [
+      pkgs.distrobox
+    ];
+  };
 }

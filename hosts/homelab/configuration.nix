@@ -22,6 +22,7 @@
 
     gui.enable = false;
     providers.enable = false;
+    virt.enable = false;
 
     hardware = {
       audio.enable = false;
