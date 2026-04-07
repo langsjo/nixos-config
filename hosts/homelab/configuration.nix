@@ -10,6 +10,11 @@
   ];
 
   services.logind.settings.Login.HandleLidSwitch = "ignore";
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
   custom = {
     user = {
       shell = pkgs.bash;
