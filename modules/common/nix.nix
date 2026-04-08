@@ -39,9 +39,6 @@ in
       experimental-features = [
         "nix-command"
         "flakes"
-
-        # doesn't exist on Lix
-        # "pipe-operators"
       ];
       extra-substituters = [
         "https://cache.gorilla.gay/main"
