@@ -22,7 +22,7 @@ in
   config = lib.mkIf cfg.enable {
     sops = {
       secrets."attic-server-token" = {
-        sopsFile = ../secrets/homelab/default.yaml;
+        sopsFile = ../secrets/gorilla/default.yaml;
       };
       templates."attic-envfile" = {
         # owner = config.services.atticd.user;

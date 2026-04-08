@@ -2,7 +2,7 @@ keys:
   - &desktop-langsjo age1gwpmfgjkhcwp8nlaljxfdr3pp0np02656eq9kjpmtt0u3al99smswuj8lp
   - &kehvatsu-host age19w9wmdra2frq9f7hv0883xprnzzgfulv29fru25wgyfgwuxt6yjqnsvg04
   - &kehvatsu-langsjo age13y3kv3ees7xx8fkerfcvjk0sjaz0n6f5pztu6ply4gl2tfhdjulstj4d2u
-  - &homelab-host age1urqqvjhryzm742tmt6yrzxp6g7h45r4mnz4fdfx0r4d7ygspd5uqelpzh2
+  - &gorilla-host age1urqqvjhryzm742tmt6yrzxp6g7h45r4mnz4fdfx0r4d7ygspd5uqelpzh2
 
 creation_rules:
   - path_regex: modules/secrets/[^/]+$
@@ -11,10 +11,10 @@ creation_rules:
           - *desktop-langsjo
           - *kehvatsu-langsjo
           - *kehvatsu-host
-          - *homelab-host
+          - *gorilla-host
 
-  - path_regex: modules/secrets/homelab/[^/]+$
+  - path_regex: modules/secrets/gorilla/[^/]+$
     key_groups:
       - age:
           - *kehvatsu-langsjo
-          - *homelab-host
+          - *gorilla-host

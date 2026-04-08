@@ -20,9 +20,9 @@
           modules = [ ./hosts/kehvatsu/configuration.nix ];
         };
 
-        homelab = lib.nixosSystem {
+        gorilla = lib.nixosSystem {
           specialArgs = { inherit inputs; };
-          modules = [ ./hosts/homelab/configuration.nix ];
+          modules = [ ./hosts/gorilla/configuration.nix ];
         };
 
         desktop = lib.nixosSystem {

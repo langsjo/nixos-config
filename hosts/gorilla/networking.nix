@@ -4,7 +4,7 @@
       80
       443
     ];
-    hostName = "homelab";
+    hostName = "gorilla";
     nameservers = [
       "1.1.1.1"
       "8.8.8.8"

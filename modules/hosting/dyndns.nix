@@ -18,7 +18,7 @@ in
 
   config = lib.mkIf cfg.enable {
     sops.secrets."cloudflare-api-token" = {
-      sopsFile = ../secrets/homelab/default.yaml;
+      sopsFile = ../secrets/gorilla/default.yaml;
     };
     services.cloudflare-dyndns = {
       enable = true;
