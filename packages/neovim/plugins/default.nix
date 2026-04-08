@@ -19,6 +19,7 @@
     indent-blankline.enable = true;
     comment.enable = true;
     markdown-preview.enable = true;
+    image.enable = true;
 
     kitty-scrollback.enable = true;
     kitty-navigator.enable = true;
