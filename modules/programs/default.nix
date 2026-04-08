@@ -63,6 +63,7 @@ in
         hydra-check
         libsecret
         ripdrag
+        attic-client
 
         github-copilot-cli'
         btop'
