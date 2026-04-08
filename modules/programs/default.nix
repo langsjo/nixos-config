@@ -36,6 +36,7 @@ in
     ./zsh.nix
     ./git.nix
     ./yazi.nix
+    ./tailscale.nix
 
     inputs.nix-index-database.nixosModules.nix-index
   ];
