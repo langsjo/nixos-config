@@ -32,6 +32,11 @@
     };
     attic.enable = true;
     dyndns.enable = true;
+    headscale = {
+      enable = true;
+      domain = "headscale.gorilla.gay";
+      port = 6521;
+    };
 
     openssh.enable = true;
     programs = {

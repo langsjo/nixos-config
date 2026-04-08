@@ -2,6 +2,7 @@
   imports = [
     ./attic.nix
     ./dyndns.nix
+    ./headscale.nix
   ];
 
   services.nginx = {
