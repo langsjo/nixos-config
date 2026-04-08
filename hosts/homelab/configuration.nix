@@ -30,8 +30,12 @@
       bluetooth.enable = false;
       graphics.enable = false;
     };
-    attic.enable = true;
     dyndns.enable = true;
+    attic = {
+      enable = true;
+      domain = "cache.gorilla.gay";
+      port = 9874;
+    };
     headscale = {
       enable = true;
       domain = "headscale.gorilla.gay";

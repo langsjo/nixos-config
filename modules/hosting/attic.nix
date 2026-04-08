@@ -5,11 +5,19 @@
 }:
 let
   cfg = config.custom.attic;
-  port = 9874;
-  host = "cache.gorilla.gay";
 in
 {
-  options.custom.attic.enable = lib.mkEnableOption "hosting attic cache";
+  options.custom.attic = {
+    enable = lib.mkEnableOption "hosting attic cache";
+    domain = lib.mkOption {
+      description = "attic domain";
+      type = lib.types.str;
+    };
+    port = lib.mkOption {
+      description = "attic port";
+      type = lib.types.port;
+    };
+  };
 
   config = lib.mkIf cfg.enable {
     sops = {
@@ -27,9 +35,9 @@ in
       enable = true;
       environmentFile = config.sops.templates."attic-envfile".path;
       settings = {
-        listen = "[::]:${toString port}";
-        allowed-hosts = [ host ];
-        api-endpoint = "https://${host}/";
+        listen = "[::]:${toString cfg.port}";
+        allowed-hosts = [ cfg.domain ];
+        api-endpoint = "https://${cfg.domain}/";
         database.url = "postgresql://${config.services.atticd.user}?host=/run/postgresql";
 
         garbage-collection = {
@@ -39,12 +47,11 @@ in
       };
     };
     services.nginx = {
-      enable = true;
-      virtualHosts.${host} = {
+      virtualHosts.${cfg.domain} = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass = "http://localhost:${toString port}";
+          proxyPass = "http://localhost:${toString cfg.port}";
           extraConfig = ''
             client_max_body_size 0;
           '';
@@ -52,7 +59,7 @@ in
       };
     };
 
-    custom.dyndns.domains = [ host ];
+    custom.dyndns.domains = [ cfg.domain ];
 
     services.postgresql = {
       enable = true;
