@@ -1,0 +1,107 @@
+# Inspiration from:
+# https://github.com/NobbZ/nixos-config/tree/main/.github/workflows/flake-update.yml
+# https://github.com/lajp/nix/tree/main/.github/workflows
+name: Update & Build NixOS configurations
+on:
+  schedule:
+    - cron: 0 3 * * 1,4
+      timezone: "Europe/Helsinki"
+  workflow_dispatch:
+concurrency:
+  group: flake-update
+  cancel-in-progress: true
+env:
+  BRANCH: "ci/update-flake"
+jobs:
+  generate_matrix:
+    outputs:
+      configs: ${{ steps.generate_matrix.outputs.configs }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: cachix/install-nix-action@v31
+      - id: generate_matrix
+        run: |
+          nix flake show --json > flake.json
+          configs=$(jq -c ".nixosConfigurations | keys" < flake.json)
+          echo "configs=$configs" >> "$GITHUB_OUTPUT"
+
+  update_flake:
+    outputs:
+      update_available: ${{ steps.output.outputs.update_available }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: cachix/install-nix-action@v31
+      - name: Set up git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Update flake
+        id: update
+        run: |
+          git checkout -B "$BRANCH" "origin/master"
+          nix flake update \
+            --commit-lock-file \
+            --option commit-lockfile-summary 'ci: automatic flake update' \
+
+      - name: Output & push
+        id: output
+        run: |
+          if ! git diff --quiet --exit-code "origin/master"; then
+            echo "update_available=true" >> "$GITHUB_OUTPUT"
+            git push --force --set-upstream origin "$BRANCH"
+          else
+            echo "update_available=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  build_configs:
+    if: ${{ needs.update_flake.outputs.update_available == 'true' }}
+    needs:
+      - update_flake
+      - generate_matrix
+    strategy:
+      fail-fast: false
+      matrix:
+        config: ${{ fromJson(needs.generate_matrix.outputs.configs) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ci/update-flake
+      - uses: cachix/install-nix-action@v31
+      - name: Configure attic
+        run: |
+          nix profile install nixpkgs#attic-client
+          attic login main https://cache.gorilla.gay "${{ secrets.ATTIC_TOKEN }}"
+          attic use main
+      - name: Build config
+        run: |
+          nix build .#nixosConfigurations."${{ matrix.config }}".config.system.build.toplevel
+      - name: Push to attic
+        run: |
+          attic push main result
+  create_pr:
+    needs:
+      - build_configs
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ci/update-flake
+      - name: Create and merge PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR=$(gh pr create \
+            --base master \
+            --fill \
+            --label bot \
+            --title "Auto flake update $(date -Idate)")
+
+          gh pr merge "$PR" --rebase --delete-branch
