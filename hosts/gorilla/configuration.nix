@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./nginx.nix
+    ./exthdd.nix
     ../../modules
   ];
 
@@ -40,6 +41,11 @@
       enable = true;
       domain = "headscale.gorilla.gay";
       port = 6521;
+    };
+    resticServer = {
+      enable = true;
+      domain = "restic.gorilla.gay";
+      port = 3987;
     };
 
     openssh.enable = true;

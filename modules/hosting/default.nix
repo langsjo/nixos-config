@@ -3,6 +3,7 @@
     ./attic.nix
     ./dyndns.nix
     ./headscale.nix
+    ./resticserver.nix
   ];
 
   services.nginx = {
