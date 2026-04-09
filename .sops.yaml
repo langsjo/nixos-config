@@ -12,6 +12,11 @@ creation_rules:
           - *kehvatsu-langsjo
           - *kehvatsu-host
           - *gorilla-host
+  - path_regex: modules/secrets/kehvatsu/[^/]+$
+    key_groups:
+      - age:
+          - *kehvatsu-langsjo
+          - *kehvatsu-host
 
   - path_regex: modules/secrets/gorilla/[^/]+$
     key_groups:

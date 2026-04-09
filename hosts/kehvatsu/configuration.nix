@@ -5,6 +5,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./backups.nix
     "${inputs.self}/modules"
 
     # Using lenovo-thinkpad-14-amd directly uses software iommu which we don't need

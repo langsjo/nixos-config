@@ -1,6 +1,7 @@
 {
   imports = [
     ./common
+    ./backups
     ./gaming
     ./gui
     ./hardware
