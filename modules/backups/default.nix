@@ -89,7 +89,7 @@ in
       repository = "rest:https://restic.gorilla.gay/${cfg.repo}";
       initialize = true;
       extraBackupArgs = cfg.backupArgs ++ [ "--tag ${cfg.tag}" ];
-      pruneOpts = cfg.pruneOpts ++ lib.optional (cfg.pruneOpts != [ ]) [ "--tag ${cfg.tag}" ];
+      pruneOpts = cfg.pruneOpts ++ lib.optionals (cfg.pruneOpts != [ ]) [ "--tag ${cfg.tag}" ];
       checkOpts = cfg.checkOpts ++ [ "--with-cache" ];
       progressFps = 0.0167; # Once per min
       environmentFile = config.custom.backups.environmentFile;

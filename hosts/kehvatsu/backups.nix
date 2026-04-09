@@ -40,7 +40,7 @@
         "--keep-monthly 3"
       ];
       checkOpts = [
-        "--read-data-subset 5%"
+        "--read-data-subset 3%"
       ];
       passwordFile = config.sops.secrets."restic-encryption-passwd".path;
     };

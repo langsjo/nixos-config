@@ -57,6 +57,8 @@
 
   environment.systemPackages = with pkgs; [
     git
+    btop
+    dust
   ];
 
   system.stateVersion = "26.05";
