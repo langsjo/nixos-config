@@ -26,26 +26,21 @@
     environmentFile = config.sops.templates."restic-env-file".path;
     jobs."home" = {
       user = config.custom.user.username;
-      repo = "rest:https://restic.gorilla.gay/kehvatsu";
-      dates = [
-        "03:00 Europe/Helsinki"
-      ];
+      repo = "kehvatsu";
       paths = [
         config.custom.user.homeDirectory
       ];
       exclude = [
         "${config.custom.user.homeDirectory}/.cache"
       ];
-      extraBackupArgs = [
-        "--exclude-caches"
-        "--tag home"
-        "--pack-size 128"
-      ];
+      tag = "home";
       pruneOpts = [
-        "--tag home"
         "--keep-daily 7"
         "--keep-weekly 4"
         "--keep-monthly 3"
+      ];
+      checkOpts = [
+        "--read-data-subset 5%"
       ];
       passwordFile = config.sops.secrets."restic-encryption-passwd".path;
     };
