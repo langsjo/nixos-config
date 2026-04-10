@@ -2,7 +2,7 @@
   imports = [
     ./neotree.nix
     ./debug.nix
-    ./conform.nix
+    ./formatting.nix
     ./autopairs.nix
     ./treesitter.nix
     ./telescope.nix
