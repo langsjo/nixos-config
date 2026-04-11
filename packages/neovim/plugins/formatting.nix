@@ -29,10 +29,14 @@ in
         {
           format_on_save.__raw = ''
             function(bufnr)
-              if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-                return
+              local buf = vim.b[bufnr]
+              local autoformat_enabled =
+                buf.enable_autoformat == true
+                or (vim.g.enable_autoformat and buf.enable_autoformat ~= false)
+              if autoformat_enabled then
+                return { timeout_ms = 500, lsp_format = "fallback" }
               end
-              return { timeout_ms = 500, lsp_format = "fallback" }
+              return
             end
           '';
         }
@@ -41,27 +45,70 @@ in
     mini-trailspace.enable = true;
   };
 
-  extraConfigLua = ''
-    vim.api.nvim_create_user_command("FormatDisable", function(args)
-      if args.bang then
-        -- FormatDisable! will disable formatting just for this buffer
-        vim.b.disable_autoformat = true
-      else
-        vim.g.disable_autoformat = true
-      end
-    end, {
-      desc = "Disable autoformat-on-save",
-      bang = true,
-    })
+  keymaps = [
+    {
+      mode = "n";
+      key = "<leader>tf";
+      options.desc = "Toggle global autoformatting";
+      action.__raw = ''
+        function()
+          if vim.g.enable_autoformat then
+            vim.cmd "FormatDisable"
+            vim.notify "Disabled autoformat globally"
+          else
+            vim.cmd "FormatEnable"
+            vim.notify "Enabled autoformat globally"
+          end
+        end
+      '';
+    }
+    {
+      mode = "n";
+      key = "<leader>tF";
+      options.desc = "Toggle autoformatting for current buffer";
+      action.__raw = ''
+        function()
+          if vim.b.enable_autoformat then
+            vim.cmd "FormatDisable!"
+            vim.notify "Disabled autoformat for current buffer"
+          else
+            vim.cmd "FormatEnable!"
+            vim.notify "Enabled autoformat for current buffer"
+          end
+        end
+      '';
+    }
+  ];
 
-    vim.api.nvim_create_user_command("FormatEnable", function()
-      vim.b.disable_autoformat = false
-      vim.g.disable_autoformat = false
-    end, {
-      desc = "Re-enable autoformat-on-save",
-    })
-  '';
-
+  userCommands = {
+    "FormatDisable" = {
+      desc = "Disable autoformat-on-save";
+      bang = true;
+      command.__raw = ''
+        function(args)
+          if args.bang then
+            -- FormatDisable! will disable formatting just for this buffer
+            vim.b.enable_autoformat = false
+          else
+            vim.g.enable_autoformat = false
+          end
+        end
+      '';
+    };
+    "FormatEnable" = {
+      desc = "Re-enable autoformat-on-save";
+      bang = true;
+      command.__raw = ''
+        function(args)
+          if args.bang then
+            vim.b.enable_autoformat = true
+          else
+            vim.g.enable_autoformat = true
+          end
+        end
+      '';
+    };
+  };
   autoCmd = [
     {
       event = [ "BufWritePre" ];
