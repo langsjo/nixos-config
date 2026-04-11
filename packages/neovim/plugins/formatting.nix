@@ -115,7 +115,16 @@ in
       desc = "Remove trailing whitespace on write";
       callback.__raw = ''
         function()
-          require('mini.trailspace').trim()
+          local trailspace = require('mini.trailspace')
+          local ignore_ft = {
+            markdown = true,
+            quarto = true,
+            rmd = true,
+          }
+          if not ignore_ft[vim.bo.filetype] then
+            trailspace.trim()
+          end
+          trailspace.trim_last_lines()
         end
       '';
     }
