@@ -7,6 +7,12 @@
   services.nginx = {
     enable = true;
     virtualHosts = {
+      "_" = {
+        default = true;
+        locations."/" = {
+          return = "404";
+        };
+      };
       "gorilla.gay" = {
         enableACME = true;
         forceSSL = true;
