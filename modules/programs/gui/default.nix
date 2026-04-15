@@ -44,6 +44,7 @@ in
     programs = {
       firefox.enable = true;
       thunar.enable = true;
+      thunderbird.enable = true;
     };
 
     custom.providers = {
