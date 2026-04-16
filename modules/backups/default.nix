@@ -99,5 +99,18 @@ in
         RandomizedDelaySec = "30min";
       };
     }) config.custom.backups.jobs;
+
+    systemd.services = lib.mapAttrs' (
+      name: _:
+      lib.nameValuePair "restic-backups-${name}" {
+        serviceConfig = {
+          Restart = "on-failure";
+          RestartSec = "5min";
+        };
+        startLimitBurst = 3;
+        startLimitIntervalSec = 3600;
+      }
+    ) config.custom.backups.jobs;
   };
+
 }
