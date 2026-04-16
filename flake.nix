@@ -47,10 +47,12 @@
           packages = with pkgs; [
             nixfmt
             sops
+            awscli2
+            opentofu
           ];
 
           shellHook = ''
-            if ! cmp --silent .git/hooks/pre-commit .pre-commit-hook.sh ; then 
+            if ! cmp --silent .git/hooks/pre-commit .pre-commit-hook.sh ; then
               set -x
               install -Dm755 .pre-commit-hook.sh .git/hooks/pre-commit
               set +x

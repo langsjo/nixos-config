@@ -1,3 +1,8 @@
 result*
 .envrc
 .direnv
+.terraform/
+*.tfstate
+*.tfstate.backup
+terraform.tfvars
+.terraform.lock.hcl
