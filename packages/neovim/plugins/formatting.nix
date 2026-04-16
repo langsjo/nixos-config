@@ -27,6 +27,10 @@ in
           });
         }
         {
+          formatters_by_ft.terraform = [ "terraform_fmt" ];
+          formatters."terraform_fmt".command = lib.getExe pkgs.opentofu;
+        }
+        {
           format_on_save.__raw = ''
             function(bufnr)
               local buf = vim.b[bufnr]
