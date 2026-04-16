@@ -1,6 +1,7 @@
 {
   imports = [
     ./attic.nix
+    ./certs.nix
     ./dyndns.nix
     ./headscale.nix
     ./resticserver.nix

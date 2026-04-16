@@ -1,5 +1,4 @@
 {
-  security.acme.acceptTerms = true;
   custom.dyndns.domains = [
     "gorilla.gay"
     "ip.gorilla.gay"

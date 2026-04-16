@@ -34,10 +34,10 @@ in
       privateRepos = true;
     };
 
-    custom.dyndns.domains = [ cfg.domain ];
+    custom.certs.intraDomains = [ cfg.domain ];
     services.nginx.virtualHosts.${cfg.domain} = {
       forceSSL = true;
-      enableACME = true;
+      useACMEHost = "intra.gorilla.gay";
       locations."/" = {
         proxyPass = "http://localhost:${toString cfg.port}";
         extraConfig = ''

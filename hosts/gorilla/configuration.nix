@@ -31,6 +31,7 @@
       bluetooth.enable = false;
       graphics.enable = false;
     };
+    certs.enable = true;
     dyndns.enable = true;
     attic = {
       enable = true;
