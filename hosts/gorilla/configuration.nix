@@ -44,7 +44,7 @@
     };
     resticServer = {
       enable = true;
-      domain = "restic.gorilla.gay";
+      domain = "restic.intra.gorilla.gay";
       port = 3987;
     };
 

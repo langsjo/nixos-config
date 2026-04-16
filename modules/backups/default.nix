@@ -86,7 +86,7 @@ in
         passwordFile
         exclude
         ;
-      repository = "rest:https://restic.gorilla.gay/${cfg.repo}";
+      repository = "rest:https://restic.intra.gorilla.gay/${cfg.repo}";
       initialize = true;
       extraBackupArgs = cfg.backupArgs ++ [ "--tag ${cfg.tag}" ];
       pruneOpts = cfg.pruneOpts ++ lib.optionals (cfg.pruneOpts != [ ]) [ "--tag ${cfg.tag}" ];
