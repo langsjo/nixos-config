@@ -8,6 +8,7 @@
     enable = true;
     virtualHosts = {
       "_" = {
+        rejectSSL = true;
         default = true;
         locations."/" = {
           return = "404";
