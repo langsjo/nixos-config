@@ -1,0 +1,52 @@
+name: Build & Cache NixOS configurations
+on:
+  push:
+    branches:
+      - master
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        default: ''
+concurrency:
+  group: build-and-cache-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  generate_matrix:
+    outputs:
+      configs: ${{ steps.generate_matrix.outputs.configs }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref }}
+      - uses: cachix/install-nix-action@v31
+      - id: generate_matrix
+        run: |
+          nix flake show --json > flake.json
+          configs=$(jq -c ".nixosConfigurations | keys" < flake.json)
+          echo "configs=$configs" >> "$GITHUB_OUTPUT"
+
+  build_configs:
+    needs: generate_matrix
+    strategy:
+      fail-fast: false
+      matrix:
+        config: ${{ fromJson(needs.generate_matrix.outputs.configs) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref }}
+      - uses: cachix/install-nix-action@v31
+      - name: Configure attic
+        run: |
+          nix profile install nixpkgs#attic-client
+          attic login main https://cache.gorilla.gay "${{ secrets.ATTIC_TOKEN }}"
+          attic use main
+      - name: Build config
+        run: |
+          nix build .#nixosConfigurations."${{ matrix.config }}".config.system.build.toplevel
+      - name: Push to attic
+        run: |
+          attic push main result

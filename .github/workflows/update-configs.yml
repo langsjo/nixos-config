@@ -11,21 +11,8 @@ concurrency:
   group: flake-update
   cancel-in-progress: true
 env:
-  BRANCH: "ci/update-flake"
+  BRANCH: &branch "ci/update-flake"
 jobs:
-  generate_matrix:
-    outputs:
-      configs: ${{ steps.generate_matrix.outputs.configs }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: cachix/install-nix-action@v31
-      - id: generate_matrix
-        run: |
-          nix flake show --json > flake.json
-          configs=$(jq -c ".nixosConfigurations | keys" < flake.json)
-          echo "configs=$configs" >> "$GITHUB_OUTPUT"
-
   update_flake:
     outputs:
       update_available: ${{ steps.output.outputs.update_available }}
@@ -57,35 +44,16 @@ jobs:
             echo "update_available=false" >> "$GITHUB_OUTPUT"
           fi
 
-  build_configs:
+  build_and_cache:
     if: ${{ needs.update_flake.outputs.update_available == 'true' }}
-    needs:
-      - update_flake
-      - generate_matrix
-    strategy:
-      fail-fast: false
-      matrix:
-        config: ${{ fromJson(needs.generate_matrix.outputs.configs) }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: ci/update-flake
-      - uses: cachix/install-nix-action@v31
-      - name: Configure attic
-        run: |
-          nix profile install nixpkgs#attic-client
-          attic login main https://cache.gorilla.gay "${{ secrets.ATTIC_TOKEN }}"
-          attic use main
-      - name: Build config
-        run: |
-          nix build .#nixosConfigurations."${{ matrix.config }}".config.system.build.toplevel
-      - name: Push to attic
-        run: |
-          attic push main result
+    needs: update_flake
+    uses: ./.github/workflows/build-and-cache.yml
+    with:
+      ref: *branch
+    secrets: inherit
+
   create_pr:
-    needs:
-      - build_configs
+    needs: build_and_cache
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -93,7 +61,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ci/update-flake
+          ref: *branch
           fetch-depth: 0
       - name: Create and merge PR
         env:
