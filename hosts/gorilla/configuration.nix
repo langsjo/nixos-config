@@ -56,6 +56,16 @@
     };
   };
 
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:langsjo/nixos-config";
+    dates = "18:00 Europe/Helsinki";
+    upgrade = false;
+    persistent = true;
+    operation = "switch";
+    allowReboot = false;
+  };
+
   environment.systemPackages = with pkgs; [
     git
     btop
