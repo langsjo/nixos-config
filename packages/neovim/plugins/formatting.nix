@@ -72,7 +72,7 @@ in
       options.desc = "Toggle autoformatting for current buffer";
       action.__raw = ''
         function()
-          if vim.b.enable_autoformat then
+          if vim.b.enable_autoformat ~= false then
             vim.cmd "FormatDisable!"
             vim.notify "Disabled autoformat for current buffer"
           else
