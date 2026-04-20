@@ -125,6 +125,14 @@ in
             quarto = true,
             rmd = true,
           }
+          local autoformat_enabled =
+            vim.b.enable_autoformat == true
+            or (vim.g.enable_autoformat and vim.b.enable_autoformat ~= false)
+
+          if not autoformat_enabled then
+            return
+          end
+
           if not ignore_ft[vim.bo.filetype] then
             trailspace.trim()
           end
