@@ -53,6 +53,7 @@ in
     rofi-screenshot
     gh
     github-copilot-cli
+    libqalculate
 
     customPkgs.neovim
     customPkgs.zsh-wrapped
