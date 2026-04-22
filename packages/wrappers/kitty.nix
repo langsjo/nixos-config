@@ -36,6 +36,8 @@
       map alt+ctrl+j   move_tab_backward
       map alt+ctrl+k   move_tab_forward
 
+      clipboard_control write-clipboard write-primary read-clipboard read-primary
+
       map           ctrl+h neighboring_window left
       map           ctrl+j neighboring_window down
       map           ctrl+k neighboring_window up
