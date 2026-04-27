@@ -16,7 +16,8 @@ let
 
   monitorSetUp = pkgs.writeShellScriptBin "monitors" ''
     xrandr --output eDP-1 --off
-    xrandr --output DP-2 --left-of DP-1
+    xrandr --output DP-1 --auto --primary
+    xrandr --output DP-2 --auto --left-of DP-1
   '';
 
   kitty-nixGL-script = pkgs.writeShellScript "kitty-via-nixGL" ''
