@@ -3,6 +3,7 @@
   stdenv,
   coreutils,
   direnv,
+  nix-direnv,
   lib,
   zsh,
   zsh-fzf-tab,
@@ -11,6 +12,9 @@
   zsh-syntax-highlighting,
   zoxide,
   oh-my-posh,
+  runCommand,
+  fetchpatch2,
+  makeWrapper,
 
   withKitty ? true,
   autostartTmux ? false,
@@ -18,6 +22,32 @@
 let
   nix-index-with-db =
     inputs.nix-index-database.packages.${stdenv.hostPlatform.system}.nix-index-with-db;
+  direnv-config = runCommand "direnv-config" { } /* bash */ ''
+    mkdir $out
+    echo 'source ${nix-direnv}/share/nix-direnv/direnvrc' > $out/direnvrc
+  '';
+  direnv' = direnv.overrideAttrs (old: {
+    pname = "direnv-with-nix-direnv";
+    nativeBuildInputs = old.nativeBuildInputs or [ ] ++ [
+      makeWrapper
+    ];
+    patches = old.patches or [ ] ++ [
+      # Add support for DIRENV_EXE_PATH env var
+      (fetchpatch2 {
+        url = "https://github.com/direnv/direnv/commit/0aa2083782a9a1723b52e2061c46a24658254cec.patch";
+        hash = "sha256-ONfxP2kDET1rNABzaxpmw7YAfaMeVP70RmlEskecCp8=";
+      })
+      (fetchpatch2 {
+        url = "https://github.com/direnv/direnv/commit/4e834f252990d907f3f477ca3ebbf084fecaee34.patch";
+        hash = "sha256-orpATJ5/FiSLEThuv1WKk2XRcx9tuAH9hnRtvQbv+pk=";
+      })
+    ];
+    postFixup = ''
+      wrapProgram $out/bin/direnv \
+        --set DIRENV_EXE_PATH "$out/bin/direnv" \
+        --set DIRENV_CONFIG "${direnv-config}"
+    '';
+  });
 in
 {
   package = zsh;
@@ -25,7 +55,7 @@ in
     suffixes."PATH" = lib.makeBinPath [
       fzf
       zoxide
-      direnv
+      direnv'
     ];
 
     paths."ZDOTDIR".".zshrc".text = # bash
@@ -39,9 +69,9 @@ in
           fi
         ''}
 
-        setopt HIST_IGNORE_DUPS 
-        setopt HIST_IGNORE_SPACE 
-        setopt SHARE_HISTORY 
+        setopt HIST_IGNORE_DUPS
+        setopt HIST_IGNORE_SPACE
+        setopt SHARE_HISTORY
         setopt HIST_FCNTL_LOCK
         setopt NO_GLOBAL_RCS
 
@@ -134,7 +164,7 @@ in
         source ${fzf}/share/fzf/completion.zsh
         source ${fzf}/share/fzf/key-bindings.zsh
 
-        eval "$(${lib.getExe direnv} hook zsh)"
+        eval "$(${lib.getExe direnv'} hook zsh)"
 
         source ${zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
         ZSH_HIGHLIGHT_HIGHLIGHTERS=(main)
