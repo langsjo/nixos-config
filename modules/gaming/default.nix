@@ -36,14 +36,14 @@ in
 
     environment.systemPackages = with pkgs; [
       piper
-      (lutris.override {
-        extraPkgs =
-          p: with p; [
-            gamemode
-            proton-ge-bin
-            wineWow64Packages.full
-          ];
-      })
+      # (lutris.override {
+      #   extraPkgs =
+      #     p: with p; [
+      #       gamemode
+      #       proton-ge-bin
+      #       wineWow64Packages.full
+      #     ];
+      # })
     ];
   };
 }
