@@ -12,6 +12,8 @@
     nixosModules.common-cpu-intel-cpu-only
     (outPath + "/common/gpu/nvidia/pascal")
   ]);
+  # Pascal GPU not supported in 590+
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
   custom = {
     isLaptop = false;
