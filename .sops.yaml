@@ -1,4 +1,5 @@
 keys:
+  - &desktop-host age1426exnrvr5fmalhhh0vgajar2k92xhr0nshhgnqhpycvcgautdlsvqedq6
   - &desktop-langsjo age1gwpmfgjkhcwp8nlaljxfdr3pp0np02656eq9kjpmtt0u3al99smswuj8lp
   - &kehvatsu-host age19w9wmdra2frq9f7hv0883xprnzzgfulv29fru25wgyfgwuxt6yjqnsvg04
   - &kehvatsu-langsjo age13y3kv3ees7xx8fkerfcvjk0sjaz0n6f5pztu6ply4gl2tfhdjulstj4d2u
@@ -9,6 +10,7 @@ creation_rules:
     key_groups:
       - age:
           - *desktop-langsjo
+          - *desktop-host
           - *kehvatsu-langsjo
           - *kehvatsu-host
           - *gorilla-host
