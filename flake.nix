@@ -11,7 +11,17 @@
         "x86_64-darwin"
         "aarch64-darwin"
       ];
-      forAllSystems = func: lib.genAttrs systems (sys: func inputs.nixpkgs.legacyPackages.${sys});
+      forAllSystems =
+        func:
+        lib.genAttrs systems (
+          system:
+          func (
+            import nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            }
+          )
+        );
     in
     {
       nixosConfigurations = {
