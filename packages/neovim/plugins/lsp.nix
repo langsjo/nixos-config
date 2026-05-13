@@ -8,6 +8,16 @@
     };
   };
 
+  userCommands = {
+    "LspInfo" = {
+      desc = "checkhealth vim.lsp";
+      command.__raw = ''
+        function()
+          vim.cmd("checkhealth vim.lsp")
+        end
+      '';
+    };
+  };
   plugins.lsp = {
     enable = true;
 
