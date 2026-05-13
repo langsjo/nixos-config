@@ -13,6 +13,7 @@ let
     conf = pkgs.callPackage ./config/config.nix { inherit (config.custom) providers; };
     patches = [
       ./config/0001-increase-bar-height.patch
+      ./config/0002-bottomstack-custom.patch
       (pkgs.fetchpatch2 {
         # remove border from window if only 1 window on screen
         url = "https://dwm.suckless.org/patches/removeborder/dwm-removeborder-20220626-d3f93c7.diff";

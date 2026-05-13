@@ -14,11 +14,7 @@ let
     };
   };
 
-  monitorSetUp = pkgs.writeShellScriptBin "monitors" ''
-    xrandr --output eDP-1 --off
-    xrandr --output DP-1 --auto --primary
-    xrandr --output DP-2 --auto --left-of DP-1
-  '';
+  monitorSetUp = pkgs.writeShellScriptBin "monitors" (builtins.readFile ./monitorsetup.sh);
 
   kitty-nixGL-script = pkgs.writeShellScript "kitty-via-nixGL" ''
     exec nixGL kitty "$@"

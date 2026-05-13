@@ -6,7 +6,7 @@
 let
   makeCmd = program: lib.concatMapStringsSep ", " (s: ''"${s}"'') (lib.splitString " " program);
 in
-writeText "config.h" /* C */ ''
+writeText "config.def.h" /* C */ ''
   /* appearance */
   static const unsigned int borderpx = 4; /* border pixel of windows */
   static const unsigned int snap = 32;    /* snap pixel */
@@ -72,6 +72,8 @@ writeText "config.h" /* C */ ''
       {"[]=", tile}, /* first entry is default */
       {"><>", NULL}, /* no layout function means floating behavior */
       {"[M]", monocle},
+      { "TTT",      bstack },
+      { "===",      bstackhoriz },
   };
 
   /* key definitions */
@@ -137,6 +139,8 @@ writeText "config.h" /* C */ ''
       {MODKEY, XK_s, setlayout, {.v = &layouts[0]}}, // default
       {MODKEY, XK_y, setlayout, {.v = &layouts[1]}}, // floating
       {MODKEY, XK_f, setlayout, {.v = &layouts[2]}}, // fullscreen stack
+      {MODKEY, XK_u, setlayout, {.v = &layouts[3]}}, // bstack
+      {MODKEY, XK_o, setlayout, {.v = &layouts[4]}}, // bstackhoriz
       //{ MODKEY,                     XK_space,  setlayout,      {0} },
       {MODKEY | ShiftMask, XK_space, togglefloating, {0}},
       {MODKEY, XK_0, view, {.ui = ~0}},
