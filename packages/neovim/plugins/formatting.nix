@@ -31,6 +31,10 @@ in
           formatters."terraform_fmt".command = lib.getExe pkgs.opentofu;
         }
         {
+          formatters_by_ft.ruby = [ "rubyfmt" ];
+          formatters."rubyfmt".command = lib.getExe pkgs.rubyfmt;
+        }
+        {
           format_on_save.__raw = ''
             function(bufnr)
               local buf = vim.b[bufnr]
