@@ -51,7 +51,6 @@ in
     gh
     github-copilot-cli
     libqalculate
-    flameshot
 
     customPkgs.neovim
     customPkgs.zsh-wrapped
