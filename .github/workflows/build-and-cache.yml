@@ -9,7 +9,7 @@ on:
         type: string
         default: ''
 concurrency:
-  group: build-and-cache-${{ github.ref }}
+  group: build-and-cache-${{ github.sha }}
   cancel-in-progress: true
 jobs:
   generate_matrix:
