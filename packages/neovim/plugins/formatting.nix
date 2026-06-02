@@ -6,6 +6,7 @@
 }:
 let
   fft = config.plugins.conform-nvim.settings.formatters_by_ft;
+  customPkgs = import ./packages { inherit pkgs; };
 in
 {
   plugins = {
@@ -33,6 +34,10 @@ in
         {
           formatters_by_ft.ruby = [ "rubyfmt" ];
           formatters."rubyfmt".command = lib.getExe pkgs.rubyfmt;
+        }
+        {
+          formatters_by_ft.puppet = [ "puppet-lint" ];
+          formatters."puppet-lint".command = lib.getExe customPkgs.openvox-lint;
         }
         {
           format_on_save.__raw = ''
