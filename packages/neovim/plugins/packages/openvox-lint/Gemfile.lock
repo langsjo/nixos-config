@@ -1,0 +1,87 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    base64 (0.3.0)
+    benchmark (0.5.0)
+    logger (1.7.0)
+    ostruct (0.6.3)
+    puppet-lint (5.1.1)
+    puppet-lint-absolute_classname-check (5.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-anchor-check (3.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-exec_idempotency-check (2.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-file_ensure-check (3.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-leading_zero-check (3.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-lookup_in_parameter-check (3.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-manifest_whitespace-check (2.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-optional_default-check (3.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-package_ensure-check (0.2.0)
+      puppet-lint (>= 1.0)
+    puppet-lint-param-docs (3.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-param-types (3.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-params_empty_string-check (3.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-params_not_optional_with_undef-check (1.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-resource_reference_syntax (3.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-strict_indent-check (5.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-topscope-variable-check (3.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-trailing_comma-check (3.0.1)
+      puppet-lint (~> 5.1)
+    puppet-lint-unquoted_string-check (4.1.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-variable_contains_upcase (3.0.0)
+      puppet-lint (~> 5.1)
+    puppet-lint-version_comparison-check (3.0.0)
+      puppet-lint (~> 5.1)
+    racc (1.8.1)
+    syslog (0.4.0)
+      logger
+    voxpupuli-puppet-lint-plugins (7.0.0)
+      puppet-lint (~> 5.1)
+      puppet-lint-absolute_classname-check (~> 5.0)
+      puppet-lint-anchor-check (~> 3.0)
+      puppet-lint-exec_idempotency-check (~> 2.0)
+      puppet-lint-file_ensure-check (~> 3.0)
+      puppet-lint-leading_zero-check (~> 3.0)
+      puppet-lint-lookup_in_parameter-check (~> 3.0)
+      puppet-lint-manifest_whitespace-check (~> 2.0)
+      puppet-lint-optional_default-check (~> 3.0)
+      puppet-lint-package_ensure-check (~> 0.2)
+      puppet-lint-param-docs (~> 3.0)
+      puppet-lint-param-types (~> 3.0)
+      puppet-lint-params_empty_string-check (~> 3.0)
+      puppet-lint-params_not_optional_with_undef-check (~> 1.0)
+      puppet-lint-resource_reference_syntax (~> 3.0)
+      puppet-lint-strict_indent-check (~> 5.0)
+      puppet-lint-topscope-variable-check (~> 3.0)
+      puppet-lint-trailing_comma-check (~> 3.0)
+      puppet-lint-unquoted_string-check (~> 4.0)
+      puppet-lint-variable_contains_upcase (~> 3.0)
+      puppet-lint-version_comparison-check (~> 3.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  base64
+  benchmark
+  ostruct
+  racc
+  syslog
+  voxpupuli-puppet-lint-plugins
+
+BUNDLED WITH
+   2.7.2

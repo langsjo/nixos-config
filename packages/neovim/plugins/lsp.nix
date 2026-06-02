@@ -1,4 +1,11 @@
 {
+  pkgs,
+  ...
+}:
+let
+  customPkgs = import ./packages { inherit pkgs; };
+in
+{
   plugins.cmp-nvim-lsp.enable = true;
   plugins.fidget.enable = true;
 
@@ -41,6 +48,16 @@
 
       jdtls = {
         enable = true;
+      };
+
+      puppet = {
+        enable = true;
+        package = customPkgs.puppet-editor-services;
+        cmd = [
+          "puppet-languageserver"
+          "--stdio"
+        ];
+        packageFallback = false;
       };
     };
 
