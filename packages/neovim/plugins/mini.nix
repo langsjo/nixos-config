@@ -8,6 +8,8 @@
         n_lines = 500;
       };
 
+      align = { };
+
       surround = { };
 
       statusline = {
