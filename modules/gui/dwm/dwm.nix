@@ -49,10 +49,13 @@ in
       description = "Lock screen with slock on sleep";
       wantedBy = [ "sleep.target" ];
       before = [ "sleep.target" ];
+      environment = {
+        DISPLAY = ":0";
+        XAUTHORITY = "/run/user/1000/lyxauth";
+      };
       serviceConfig = {
         Type = "simple";
         User = config.custom.user.username;
-        Environment = "DISPLAY=:0";
         ExecCondition = "${lib.getExe' pkgs.procps "pgrep"} -x dwm"; # Only run if dwm is running
         ExecStart = "/run/wrappers/bin/slock";
       };
