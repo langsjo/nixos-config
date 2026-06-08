@@ -17,9 +17,14 @@ in
       podman = {
         enable = true;
       };
+      libvirtd.enable = true;
     };
+    programs.virt-manager.enable = true;
 
-    custom.user.extraGroups = [ "docker" ];
+    custom.user.extraGroups = [
+      "docker"
+      "libvirtd"
+    ];
 
     environment.systemPackages = [
       pkgs.distrobox
