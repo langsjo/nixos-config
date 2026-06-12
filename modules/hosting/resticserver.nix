@@ -38,6 +38,13 @@ in
     services.nginx.virtualHosts.${cfg.domain} = {
       forceSSL = true;
       useACMEHost = "intra.gorilla.gay";
+      # Only reachable from Tailscale or the local network.
+      extraConfig = ''
+        allow 100.64.0.0/10;       # Tailscale/headscale IPv4 (CGNAT range)
+        allow fd7a:115c:a1e0::/48; # Tailscale/headscale IPv6
+        allow 192.168.1.0/24;      # LAN
+        deny all;
+      '';
       locations."/" = {
         proxyPass = "http://localhost:${toString cfg.port}";
         extraConfig = ''
