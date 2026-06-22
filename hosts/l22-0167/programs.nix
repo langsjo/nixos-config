@@ -55,6 +55,7 @@ in
     customPkgs.neovim
     customPkgs.zsh-wrapped
     customPkgs.tmux-wrapped
+    customPkgs.showcerts
     kitty-nixGL
     networkmanager-dmenu-wrapped
     dwm'

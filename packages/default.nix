@@ -4,6 +4,7 @@
 }:
 {
   rebuild = pkgs.callPackage ./rebuild-script.nix { };
+  showcerts = pkgs.callPackage ./showcerts.nix { };
   nixpkgs-review-gha = pkgs.callPackage ./nixpkgs-review-gha.nix { };
   neovim = import ./neovim { inherit pkgs inputs; };
 }
