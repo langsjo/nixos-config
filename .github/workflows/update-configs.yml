@@ -4,7 +4,7 @@
 name: Update & Build NixOS configurations
 on:
   schedule:
-    - cron: 0 3 * * 1,4
+    - cron: 0 3 * * 0 # Every sunday at 3 am
       timezone: "Europe/Helsinki"
   workflow_dispatch:
 concurrency:
