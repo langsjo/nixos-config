@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   ...
 }:
 let
@@ -40,6 +41,14 @@ in
       yamlls.enable = true;
       ruby_lsp.enable = true;
       perlnavigator.enable = true;
+      gh_actions_ls = {
+        enable = true;
+        package = customPkgs.actions-languageserver;
+        cmd = [
+          (lib.getExe customPkgs.actions-languageserver)
+          "--stdio"
+        ];
+      };
       rust_analyzer = {
         enable = true;
         installCargo = true;
