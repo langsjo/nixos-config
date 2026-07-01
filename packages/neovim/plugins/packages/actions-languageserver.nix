@@ -3,6 +3,7 @@
   fetchFromGitHub,
   buildNpmPackage,
   npm-lockfile-fix,
+  jq,
 }:
 buildNpmPackage (finalAttrs: {
   pname = "actions-languageserver";
@@ -12,17 +13,19 @@ buildNpmPackage (finalAttrs: {
     owner = "actions";
     repo = "languageservices";
     tag = "release-v${finalAttrs.version}";
-    hash = "sha256-t48/ZR7Gw+GS4PYQtg9TlsqGbaJ9zQTQhySso0IDO5E=";
+    hash = "sha256-Vsfo+OwqRvgbhyQheaFIbStIq7jtg7WPmVOPOzZuolc=";
     postFetch = ''
       substituteInPlace $out/package-lock.json $out/languageservice/package.json \
-      --replace-fail '"rest-api-description": "github:github/rest-api-description",' ""
+        --replace-fail '"rest-api-description": "github:github/rest-api-description",' ""
+      ${lib.getExe jq} 'del(.packages."node_modules/rest-api-description")' \
+        $out/package-lock.json > tmp; mv tmp $out/package-lock.json
       ${lib.getExe npm-lockfile-fix} $out/package-lock.json
     '';
   };
   npmWorkspace = "languageserver";
 
   npmDepsFetcherVersion = 2;
-  npmDepsHash = "sha256-OMQKyi44O1P7KJTBs9ZYl62OIQzrfjCDAmc6VUDTG58=";
+  npmDepsHash = "sha256-i6dykkj96g/5+ibQe1OuGHFkFtEFrMOJejijfBfviGs=";
 
   preBuild = ''
     patchShebangs .
