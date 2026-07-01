@@ -5,33 +5,13 @@
   ...
 }:
 let
-  providerType = lib.types.submodule {
-    options = {
-      program = lib.mkOption {
-        description = "The executable providing this feature";
-        type = lib.types.str;
-      };
-
-      desktop = lib.mkOption {
-        description = "Desktop file name";
-        type = lib.types.str;
-      };
-    };
-  };
-
-  mkProviderOption =
-    feature:
-    lib.mkOption {
-      description = "Provider for ${feature}";
-      type = providerType;
-    };
-
   cfg = config.custom.providers;
 in
 {
   options.custom.providers = kehvatsu.options.custom.providers;
 
   config = {
+    xdg.configFile."mimeapps.list".force = true;
     xdg.mime.enable = true;
     xdg.mimeApps = {
       enable = true;
