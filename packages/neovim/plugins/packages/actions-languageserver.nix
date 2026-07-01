@@ -4,14 +4,6 @@
   buildNpmPackage,
   npm-lockfile-fix,
 }:
-let
-  rest-api-description = fetchFromGitHub {
-    owner = "github";
-    repo = "rest-api-description";
-    tag = "v2.1.0";
-    hash = "sha256-v6mxxWymrj+yfj8hscNj9/1+mSv18tnDXYyBB1a9oyk=";
-  };
-in
 buildNpmPackage (finalAttrs: {
   pname = "actions-languageserver";
   version = "0.3.58";
@@ -20,20 +12,19 @@ buildNpmPackage (finalAttrs: {
     owner = "actions";
     repo = "languageservices";
     tag = "release-v${finalAttrs.version}";
-    hash = "sha256-9GcL7bB1JroXb0JHjdfEcOzwnfwMJmkxKMAh6ec0nAY=";
+    hash = "sha256-t48/ZR7Gw+GS4PYQtg9TlsqGbaJ9zQTQhySso0IDO5E=";
     postFetch = ''
-      ${lib.getExe npm-lockfile-fix} $out/package-lock.json
       substituteInPlace $out/package-lock.json $out/languageservice/package.json \
       --replace-fail '"rest-api-description": "github:github/rest-api-description",' ""
+      ${lib.getExe npm-lockfile-fix} $out/package-lock.json
     '';
   };
-
   npmWorkspace = "languageserver";
 
-  npmDepsHash = "sha256-fx1R0YLcYoxVEmODjhT8ftCYlC5Ht0ShGK6S4idqJns=";
+  npmDepsFetcherVersion = 2;
+  npmDepsHash = "sha256-OMQKyi44O1P7KJTBs9ZYl62OIQzrfjCDAmc6VUDTG58=";
 
   preBuild = ''
-    cp -r "${rest-api-description}" node_modules/rest-api-description
     patchShebangs .
     npm run build --workspace=expressions
     npm run build --workspace=workflow-parser
