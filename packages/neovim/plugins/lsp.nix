@@ -39,6 +39,7 @@ in
       terraformls.enable = true;
       yamlls.enable = true;
       ruby_lsp.enable = true;
+      perlnavigator.enable = true;
       rust_analyzer = {
         enable = true;
         installCargo = true;
