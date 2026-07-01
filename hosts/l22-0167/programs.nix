@@ -51,6 +51,7 @@ in
     gh
     github-copilot-cli
     libqalculate
+    dust
 
     customPkgs.neovim
     customPkgs.zsh-wrapped
