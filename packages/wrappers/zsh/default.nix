@@ -100,6 +100,7 @@ in
           alias -- rg="kitten hyperlinked-grep"
         ''}
         alias -- ssh="TERM=xterm-256color ssh" # for ssh with uncommon terminals
+        alias -- diff="git diff --no-index"
 
         function rewi() {
           local executable="$1"

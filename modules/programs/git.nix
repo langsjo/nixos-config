@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.custom.programs;
+  delta = lib.getExe pkgs.delta;
 in
 {
   config = lib.mkIf cfg.enable {
@@ -58,11 +59,23 @@ in
           rba = "rebase --abort";
         };
 
+        pull.rebase = true;
         rerere.enabled = true;
         init.defaultBranch = "main";
-        core.editor = "nvim";
-        pull.rebase = true;
-        merge.tool = "nvimdiff";
+        core = {
+          editor = "nvim";
+          pager = delta;
+        };
+        interactive.diffFilter = "${delta} --color-only";
+        delta = {
+          navigate = true;
+          dark = true;
+          line-numbers = true;
+        };
+        merge = {
+          tool = "nvimdiff";
+          conflictStyle = "zdiff3";
+        };
       };
     };
   };
