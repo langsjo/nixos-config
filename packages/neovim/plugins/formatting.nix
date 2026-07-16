@@ -60,6 +60,16 @@ in
 
   keymaps = [
     {
+      mode = "";
+      key = "<leader>f";
+      options.desc = "Format current buffer / selection";
+      action.__raw = ''
+        function()
+          require("conform").format({ timeout_ms = 500, lsp_format = "fallback" })
+        end
+      '';
+    }
+    {
       mode = "n";
       key = "<leader>tf";
       options.desc = "Toggle global autoformatting";
