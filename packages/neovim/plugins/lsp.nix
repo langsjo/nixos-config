@@ -39,6 +39,7 @@ in
       ts_ls.enable = true;
       terraformls.enable = true;
       yamlls.enable = true;
+      jsonls.enable = true;
       ruby_lsp.enable = true;
       perlnavigator.enable = true;
       gh_actions_ls = {
