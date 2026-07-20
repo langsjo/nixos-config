@@ -83,6 +83,7 @@ in
     };
 
     services = {
+      pcscd.enable = true;
       locate = {
         enable = true;
       };
