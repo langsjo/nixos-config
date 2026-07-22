@@ -9,6 +9,7 @@
   imports = [
     ./providers.nix
     ./programs.nix
+    ./gpg.nix
   ];
 
   _module.args.kehvatsu = inputs.self.nixosConfigurations.kehvatsu;
