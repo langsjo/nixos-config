@@ -1,5 +1,6 @@
 {
   pkgs,
+  kehvatsu,
   ...
 }:
 {
@@ -10,6 +11,12 @@
   };
   programs.gpg = {
     enable = true;
+    publicKeys = [
+      {
+        source = kehvatsu.config.custom.user.pgpKey.file;
+        trust = 5;
+      }
+    ];
     scdaemonSettings.disable-ccid = true;
     settings = {
       # https://github.com/drduh/config/blob/master/gpg.conf

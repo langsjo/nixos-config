@@ -7,6 +7,11 @@
 let
   cfg = config.custom.user;
   secrets = config.sops.secrets;
+
+  pgpFileDefault = pkgs.fetchurl {
+    url = "https://keys.openpgp.org/vks/v1/by-fingerprint/${cfg.pgpKey.fingerprint}";
+    hash = "sha256-kB6xIF9TTe7P5TO1zkTcVILxc3ZlG0Q3FUsRy30kFrk=";
+  };
 in
 {
   options.custom.user = {
@@ -14,6 +19,19 @@ in
       description = "User's username";
       type = lib.types.str;
       default = "langsjo";
+    };
+
+    pgpKey = {
+      fingerprint = lib.mkOption {
+        description = "User's PGP key fingerprint";
+        type = lib.types.str;
+        default = "BF1A4151F2E25E6F92C3527C932CF958F022A14B";
+      };
+      file = lib.mkOption {
+        description = "File with user's PGP public key";
+        type = lib.types.path;
+        default = pgpFileDefault;
+      };
     };
 
     shell = lib.mkOption {
