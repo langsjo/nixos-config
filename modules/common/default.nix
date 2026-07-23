@@ -13,6 +13,7 @@
     ./options.nix
     ./envvars.nix
     ./wrappers.nix
+    ./pam.nix
     ./providers.nix
   ];
 
