@@ -35,6 +35,7 @@ in
     ./neovim.nix
     ./zsh.nix
     ./git.nix
+    ./gpg.nix
     ./yazi.nix
     ./tailscale.nix
 
@@ -78,12 +79,10 @@ in
     hardware.acpilight.enable = config.custom.isLaptop;
     programs = {
       bat.enable = true;
-
       nix-index-database.comma.enable = true;
     };
 
     services = {
-      pcscd.enable = true;
       locate = {
         enable = true;
       };
