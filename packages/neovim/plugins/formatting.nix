@@ -28,6 +28,10 @@ in
           });
         }
         {
+          formatters_by_ft = lib.genAttrs [ "sh" "bash" "zsh" ] (_: [ "shfmt" ]);
+          formatters."shfmt".command = lib.getExe pkgs.shfmt;
+        }
+        {
           formatters_by_ft.terraform = [ "terraform_fmt" ];
           formatters."terraform_fmt".command = lib.getExe pkgs.opentofu;
         }
