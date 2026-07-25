@@ -14,8 +14,14 @@ in
 
   config = lib.mkIf cfg.enable {
     custom = {
-      wrappers.niri = inputs.self.packages.x86_64-linux.niri-wrapped;
-      gui.waybar.enable = true;
+      wrappers.niri = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.niri-wrapped;
+      gui = {
+        waybar.enable = true;
+        swayidle = {
+          enable = true;
+          targets = [ "niri.service" ];
+        };
+      };
     };
 
     environment.systemPackages = [ pkgs.vanilla-dmz ];

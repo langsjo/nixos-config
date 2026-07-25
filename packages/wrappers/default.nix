@@ -20,6 +20,7 @@ let
     kitty-wrapped = mkWrapper ./kitty.nix;
     niri-wrapped = mkWrapper ./niri.nix;
     networkmanager_dmenu-wrapped = mkWrapper ./networkmanager_dmenu.nix;
+    swayidle-wrapped = mkWrapper ./swayidle.nix;
   };
 in
 wrappers

@@ -9,7 +9,7 @@ let
   cfg = config.custom.gui.windowManager.dwm;
 
   networkmanager_dmenu-wrapped =
-    inputs.self.packages.x86_64-linux.networkmanager_dmenu-wrapped.override
+    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.networkmanager_dmenu-wrapped.override
       {
         dmenuCmd = "${lib.getExe pkgs.rofi} -dmenu -width 30 -i";
       };

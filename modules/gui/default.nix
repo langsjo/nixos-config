@@ -20,6 +20,7 @@ in
     ./plasma6.nix
     ./niri.nix
     ./waybar.nix
+    ./swayidle.nix
   ];
 
   config = lib.mkIf cfg.enable {
