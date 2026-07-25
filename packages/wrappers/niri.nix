@@ -5,6 +5,7 @@
   swaylock,
   firefox,
   kitty-wrapped,
+  networkmanager_dmenu-wrapped,
   brightnessctl,
   wireplumber,
   xwayland-satellite,
@@ -60,6 +61,12 @@ in
     cursor {
         xcursor-theme "Vanilla-DMZ"
         hide-after-inactive-ms 9999999
+    }
+
+    gestures {
+        hot-corners {
+            off
+        }
     }
 
     layout {
@@ -145,7 +152,8 @@ in
         // Suggested binds for running programs: terminal, app launcher, screen locker.
         Mod+Return { spawn "${lib.getExe kitty-wrapped}"; }
         Mod+W { spawn "${lib.getExe firefox}"; }
-        Mod+D { spawn "${lib.getExe fuzzel}"; }
+        Mod+D { spawn "${lib.getExe fuzzel}" "--width" "50"; }
+        Mod+Shift+D { spawn "${lib.getExe networkmanager_dmenu-wrapped}"; }
         Mod+P  { spawn "${lib.getExe swaylock}"; }
 
         XF86AudioRaiseVolume  allow-when-locked=true { spawn "${wpctl}" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+" "--limit" "1.0"; }

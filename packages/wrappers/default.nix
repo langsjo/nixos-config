@@ -19,6 +19,7 @@ let
     ghostty-wrapped = mkWrapper ./ghostty.nix;
     kitty-wrapped = mkWrapper ./kitty.nix;
     niri-wrapped = mkWrapper ./niri.nix;
+    networkmanager_dmenu-wrapped = mkWrapper ./networkmanager_dmenu.nix;
   };
 in
 wrappers

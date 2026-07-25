@@ -8,7 +8,12 @@
 let
   cfg = config.custom.gui.windowManager.dwm;
 
-  networkmanager_dmenu-wrapped = inputs.wrapper-lib.lib.mkWrapper pkgs ./networkmanager_dmenu-wrapped.nix;
+  networkmanager_dmenu-wrapped =
+    inputs.self.packages.x86_64-linux.networkmanager_dmenu-wrapped.override
+      {
+        dmenuCmd = "${lib.getExe pkgs.rofi} -dmenu -width 30 -i";
+      };
+
   dwm' = pkgs.dwm.override {
     conf = pkgs.callPackage ./config/config.nix { inherit (config.custom) providers; };
     patches = [
