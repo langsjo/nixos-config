@@ -13,7 +13,7 @@
     ./options.nix
     ./envvars.nix
     ./wrappers.nix
-    ./pam.nix
+    ./yubikey.nix
     ./providers.nix
   ];
 

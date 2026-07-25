@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   ...
@@ -23,4 +24,13 @@ in
       sudo.rules.auth.u2f.settings.pinverification = lib.mkForce false;
     };
   };
+
+  services.udev.extraRules = ''
+    ACTION=="remove",\
+     ENV{ID_BUS}=="usb",\
+     ENV{ID_MODEL_ID}=="0406",\
+     ENV{ID_VENDOR_ID}=="1050",\
+     ENV{ID_VENDOR}=="Yubico",\
+     RUN+="${lib.getExe' config.systemd.package "loginctl"} lock-sessions"
+  '';
 }
