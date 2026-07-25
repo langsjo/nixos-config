@@ -18,6 +18,7 @@ let
     zsh-wrapped = mkWrapper ./zsh;
     ghostty-wrapped = mkWrapper ./ghostty.nix;
     kitty-wrapped = mkWrapper ./kitty.nix;
+    niri-wrapped = mkWrapper ./niri.nix;
   };
 in
 wrappers

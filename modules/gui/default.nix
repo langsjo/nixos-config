@@ -18,6 +18,8 @@ in
     ./dwm
     ./xserver.nix
     ./plasma6.nix
+    ./niri.nix
+    ./waybar.nix
   ];
 
   config = lib.mkIf cfg.enable {

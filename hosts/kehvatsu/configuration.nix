@@ -37,10 +37,11 @@
     gui = {
       enable = true;
 
-      displayManager.ly.enable = true;
-      xserver.enable = true;
-      windowManager.dwm = {
-        enable = true;
+      # displayManager.ly.enable = true
+      # xserver.enable = true;
+      windowManager = {
+        # dwm.enable = true;
+        niri.enable = true;
       };
     };
 
