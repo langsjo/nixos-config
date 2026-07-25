@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   ...
 }:
 let
@@ -9,17 +10,17 @@ let
 in
 {
   security.pam = {
-    u2f.settings = {
-      authfile = u2f_keys;
-      cue = true;
-      origin = "default";
+    u2f = {
+      enable = true;
+      settings = {
+        authfile = u2f_keys;
+        cue = true;
+        pinverification = 1;
+        origin = "default";
+      };
     };
     services = {
-      sudo.u2fAuth = true;
-      login = {
-        u2fAuth = true;
-        rules.auth.u2f.settings.pinverification = 1;
-      };
+      sudo.rules.auth.u2f.settings.pinverification = lib.mkForce false;
     };
   };
 }
