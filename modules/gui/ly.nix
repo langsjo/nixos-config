@@ -11,6 +11,10 @@ in
 
   config = lib.mkIf cfg.enable {
     services.displayManager.ly.enable = true;
+    security.pam.services.ly = {
+      u2fAuth = true;
+      rules.auth.u2f.settings.pinverification = 1;
+    };
 
     assertions = [
       {

@@ -66,6 +66,7 @@ in
         libsecret
         ripdrag
         attic-client
+        yubikey-manager
 
         github-copilot-cli'
         btop'

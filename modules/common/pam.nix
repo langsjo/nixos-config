@@ -16,7 +16,10 @@ in
     };
     services = {
       sudo.u2fAuth = true;
-      login.u2fAuth = true;
+      login = {
+        u2fAuth = true;
+        rules.auth.u2f.settings.pinverification = 1;
+      };
     };
   };
 }
