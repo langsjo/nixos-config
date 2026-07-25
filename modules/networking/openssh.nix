@@ -28,6 +28,7 @@ in
     users.users.${config.custom.user.username} = {
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII81x/a9yvz8juJTw0uyFwbgR5o6LausMOHWA1rwbzE7 langsjo@kehvatsu"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEttEBVPGpr80Hj0QJ7DiQVQw8SyO7rFW0AE0KYaZcfo langsjo"
       ];
     };
   };
