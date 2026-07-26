@@ -1,5 +1,6 @@
 {
   lib,
+  fetchurl,
   niri,
   fuzzel,
   swaylock,
@@ -9,10 +10,15 @@
   brightnessctl,
   wireplumber,
   xwayland-satellite,
+  swaybg,
 }:
 let
   wpctl = lib.getExe' wireplumber "wpctl";
   bctl = lib.getExe brightnessctl;
+  wallpaper = fetchurl {
+    url = "https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jr-korpa-9XngoIpxcEo-unsplash.jpg";
+    hash = "sha256-LOuLakJL20A98my8T+WC4gwCT1lEDVq6T09Zu6T7uvo=";
+  };
 in
 {
   package = niri;
@@ -148,6 +154,8 @@ in
         open-floating true
     }
 
+    spawn-at-startup "${lib.getExe swaybg}" "--mode" "fill" "--image" "${wallpaper}"
+
     binds {
         // Suggested binds for running programs: terminal, app launcher, screen locker.
         Mod+Return { spawn "${lib.getExe kitty-wrapped}"; }
@@ -167,6 +175,16 @@ in
         Mod+U repeat=false     { toggle-overview; }
 
         Mod+Q repeat=false     { close-window; }
+
+        Mod+TouchpadScrollLeft  { focus-column-left; }
+        Mod+TouchpadScrollDown  { focus-workspace-down; }
+        Mod+TouchpadScrollUp    { focus-workspace-up; }
+        Mod+TouchpadScrollRight { focus-column-right; }
+
+        Mod+WheelScrollLeft  { focus-column-left; }
+        Mod+WheelScrollDown  { focus-workspace-down; }
+        Mod+WheelScrollUp    { focus-workspace-up; }
+        Mod+WheelScrollRight { focus-column-right; }
 
         Mod+H       { focus-column-left; }
         Mod+J       { focus-window-or-workspace-down; }
