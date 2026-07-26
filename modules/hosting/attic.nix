@@ -38,7 +38,7 @@ in
         listen = "[::]:${toString cfg.port}";
         allowed-hosts = [ cfg.domain ];
         api-endpoint = "https://${cfg.domain}/";
-        database.url = "postgresql://${config.services.atticd.user}?host=/run/postgresql";
+        database.url = "postgresql://${config.services.atticd.user}@localhost?host=/run/postgresql";
 
         garbage-collection = {
           interval = "24 hours";
