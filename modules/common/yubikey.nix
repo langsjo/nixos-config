@@ -22,6 +22,7 @@ in
     };
     services = {
       sudo.rules.auth.u2f.settings.pinverification = lib.mkForce false;
+      "polkit-1".rules.auth.u2f.settings.pinverification = lib.mkForce false;
     };
   };
 

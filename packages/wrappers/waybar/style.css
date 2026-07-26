@@ -1,0 +1,74 @@
+@define-color bg        rgba(46, 46, 46, 0.45);
+@define-color fg        #b0b0b0;
+@define-color box       rgba(38, 38, 38, 0.85);
+@define-color box_hover #3a3a3a;
+@define-color focus     #7fc8ff;
+@define-color focus_fg  #2e2e2e;
+@define-color warning   #e6a23c;
+@define-color critical  #e5484d;
+
+* {
+    font-family: "MesloLGM Nerd Font", monospace;
+    font-size: 14px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+window#waybar {
+    background: @bg;
+    color: @fg;
+}
+
+#mpris, #pulseaudio, #backlight, #battery, #cpu, #temperature, #clock,
+#custom-power-profile, #custom-media-prev, #custom-media-next, #window,
+#workspaces button {
+    background: @box;
+    color: @fg;
+    border-radius: 6px;
+    margin: 4px 0;
+    padding: 0 10px;
+}
+
+
+#mpris:hover, #pulseaudio:hover, #backlight:hover, #battery:hover, #cpu:hover,
+#temperature:hover, #clock:hover, #custom-power-profile:hover,
+#custom-media-prev:hover, #custom-media-next:hover, #window:hover,
+#workspaces button:hover {
+    background: @box_hover;
+}
+
+
+#niri-group {
+    background: transparent;
+    min-width: 40em;
+}
+
+#workspaces {
+    background: transparent;
+    padding: 0 4px;
+    min-width: 13em;
+}
+
+#window {
+    margin-left: 6px;
+    margin-right: 24px;
+}
+
+window#waybar.empty #window {
+    background: transparent;
+}
+
+#workspaces button {
+    margin: 4px 3px;
+    padding: 0 8px;
+}
+
+#workspaces button.focused {
+    background: @focus;
+    color: @focus_fg;
+}
+
+#battery.warning, #temperature.warning  { color: @warning; }
+#battery.critical, #temperature.critical { color: @critical; }

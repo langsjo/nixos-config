@@ -9,6 +9,7 @@
       upower.enable = true;
       tlp = {
         enable = true;
+        pd.enable = true;
         # settings = {
         #   CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
         #   CPU_BOOST_ON_BAT = true;

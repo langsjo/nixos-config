@@ -21,6 +21,7 @@ let
     niri-wrapped = mkWrapper ./niri.nix;
     networkmanager_dmenu-wrapped = mkWrapper ./networkmanager_dmenu.nix;
     swayidle-wrapped = mkWrapper ./swayidle.nix;
+    waybar-wrapped = mkWrapper ./waybar;
   };
 in
 wrappers

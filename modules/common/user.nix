@@ -87,5 +87,6 @@ in
       defaultUserShell = pkgs.bash;
     };
     programs.bash.enable = true;
+    environment.shells = [ cfg.shell ];
   };
 }
