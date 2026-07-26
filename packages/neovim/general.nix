@@ -7,15 +7,6 @@
     ./plugins
     ./settings
   ];
-
-  # config = {
-  #   environment.variables = {
-  #     MANPAGER = "nvim +Man!";
-  #   };
-  #   custom.providers.editor = {
-  #     program = "nvim";
-  #     desktop = "nvim.desktop";
-  #   };
   colorschemes = {
     tokyonight = {
       enable = true;

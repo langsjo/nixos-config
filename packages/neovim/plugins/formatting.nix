@@ -51,6 +51,7 @@ in
                 buf.enable_autoformat == true
                 or (vim.g.enable_autoformat and buf.enable_autoformat ~= false)
               if autoformat_enabled then
+                trim_trailspace()
                 return { timeout_ms = 500, lsp_format = "fallback" }
               end
               return
@@ -62,6 +63,22 @@ in
     mini-trailspace.enable = true;
   };
 
+  extraConfigLuaPre = ''
+    function trim_trailspace()
+      local trailspace = require('mini.trailspace')
+      local ignore_ft = {
+        markdown = true,
+        quarto = true,
+        rmd = true,
+      }
+
+      if not ignore_ft[vim.bo.filetype] then
+        trailspace.trim()
+      end
+      trailspace.trim_last_lines()
+    end
+  '';
+
   keymaps = [
     {
       mode = "";
@@ -69,6 +86,7 @@ in
       options.desc = "Format current buffer / selection";
       action.__raw = ''
         function()
+          trim_trailspace()
           require("conform").format({ timeout_ms = 500, lsp_format = "fallback" })
         end
       '';
@@ -136,32 +154,32 @@ in
       '';
     };
   };
-  autoCmd = [
-    {
-      event = [ "BufWritePre" ];
-      desc = "Remove trailing whitespace on write";
-      callback.__raw = ''
-        function()
-          local trailspace = require('mini.trailspace')
-          local ignore_ft = {
-            markdown = true,
-            quarto = true,
-            rmd = true,
-          }
-          local autoformat_enabled =
-            vim.b.enable_autoformat == true
-            or (vim.g.enable_autoformat and vim.b.enable_autoformat ~= false)
-
-          if not autoformat_enabled then
-            return
-          end
-
-          if not ignore_ft[vim.bo.filetype] then
-            trailspace.trim()
-          end
-          trailspace.trim_last_lines()
-        end
-      '';
-    }
-  ];
+  # autoCmd = [
+  #   {
+  #     event = [ "BufWritePre" ];
+  #     desc = "Remove trailing whitespace on write";
+  #     callback.__raw = ''
+  #       function()
+  #         local trailspace = require('mini.trailspace')
+  #         local ignore_ft = {
+  #           markdown = true,
+  #           quarto = true,
+  #           rmd = true,
+  #         }
+  #         local autoformat_enabled =
+  #           vim.b.enable_autoformat == true
+  #           or (vim.g.enable_autoformat and vim.b.enable_autoformat ~= false)
+  #
+  #         if not autoformat_enabled then
+  #           return
+  #         end
+  #
+  #         if not ignore_ft[vim.bo.filetype] then
+  #           trailspace.trim()
+  #         end
+  #         trailspace.trim_last_lines()
+  #       end
+  #     '';
+  #   }
+  # ];
 }
