@@ -78,6 +78,8 @@ in
     };
   };
 
+  services.mpris-proxy.enable = true;
+  services.playerctld.enable = true;
   programs.bash = {
     enable = true;
     initExtra = ''
