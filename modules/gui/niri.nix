@@ -24,8 +24,6 @@ in
       };
     };
 
-    environment.systemPackages = [ pkgs.vanilla-dmz ];
-
     programs.niri = {
       enable = true;
       package = config.custom.wrappers.niri;

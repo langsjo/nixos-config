@@ -7,7 +7,6 @@
   ...
 }:
 let
-  networkmanager-dmenu-wrapped = inputs.wrapper-lib.lib.mkWrapper pkgs ../../modules/gui/dwm/networkmanager_dmenu-wrapped.nix;
   dwm' = kehvatsu.config.services.xserver.windowManager.dwm.package.override {
     conf = pkgs.callPackage ../../modules/gui/dwm/config/config.nix {
       inherit (config.custom) providers;
@@ -57,15 +56,15 @@ in
     customPkgs.zsh-wrapped
     customPkgs.tmux-wrapped
     customPkgs.showcerts
+    customPkgs.networkmanager_dmenu-wrapped
     kitty-nixGL
-    networkmanager-dmenu-wrapped
-    dwm'
+    # dwm'
     monitorSetUp
   ];
 
   services.dunst.enable = true;
   services.dwm-status = {
-    enable = true;
+    enable = false;
     order = kehvatsu.config.services.dwm-status.settings.order;
     extraConfig = lib.mkMerge [
       (removeAttrs kehvatsu.config.services.dwm-status.settings [ "order" ])
@@ -81,12 +80,9 @@ in
 
   programs.bash = {
     enable = true;
-    bashrcExtra = ''
+    initExtra = ''
       if [[ -z "$BASHRC_SOURCED" ]]; then
         export BASHRC_SOURCED=1
-        xset r rate 200 30
-        setxkbmap -layout fi -variant nodeadkeys
-        systemctl --user start dwm-status.service
         exec zsh
       fi
     '';

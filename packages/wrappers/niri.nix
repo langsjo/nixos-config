@@ -2,6 +2,7 @@
   lib,
   fetchurl,
   niri,
+  vanilla-dmz,
   fuzzel,
   swaylock,
   firefox,
@@ -23,6 +24,7 @@ in
 {
   package = niri;
   includeBins = [ "niri" ];
+  env.prefixes."XCURSOR_PATH" = "${vanilla-dmz}/share/icons";
   env.paths."NIRI_CONFIG"."/".text = /* kdl */ ''
     input {
         disable-power-key-handling
@@ -47,6 +49,7 @@ in
 
         mouse {
             accel-profile "flat"
+            accel-speed 0.2
         }
 
         trackpoint {
@@ -58,15 +61,30 @@ in
         }
     }
 
-    output "eDP-1" {
-        scale 1
+    output "HP Inc. HP Z27u G3 CN42294BRK" {
+        mode "2560x1440@59.951"
         position x=0 y=0
-        variable-refresh-rate
+        transform "270"
+    }
+    output "HP Inc. HP 534pm CNC5270207" {
+        mode "3440x1440@59.973"
+        position x=1440 y=560
+    }
+
+    output "LG Display 0x06D6 Unknown" {
+        mode "1920x1080@60.020"
+        position x=1440 y=2000
     }
 
     cursor {
         xcursor-theme "Vanilla-DMZ"
         hide-after-inactive-ms 9999999
+    }
+
+    output "eDP-1" {
+        scale 1
+        position x=0 y=0
+        variable-refresh-rate
     }
 
     gestures {
