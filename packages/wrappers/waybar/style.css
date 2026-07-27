@@ -42,7 +42,7 @@ window#waybar {
 
 #niri-group {
     background: transparent;
-    min-width: 40em;
+    min-width: 41em;
 }
 
 #workspaces {
@@ -52,8 +52,8 @@ window#waybar {
 }
 
 #window {
-    margin-left: 6px;
-    margin-right: 24px;
+    margin-left: 3em;
+    margin-right: 6em;
 }
 
 window#waybar.empty #window {

@@ -50,7 +50,8 @@ in
       };
       "niri/window" = {
         format = "{title}";
-        max-length = 45;
+        max-length = 27;
+        ellipsis = "…";
       };
 
       mpris = {
