@@ -1,11 +1,13 @@
 {
   lib,
-  systemdSupport ? true, # required arg for waybar nixos module...
   waybar,
   playerctl,
   pavucontrol,
   writeShellScript,
   tlp-pd,
+
+  systemdSupport ? true, # required arg for waybar nixos module...
+  thermal-zone ? 0,
 }:
 let
   pctl = lib.getExe playerctl;
@@ -32,6 +34,7 @@ in
         "backlight"
         "battery"
         "cpu"
+        "memory"
         "temperature"
         "custom/power-profile"
         "clock"
@@ -67,13 +70,13 @@ in
         on-click = "${pctl} play-pause";
       };
       "custom/media-prev" = {
-        exec = "${pctl} status >/dev/null && echo '⏮'";
+        exec = "${pctl} status >/dev/null && echo '󰒫'";
         interval = 5;
         on-click = "${pctl} previous";
         tooltip = false;
       };
       "custom/media-next" = {
-        exec = "${pctl} status >/dev/null && echo '⏭'";
+        exec = "${pctl} status >/dev/null && echo '󰒬'";
         interval = 5;
         on-click = "${pctl} next";
         tooltip = false;
@@ -121,7 +124,24 @@ in
       cpu = {
         interval = 2;
         format = " {usage}%";
+        states = {
+          warning = 70;
+          critical = 90;
+        };
         tooltip = true;
+      };
+
+      memory = {
+        format = " {used:0.1f}/{total:0.1f} GiB";
+        interval = 2;
+        states = {
+          warning = 70;
+          critical = 90;
+        };
+        tooltip = true;
+        tooltip-format = ''
+          {percentage} % used
+          Swap: {swapUsed:0.1f}/{swapTotal:0.1f} GiB'';
       };
 
       "custom/power-profile" = {
@@ -146,6 +166,7 @@ in
       };
 
       temperature = {
+        inherit thermal-zone;
         interval = 5;
         warning-threshold = 70;
         critical-threshold = 85;

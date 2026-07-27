@@ -38,7 +38,9 @@ in
   };
   programs.waybar = {
     enable = true;
-    package = customPkgs.waybar-wrapped;
+    package = customPkgs.waybar-wrapped.override {
+      thermal-zone = 6;
+    };
     systemd = {
       enable = true;
       targets = [ "niri.service" ];

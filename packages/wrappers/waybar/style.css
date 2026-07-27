@@ -21,7 +21,7 @@ window#waybar {
     color: @fg;
 }
 
-#mpris, #pulseaudio, #backlight, #battery, #cpu, #temperature, #clock,
+#mpris, #pulseaudio, #backlight, #battery, #cpu, #memory, #temperature, #clock,
 #custom-power-profile, #custom-media-prev, #custom-media-next, #window,
 #workspaces button {
     background: @box;
@@ -33,7 +33,7 @@ window#waybar {
 
 
 #mpris:hover, #pulseaudio:hover, #backlight:hover, #battery:hover, #cpu:hover,
-#temperature:hover, #clock:hover, #custom-power-profile:hover,
+#memory:hover, #temperature:hover, #clock:hover, #custom-power-profile:hover,
 #custom-media-prev:hover, #custom-media-next:hover, #window:hover,
 #workspaces button:hover {
     background: @box_hover;
@@ -42,7 +42,7 @@ window#waybar {
 
 #niri-group {
     background: transparent;
-    min-width: 41em;
+    min-width: 32em;
 }
 
 #workspaces {
@@ -52,8 +52,8 @@ window#waybar {
 }
 
 #window {
-    margin-left: 3em;
-    margin-right: 6em;
+    margin-left: 6px;
+    margin-right: 15px;
 }
 
 window#waybar.empty #window {
@@ -70,5 +70,5 @@ window#waybar.empty #window {
     color: @focus_fg;
 }
 
-#battery.warning, #temperature.warning  { color: @warning; }
-#battery.critical, #temperature.critical { color: @critical; }
+#battery.warning, #cpu.warning, #memory.warning, #temperature.warning  { color: @warning; }
+#battery.critical, #cpu.critical, #memory.critical, #temperature.critical { color: @critical; }
