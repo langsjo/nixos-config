@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   pkgs,
   ...
@@ -11,6 +12,7 @@ let
 
   # Swaylock via Nix doesn't use right PAM modules
   swaylock-script = pkgs.writeShellScriptBin "swaylock-opener-proxy" ''
+    export PATH="$PATH:/usr/bin"
     exec swaylock "$@"
   '';
   niri-wrapped' = customPkgs.niri-wrapped.override {
@@ -29,7 +31,9 @@ in
 
   services.swayidle = {
     enable = true;
-    package = customPkgs.swayidle-wrapped;
+    package = customPkgs.swayidle-wrapped.override {
+      lockCmd = "${lib.getExe swaylock-script} -f";
+    };
     systemdTargets = [ "niri.service" ];
   };
   programs.waybar = {
