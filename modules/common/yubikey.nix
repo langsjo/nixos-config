@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -10,6 +11,9 @@ let
   '';
 in
 {
+  environment.systemPackages = [
+    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.yubikey-add-totp
+  ];
   security.pam = {
     u2f = {
       enable = true;

@@ -5,6 +5,7 @@
   fetchFromGitHub,
   yubikey-manager,
   wtype,
+  wl-clipboard,
 }:
 buildPythonApplication (finalAttrs: {
   pname = "yubikey-oath-dmenu";
@@ -22,6 +23,7 @@ buildPythonApplication (finalAttrs: {
     click
     yubikey-manager
     wtype
+    wl-clipboard
   ];
 
   meta.mainProgram = "yubikey-oath-dmenu";
