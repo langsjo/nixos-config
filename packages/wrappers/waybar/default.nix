@@ -188,12 +188,12 @@ in
 
           clock = {
             interval = 1;
-            format = " {:%Y-%m-%d (%a) %H:%M:%S}";
+            format = " {:%H:%M:%S - %Y-%m-%d (%a)}";
             tooltip-format = "<tt>{calendar}</tt>";
             calendar = {
               mode = "month";
               format = {
-                today = "<b>{}</b>";
+                today = "<span color='red'><b>{}</b></span>";
               };
             };
           };
