@@ -1,13 +1,15 @@
 {
   pkgs,
   inputs,
+  customPkgs,
 }:
 let
   wLib = inputs.wrapper-lib.lib.withSettings {
     extraArgs = {
       inherit inputs;
     }
-    // wrappers;
+    // wrappers
+    // customPkgs;
     useBinaryWrapper = true;
   };
   mkWrapper = wLib.mkWrapper pkgs;

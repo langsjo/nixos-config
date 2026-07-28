@@ -21,7 +21,7 @@ in
       agent = {
         enable = true;
         enableSSHSupport = true;
-        pinentryPackage = pkgs.pinentry-rofi;
+        pinentryPackage = pkgs.pinentry-gtk2;
         settings = {
           enable-ssh-support = "";
           grab = "";
