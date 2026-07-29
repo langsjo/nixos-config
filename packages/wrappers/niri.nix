@@ -13,7 +13,6 @@
   xwayland-satellite,
   swaybg,
   yubikey-oath-dmenu,
-  pinentry-gtk2,
 }:
 let
   wpctl = lib.getExe' wireplumber "wpctl";
@@ -184,7 +183,7 @@ in
         Mod+Shift+D { spawn "${lib.getExe networkmanager_dmenu-wrapped}"; }
         Mod+P  { spawn "${lib.getExe swaylock}"; }
         Mod+Y {
-            spawn "${lib.getExe yubikey-oath-dmenu}" "--type" "--clipboard" "--menu-cmd" "${lib.getExe fuzzel} --width 50 --dmenu --prompt 'TOTP> '" "--pinentry" "${lib.getExe pinentry-gtk2}";
+            spawn "${lib.getExe yubikey-oath-dmenu}" "--dmenu-cmd" "${lib.getExe fuzzel} --width 50 --dmenu --prompt 'TOTP> '";
         }
 
         XF86AudioRaiseVolume  allow-when-locked=true { spawn "${wpctl}" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+" "--limit" "1.0"; }

@@ -9,7 +9,7 @@ let
     showcerts = callPackage ./showcerts.nix { };
     nixpkgs-review-gha = callPackage ./nixpkgs-review-gha.nix { };
     neovim = import ./neovim { inherit pkgs inputs; };
-    yubikey-oath-dmenu = pkgs.python3Packages.callPackage ./yubikey-oath-dmenu.nix { };
+    yubikey-oath-dmenu = callPackage ./yubikey-oath-dmenu.nix { };
     yubikey-add-totp = callPackage ./yubikey-add-totp.nix { };
   }
   // (import ./wrappers { inherit pkgs inputs customPkgs; });

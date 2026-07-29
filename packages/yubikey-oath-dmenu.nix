@@ -1,30 +1,47 @@
 {
-  buildPythonApplication,
-  click,
-  setuptools,
-  fetchFromGitHub,
+  writeShellApplication,
   yubikey-manager,
+  libnotify,
   wtype,
   wl-clipboard,
 }:
-buildPythonApplication (finalAttrs: {
-  pname = "yubikey-oath-dmenu";
-  version = "0.14.0-unstable-2025-12-11";
-  pyproject = true;
-  src = fetchFromGitHub {
-    owner = "emlun";
-    repo = "yubikey-oath-dmenu";
-    rev = "aa110c2b2c23ee472155d259204b98b5bf655b11";
-    hash = "sha256-LzEa9jIr3zvp1E3qSDs5G4VOLkYN3FC6Tn2gRtvlrY4=";
-  };
-
-  build-system = [ setuptools ];
-  dependencies = [
-    click
+writeShellApplication {
+  name = "yubikey-oath-dmenu";
+  runtimeInputs = [
     yubikey-manager
+    libnotify
     wtype
     wl-clipboard
   ];
+  text = ''
+    set -euo pipefail
 
-  meta.mainProgram = "yubikey-oath-dmenu";
-})
+    log() {
+      if [[ -t 2 ]]; then
+        echo "$*" >&2
+      else
+        notify-send "yubikey-oath-dmenu" "$*"
+      fi
+    }
+    die() {
+      log "fatal: $*"
+      exit 1
+    }
+
+    dmenu_cmd=""
+    while [[ "$#" -gt 0 ]]; do
+      case "$1" in
+        --dmenu-cmd) dmenu_cmd="$2"; shift 2 ;;
+      esac
+    done
+
+    [[ -n "$dmenu_cmd" ]] || die "must pass --dmenu-cmd"
+
+    accounts=$(ykman oath accounts list) || die "failed to list OATH accounts"
+    choice=$(eval "$dmenu_cmd" <<< "$accounts") || die "no choice was made"
+    code=$(ykman oath accounts code -s "$choice") || die "failed to generate code"
+
+    wl-copy "$code"
+    wtype "$code"
+  '';
+}

@@ -24,6 +24,7 @@ in
       };
     };
 
+    services.dunst.enable = true;
     programs.niri = {
       enable = true;
       package = config.custom.wrappers.niri;
