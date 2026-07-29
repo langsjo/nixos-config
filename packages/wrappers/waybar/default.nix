@@ -82,13 +82,13 @@ in
             on-click = "${pctl} play-pause";
           };
           "custom/media-prev" = {
-            exec = "${pctl} status >/dev/null && echo '󰒫'";
+            exec = "${pctl} status >/dev/null 2>&1 && echo '󰒫'";
             interval = 5;
             on-click = "${pctl} previous";
             tooltip = false;
           };
           "custom/media-next" = {
-            exec = "${pctl} status >/dev/null && echo '󰒬'";
+            exec = "${pctl} status >/dev/null 2>&1 && echo '󰒬'";
             interval = 5;
             on-click = "${pctl} next";
             tooltip = false;
