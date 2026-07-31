@@ -75,17 +75,18 @@ in
     output "LG Display 0x06D6 Unknown" {
         mode "1920x1080@60.020"
         position x=1440 y=2000
-    }
-
-    cursor {
-        xcursor-theme "Vanilla-DMZ"
-        hide-after-inactive-ms 9999999
+        scale 1
     }
 
     output "eDP-1" {
         scale 1
         position x=0 y=0
         variable-refresh-rate
+    }
+
+    cursor {
+        xcursor-theme "Vanilla-DMZ"
+        hide-after-inactive-ms 9999999
     }
 
     gestures {
