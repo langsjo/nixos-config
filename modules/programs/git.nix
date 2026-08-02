@@ -20,7 +20,10 @@ in
         user = {
           name = "langsjo";
           email = "104687438+langsjo@users.noreply.github.com";
+          signingkey = "0x932CF958F022A14B";
         };
+
+        commit.gpgsign = true;
 
         alias = {
           amend = "commit --amend --no-edit"; # Just add staged files to previous commit
