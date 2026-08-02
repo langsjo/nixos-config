@@ -32,7 +32,10 @@ in
 
     security.pam.services.greetd = {
       u2fAuth = true;
-      rules.auth.u2f.settings.pinverification = 1;
+      rules.auth.u2f = {
+        order = 10900;
+        settings.pinverification = 1;
+      };
     };
 
     services.greetd = {
