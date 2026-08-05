@@ -51,6 +51,7 @@ in
     github-copilot-cli
     libqalculate
     dust
+    wl-clipboard
 
     customPkgs.neovim
     customPkgs.zsh-wrapped

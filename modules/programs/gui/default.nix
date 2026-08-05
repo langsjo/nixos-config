@@ -37,6 +37,7 @@ in
       google-chrome
       ayugram-desktop
       signal-desktop
+      wl-clipboard
 
       less685 # newest less is broken with kitty
       kitty-wrapped
