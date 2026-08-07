@@ -62,6 +62,11 @@ in
         }
     }
 
+
+    output "Microstep MSI MAG271C 0x00000079" {
+      mode "1920x1080@143.855"
+    }
+
     output "HP Inc. HP Z27u G3 CN42294BRK" {
         mode "2560x1440@59.951"
         position x=0 y=0

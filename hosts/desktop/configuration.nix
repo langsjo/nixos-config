@@ -15,8 +15,12 @@
   # Pascal GPU not supported in 590+
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
+  services.power-profiles-daemon.enable = true;
+
   custom = {
     isLaptop = false;
+
+    virt.enable = false;
 
     user = {
       username = "langsjo";
@@ -25,14 +29,9 @@
 
     gui = {
       enable = true;
-
-      xserver.enable = true;
-
-      displayManager.ly.enable = true;
-      windowManager.dwm = {
+      windowManager.niri = {
         enable = true;
       };
-      desktopManager.plasma6.enable = true;
     };
 
     screen.dpi = 96;
@@ -79,16 +78,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/0b5f8011-e95b-4e7d-8a50-aeaaf8c721de";
-    fsType = "btrfs";
-    neededForBoot = true;
-    options = [
-      "noatime"
-      "nodiratime"
-      "compress=zstd"
-      "subvol=@nix"
-    ];
-  };
 }

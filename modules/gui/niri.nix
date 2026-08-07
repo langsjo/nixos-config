@@ -10,8 +10,10 @@ let
   niri-session = lib.getExe' config.programs.niri.package "niri-session";
 in
 {
-  options.custom.gui.windowManager.niri.enable = lib.mkEnableOption "niri window-manager";
-
+  options.custom.gui.windowManager.niri = {
+    enable = lib.mkEnableOption "niri window-manager";
+    autoLogin = lib.mkEnableOption "niri autologin";
+  };
   config = lib.mkIf cfg.enable {
     custom = {
       wrappers.niri = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.niri-wrapped;
@@ -38,7 +40,7 @@ in
           command = "${lib.getExe pkgs.tuigreet} --time --remember --cmd '${niri-session}'";
           user = "greeter";
         };
-        initial_session = {
+        initial_session = lib.mkIf cfg.autoLogin {
           command = niri-session;
           user = config.custom.user.username;
         };
