@@ -1,5 +1,5 @@
 {
-  inputs,
+  myPkgs,
   config,
   pkgs,
   lib,
@@ -16,7 +16,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     custom = {
-      wrappers.niri = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.niri-wrapped;
+      wrappers.niri = myPkgs.niri-wrapped;
       gui = {
         waybar.enable = true;
         swayidle = {

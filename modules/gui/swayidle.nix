@@ -1,6 +1,5 @@
 {
-  inputs,
-  pkgs,
+  myPkgs,
   lib,
   config,
   ...
@@ -18,7 +17,7 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    custom.wrappers.swayidle = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.swayidle-wrapped;
+    custom.wrappers.swayidle = myPkgs.swayidle-wrapped;
     systemd.user.services.swayidle = {
       wantedBy = cfg.targets;
       partOf = cfg.targets;

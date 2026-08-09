@@ -1,5 +1,5 @@
 {
-  inputs,
+  myPkgs,
   config,
   pkgs,
   lib,
@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.custom.programs.gui;
-  kitty-wrapped = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.kitty-wrapped;
+  kitty-wrapped = myPkgs.kitty-wrapped;
   less685 = pkgs.less.overrideAttrs (old: {
     version = "685";
     src = old.src.overrideAttrs {

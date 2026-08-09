@@ -1,5 +1,5 @@
 {
-  inputs,
+  myPkgs,
   config,
   pkgs,
   lib,
@@ -8,11 +8,9 @@
 let
   cfg = config.custom.gui.windowManager.dwm;
 
-  networkmanager_dmenu-wrapped =
-    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.networkmanager_dmenu-wrapped.override
-      {
-        dmenuCmd = "${lib.getExe pkgs.rofi} -dmenu -width 30 -i";
-      };
+  networkmanager_dmenu-wrapped = myPkgs.networkmanager_dmenu-wrapped.override {
+    dmenuCmd = "${lib.getExe pkgs.rofi} -dmenu -width 30 -i";
+  };
 
   dwm' = pkgs.dwm.override {
     conf = pkgs.callPackage ./config/config.nix { inherit (config.custom) providers; };

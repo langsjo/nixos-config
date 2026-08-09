@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   ...
 }:
@@ -21,4 +22,6 @@
     man-pages
     man-pages-posix
   ];
+
+  _module.args.myPkgs = inputs.self.packages.${pkgs.stdenv.hostPlatform.system};
 }

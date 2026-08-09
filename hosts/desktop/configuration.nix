@@ -1,6 +1,9 @@
 {
   inputs,
+  myPkgs,
   config,
+  pkgs,
+  lib,
   ...
 }:
 {
@@ -45,6 +48,14 @@
       bluetooth.enable = true;
       graphics.enable = true;
       gpuType = "nvidia";
+    };
+
+    wrappers = {
+      waybar = lib.mkForce (
+        myPkgs.waybar-wrapped.override {
+          thermal-zone = 3;
+        }
+      );
     };
   };
 

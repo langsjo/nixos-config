@@ -1,11 +1,11 @@
 {
-  inputs,
+  myPkgs,
   config,
   pkgs,
   ...
 }:
 let
-  zsh-wrapped = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zsh-wrapped.override {
+  zsh-wrapped = myPkgs.zsh-wrapped.override {
     autostartTmux = false;
   };
 in

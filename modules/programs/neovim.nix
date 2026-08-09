@@ -1,8 +1,7 @@
 {
   config,
   lib,
-  inputs,
-  pkgs,
+  myPkgs,
   ...
 }:
 let
@@ -15,7 +14,7 @@ in
 
   config = lib.mkIf cfg.nvim.enable {
     environment.systemPackages = [
-      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.neovim
+      myPkgs.neovim
     ];
 
     environment.sessionVariables = {

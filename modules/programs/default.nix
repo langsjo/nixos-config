@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  myPkgs,
   ...
 }:
 let
@@ -71,7 +72,7 @@ in
         github-copilot-cli'
         btop'
       ])
-      ++ (with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
+      ++ (with myPkgs; [
         rebuild
         tmux-wrapped
         nixpkgs-review-gha
