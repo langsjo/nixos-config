@@ -26,7 +26,7 @@ in
       enable = true;
     };
 
-    environment.variables = {
+    environment.sessionVariables = {
       __GL_SHADER_DISK_CACHE_PATH = "$HOME/.cache/shaders";
       __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = 1;
       __GL_SHADER_DISK_CACHE_SIZE = 107374182400;

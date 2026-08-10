@@ -21,6 +21,7 @@ in
     ./niri.nix
     ./waybar.nix
     ./swayidle.nix
+    ./theme.nix
   ];
 
   config = lib.mkIf cfg.enable {

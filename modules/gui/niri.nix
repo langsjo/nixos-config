@@ -18,7 +18,10 @@ in
     custom = {
       wrappers.niri = myPkgs.niri-wrapped;
       gui = {
-        waybar.enable = true;
+        waybar = {
+          enable = true;
+          target = "niri.service";
+        };
         swayidle = {
           enable = true;
           targets = [ "niri.service" ];
