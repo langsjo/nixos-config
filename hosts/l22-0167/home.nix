@@ -30,8 +30,21 @@
     };
   };
 
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    gtk4.theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+  };
+
   fonts.fontconfig.enable = true;
   nixpkgs.config.allowUnfree = true;
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   home.username = "langsjr1";
   home.homeDirectory = "/u/94/langsjr1/unix";
