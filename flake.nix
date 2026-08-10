@@ -59,6 +59,7 @@
             sops
             awscli2
             opentofu
+            age-plugin-yubikey
           ];
 
           shellHook = ''
