@@ -39,8 +39,8 @@ in
     ];
 
     profiles = {
-      "eduroam" = mkAaltoProfile "eduroam" 100;
-      "aalto" = mkAaltoProfile "aalto" 150;
+      # "eduroam" = mkAaltoProfile "eduroam" 100;
+      # "aalto" = mkAaltoProfile "aalto" 150;
     };
   };
 }
