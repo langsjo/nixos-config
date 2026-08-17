@@ -33,14 +33,14 @@
         enable = true;
         pd = {
           enable = true;
-          package = pkgs.tlp-pd.overrideAttrs {
+          package = (pkgs.tlp-pd.override { tlp = config.services.tlp.package; }).overrideAttrs (old: {
             inherit (config.services.tlp.package)
               version
               src
               patches
               postPatch
               ;
-          };
+          });
         };
       };
     };

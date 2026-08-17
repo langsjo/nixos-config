@@ -18,7 +18,10 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    custom.wrappers.waybar = myPkgs.waybar-wrapped;
+    # use same tlp-pd override as system is
+    custom.wrappers.waybar = myPkgs.waybar-wrapped.override {
+      tlp-pd = config.services.tlp.pd.package;
+    };
     programs.waybar = {
       enable = true;
       package = config.custom.wrappers.waybar;
