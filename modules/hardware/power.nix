@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }:
@@ -8,21 +9,39 @@
     services = {
       upower.enable = true;
       tlp = {
+        package = pkgs.tlp.overrideAttrs (
+          finalAttrs: old: {
+            version = "1.10.2";
+            src = pkgs.fetchFromGitHub {
+              owner = "linrunner";
+              repo = "TLP";
+              rev = finalAttrs.version;
+              hash = "sha256-/xTg53eJ+AKrlG++nQGLsosaWzg1JrwGIGB2+h0MZDI=";
+            };
+            patches =
+              (builtins.filter (x: !lib.hasSuffix "0001-makefile-correctly-sed-paths.patch" x) old.patches)
+              ++ [
+                ./0001-makefile-correctly-sed-paths.patch
+              ];
+          }
+        );
+        settings = {
+          TLP_PROFILE_AC = "PRF";
+          TLP_PROFILE_BAT = "SAV";
+          TLP_AUTO_SWITCH = 1;
+        };
         enable = true;
-        pd.enable = true;
-        # settings = {
-        #   CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-        #   CPU_BOOST_ON_BAT = true;
-        #   CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
-        #   PLATFORM_PROFILE_ON_BAT = "balanced";
-        #   PCIE_ASPM_ON_BAT = "powersupersave";
-        #   RUNTIME_PM_ON_BAT = "auto";
-        #   SATA_LINKPWR_ON_BAT = "min-power";
-        #   WIFI_PWR_ON_BAT = "on";
-        #   SOUND_POWER_SAVE_ON_BAT = true;
-        #   SOUND_POWER_SAVE_CONTROLLER = "Y";
-        #   RADEON_DPM_PERF_LEVEL_ON_BAT = "low";
-        # };
+        pd = {
+          enable = true;
+          package = pkgs.tlp-pd.overrideAttrs {
+            inherit (config.services.tlp.package)
+              version
+              src
+              patches
+              postPatch
+              ;
+          };
+        };
       };
     };
   };
