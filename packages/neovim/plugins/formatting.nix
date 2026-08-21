@@ -154,32 +154,4 @@ in
       '';
     };
   };
-  # autoCmd = [
-  #   {
-  #     event = [ "BufWritePre" ];
-  #     desc = "Remove trailing whitespace on write";
-  #     callback.__raw = ''
-  #       function()
-  #         local trailspace = require('mini.trailspace')
-  #         local ignore_ft = {
-  #           markdown = true,
-  #           quarto = true,
-  #           rmd = true,
-  #         }
-  #         local autoformat_enabled =
-  #           vim.b.enable_autoformat == true
-  #           or (vim.g.enable_autoformat and vim.b.enable_autoformat ~= false)
-  #
-  #         if not autoformat_enabled then
-  #           return
-  #         end
-  #
-  #         if not ignore_ft[vim.bo.filetype] then
-  #           trailspace.trim()
-  #         end
-  #         trailspace.trim_last_lines()
-  #       end
-  #     '';
-  #   }
-  # ];
 }
