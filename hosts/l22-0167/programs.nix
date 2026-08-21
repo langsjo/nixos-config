@@ -65,20 +65,6 @@ in
   ];
 
   services.dunst.enable = true;
-  services.dwm-status = {
-    enable = false;
-    order = kehvatsu.config.services.dwm-status.settings.order;
-    extraConfig = lib.mkMerge [
-      (removeAttrs kehvatsu.config.services.dwm-status.settings [ "order" ])
-      { backlight.device = lib.mkForce "intel_backlight"; }
-    ];
-  };
-  systemd.user.services.dwm-status = {
-    Service = {
-      Restart = "on-failure";
-      RestartSec = 5;
-    };
-  };
 
   services.mpris-proxy.enable = true;
   services.playerctld.enable = true;
