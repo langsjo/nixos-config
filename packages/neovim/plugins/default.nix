@@ -19,7 +19,11 @@
     indent-blankline.enable = true;
     comment.enable = true;
     markdown-preview.enable = true;
-    image.enable = true;
+    image = {
+      enable = true;
+      settings.backend = "kitty";
+    };
+    render-markdown.enable = true;
 
     kitty-scrollback.enable = true;
     kitty-navigator.enable = true;

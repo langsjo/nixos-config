@@ -53,6 +53,7 @@ in
     dust
     wl-clipboard
 
+    customPkgs.yubikey-add-totp
     customPkgs.neovim
     customPkgs.zsh-wrapped
     customPkgs.tmux-wrapped
