@@ -32,6 +32,9 @@
       ];
       exclude = [
         "${config.custom.user.homeDirectory}/.cache"
+        "${config.custom.user.homeDirectory}/.local/share/Steam/steamapps/common"
+        "${config.custom.user.homeDirectory}/.local/share/Steam/steamapps/shadercache"
+        "${config.custom.user.homeDirectory}/.local/share/Steam/steamapps/downloading"
       ];
       tag = "home";
       pruneOpts = [
