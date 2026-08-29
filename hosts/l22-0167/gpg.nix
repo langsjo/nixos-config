@@ -7,7 +7,7 @@
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
-    pinentry.package = pkgs.pinentry-gtk2;
+    pinentry.package = pkgs.pinentry-gnome3;
   };
   programs.gpg = {
     enable = true;

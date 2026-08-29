@@ -21,7 +21,7 @@ in
       agent = {
         enable = true;
         enableSSHSupport = true;
-        pinentryPackage = pkgs.pinentry-gtk2;
+        pinentryPackage = pkgs.pinentry-gnome3;
         settings = {
           enable-ssh-support = "";
           grab = "";
