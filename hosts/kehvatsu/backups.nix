@@ -38,9 +38,9 @@
       ];
       tag = "home";
       pruneOpts = [
-        "--keep-daily 7"
-        "--keep-weekly 4"
-        "--keep-monthly 3"
+        "--keep-daily 30"
+        "--keep-weekly 12"
+        "--keep-monthly 6"
       ];
       passwordFile = config.sops.secrets."restic-encryption-passwd".path;
     };
