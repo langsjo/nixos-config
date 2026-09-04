@@ -68,6 +68,7 @@ in
         ripdrag
         attic-client
         yubikey-manager
+        pv
 
         github-copilot-cli'
         btop'
