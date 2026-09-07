@@ -1,22 +1,18 @@
 {
+  lib,
   inputs,
   config,
   kehvatsu,
   pkgs,
-  lib,
   ...
 }:
 let
-  dwm' = kehvatsu.config.services.xserver.windowManager.dwm.package.override {
-    conf = pkgs.callPackage ../../modules/gui/dwm/config/config.nix {
-      inherit (config.custom) providers;
-    };
-  };
-
   monitorSetUp = pkgs.writeShellScriptBin "monitors" (builtins.readFile ./monitorsetup.sh);
 
+  nixGLexe = lib.getExe config.custom.nixGL;
+
   kitty-nixGL-script = pkgs.writeShellScript "kitty-via-nixGL" ''
-    exec nixGL kitty "$@"
+    exec "${nixGLexe}" kitty "$@"
   '';
 
   kitty-nixGL = pkgs.symlinkJoin {
@@ -52,6 +48,7 @@ in
     libqalculate
     dust
     wl-clipboard
+    pv
 
     customPkgs.yubikey-add-totp
     customPkgs.neovim
@@ -60,7 +57,6 @@ in
     customPkgs.showcerts
     customPkgs.networkmanager_dmenu-wrapped
     kitty-nixGL
-    # dwm'
     monitorSetUp
   ];
 
@@ -97,7 +93,7 @@ in
       desktop = "nvim.desktop";
     };
     terminal = {
-      program = "nixGL kitty";
+      program = "${nixGLexe} kitty";
       desktop = "kitty.desktop";
     };
     browser = {
@@ -105,7 +101,7 @@ in
       desktop = "firefox.desktop";
     };
     fileManager = {
-      program = "nixGL kitty yazi";
+      program = "${nixGLexe} kitty yazi";
       desktop = "yazi.desktop";
     };
     pdfViewer = {
@@ -119,9 +115,6 @@ in
     videoPlayer = {
       program = "vlc";
       desktop = "vlc.desktop";
-    };
-    dwmLocker = {
-      program = "i3lock";
     };
   };
 }

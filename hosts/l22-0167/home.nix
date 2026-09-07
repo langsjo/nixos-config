@@ -11,6 +11,7 @@
     ./programs.nix
     ./gpg.nix
     ./niri.nix
+    ./nixGL.nix
   ];
 
   _module.args.kehvatsu = inputs.self.nixosConfigurations.kehvatsu;

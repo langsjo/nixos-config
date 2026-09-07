@@ -1,5 +1,7 @@
 {
+  lib,
   niri-wrapped,
+  nixGL ? null,
 }:
 {
   package = niri-wrapped;
@@ -8,6 +10,6 @@
   extraMakeWrapperArgs = [
     # source nixGL variables without running the exec
     "--run"
-    "source <(grep '^export' \"$(which nixGL)\")"
+    "source <(grep -v '^\\s*exec' \"${lib.getExe nixGL}\")"
   ];
 }

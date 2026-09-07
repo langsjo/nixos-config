@@ -98,6 +98,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixGL = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-templates.url = "github:langsjo/flake-templates";
     wrapper-lib.url = "github:langsjo/wrapper-lib";
   };

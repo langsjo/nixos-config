@@ -1,5 +1,6 @@
 {
   lib,
+  config,
   inputs,
   pkgs,
   ...
@@ -21,6 +22,7 @@ let
   };
   niri-wrapped-nixGL' = customPkgs.niri-wrapped-nixGL.override {
     niri-wrapped = niri-wrapped';
+    nixGL = config.custom.nixGL;
   };
 in
 {
