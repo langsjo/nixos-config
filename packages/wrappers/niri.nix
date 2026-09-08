@@ -13,6 +13,8 @@
   xwayland-satellite,
   swaybg,
   yubikey-oath-dmenu,
+
+  xcursor-size ? 24,
 }:
 let
   wpctl = lib.getExe' wireplumber "wpctl";
@@ -62,7 +64,6 @@ in
         }
     }
 
-
     output "Microstep MSI MAG271C 0x00000079" {
       mode "1920x1080@143.855"
     }
@@ -83,6 +84,12 @@ in
         scale 1
     }
 
+    output "AU Optronics 0x87A8 Unknown" {
+      mode "3840x2400@120.001"
+      position x=1440 y=2000
+      scale 2
+    }
+
     output "eDP-1" {
         scale 1
         position x=0 y=0
@@ -91,12 +98,13 @@ in
 
     cursor {
         xcursor-theme "Vanilla-DMZ"
+        xcursor-size ${toString xcursor-size}
         hide-after-inactive-ms 9999999
     }
 
     gestures {
         hot-corners {
-            off
+          bottom-right
         }
     }
 

@@ -16,21 +16,22 @@ let
     export PATH="$PATH:/usr/bin"
     exec swaylock "$@"
   '';
-  niri-wrapped' = customPkgs.niri-wrapped.override {
+
+  xwayland-satellite-script = pkgs.writeShellScriptBin "xwayland-satellite-proxy" ''
+    exec /usr/local/bin/xwayland-satellite "$@"
+  '';
+
+  niriConfig = (customPkgs.niri-wrapped.override {
     firefox = firefox-script;
     swaylock = swaylock-script;
-  };
-  niri-wrapped-nixGL' = customPkgs.niri-wrapped-nixGL.override {
-    niri-wrapped = niri-wrapped';
-    nixGL = config.custom.nixGL;
-  };
+    kitty-wrapped = lib.findFirst (x: x.pname or x.name == "kitty-nixGL") null config.home.packages;
+    xwayland-satellite = xwayland-satellite-script;
+
+    xcursor-size = 16;
+  }).envPaths.NIRI_CONFIG;
 in
 {
-  home.packages = [
-    niri-wrapped-nixGL'
-  ];
-  systemd.user.packages = [ niri-wrapped-nixGL' ];
-
+  home.file.".config/niri/config.kdl".source = niriConfig;
   services.swayidle = {
     enable = true;
     package = customPkgs.swayidle-wrapped.override {

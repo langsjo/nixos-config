@@ -11,19 +11,14 @@ let
 
   nixGLexe = lib.getExe config.custom.nixGL;
 
-  kitty-nixGL-script = pkgs.writeShellScript "kitty-via-nixGL" ''
-    exec "${nixGLexe}" kitty "$@"
-  '';
-
   kitty-nixGL = pkgs.symlinkJoin {
     name = "kitty-nixGL";
-    nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
+    inherit (customPkgs.kitty-wrapped) meta;
+    nativeBuildInputs = [ pkgs.makeWrapper ];
     paths = [ customPkgs.kitty-wrapped ];
     postBuild = ''
-      rm $out/share/applications/*
-      cp ${customPkgs.kitty-wrapped}/share/applications/* $out/share/applications/
-      substituteInPlace $out/share/applications/* \
-        --replace-fail "Exec=kitty" "Exec=${kitty-nixGL-script}"
+      wrapProgram $out/bin/kitty \
+        --run 'source <(grep -v "^\s*exec" "${nixGLexe}")'
     '';
   };
 
