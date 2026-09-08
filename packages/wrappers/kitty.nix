@@ -21,7 +21,7 @@
 
       enable_audio_bell no
 
-      allow_remote_control  yes
+      allow_remote_control  socket-only
       listen_on             unix:@mykitty
       shell_integration     enabled
 
