@@ -34,10 +34,13 @@ in
       privateRepos = true;
     };
 
-    custom.certs.intraDomains = [ cfg.domain ];
+    custom.certs.dns01Domains.${cfg.domain} = {
+      domains = [ cfg.domain ];
+      group = "nginx";
+    };
     services.nginx.virtualHosts.${cfg.domain} = {
       forceSSL = true;
-      useACMEHost = "intra.gorilla.gay";
+      useACMEHost = cfg.domain;
       # Only reachable from Tailscale or the local network.
       extraConfig = ''
         allow 100.64.0.0/10;       # Tailscale/headscale IPv4 (CGNAT range)

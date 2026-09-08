@@ -1,5 +1,6 @@
 {
   imports = [
+    ./adguardhome.nix
     ./attic.nix
     ./certs.nix
     ./dyndns.nix

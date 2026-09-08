@@ -9,10 +9,29 @@ in
 {
   options.custom.certs = {
     enable = lib.mkEnableOption "creating certs with acme";
-    intraDomains = lib.mkOption {
+    dns01Domains = lib.mkOption {
       description = "Domains to get certs under the intra domain";
-      type = with lib.types; listOf str;
-      default = [ ];
+      type = lib.types.attrsOf (
+        lib.types.submodule {
+          options = {
+            domains = lib.mkOption {
+              description = "the domains this cert has";
+              type = with lib.types; listOf str;
+            };
+            group = lib.mkOption {
+              description = "the group that has access to the key";
+              type = lib.types.str;
+            };
+          };
+        }
+      );
+      default = { };
+      example = {
+        "mycert.example.com" = {
+          domains = [ "mycert.example.com" ];
+          group = "nginx";
+        };
+      };
     };
   };
 
@@ -30,12 +49,12 @@ in
     };
     security.acme = {
       acceptTerms = true;
-      certs."intra.gorilla.gay" = {
+      certs = builtins.mapAttrs (k: v: {
         environmentFile = config.sops.templates."acme-cloudflare-envfile".path;
-        extraDomainNames = cfg.intraDomains;
+        extraDomainNames = v.domains;
         dnsProvider = "cloudflare";
-        group = "nginx";
-      };
+        group = v.group;
+      }) cfg.dns01Domains;
     };
   };
 }

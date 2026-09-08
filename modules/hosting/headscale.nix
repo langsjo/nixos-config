@@ -27,10 +27,10 @@ in
         serverUrl = "https://${cfg.domain}";
         dns = {
           magic_dns = true;
+          override_local_dns = true;
           base_domain = "gorillanet";
           nameservers.global = [
-            "1.1.1.1"
-            "8.8.8.8"
+            "100.64.0.2"
           ];
         };
       };

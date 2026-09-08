@@ -49,6 +49,12 @@
       domain = "restic.intra.gorilla.gay";
       port = 3987;
     };
+    adguardhome = {
+      enable = true;
+      domain = "adguard.intra.gorilla.gay";
+      httpPort = 2984;
+      httpsPort = 2985;
+    };
 
     openssh.enable = true;
     programs = {
