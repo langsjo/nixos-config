@@ -33,8 +33,6 @@ in
       zathura
       feh
       vlc
-      lmath
-      google-chrome
       ayugram-desktop
       signal-desktop
       wl-clipboard

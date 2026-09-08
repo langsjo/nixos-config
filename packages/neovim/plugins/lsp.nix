@@ -34,7 +34,6 @@ in
       clangd.enable = true;
       nixd.enable = true;
       pyright.enable = true;
-      metals.enable = true;
       lua_ls.enable = true;
       ts_ls.enable = true;
       terraformls.enable = true;
@@ -55,10 +54,6 @@ in
         installCargo = false;
         installRustc = false;
         settings.check.command = "clippy";
-      };
-
-      jdtls = {
-        enable = true;
       };
 
       puppet = {

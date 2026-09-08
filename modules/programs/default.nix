@@ -16,19 +16,6 @@ let
       pkgs.btop-rocm
     else
       pkgs.btop;
-
-  github-copilot-cli' = pkgs.symlinkJoin {
-    inherit (pkgs.github-copilot-cli)
-      pname
-      version
-      ;
-    paths = [ pkgs.github-copilot-cli ];
-    nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/copilot \
-        --prefix PATH : "${lib.makeBinPath [ pkgs.bashInteractive ]}"
-    '';
-  };
 in
 {
   imports = [
@@ -70,7 +57,6 @@ in
         yubikey-manager
         pv
 
-        github-copilot-cli'
         btop'
       ])
       ++ (with myPkgs; [

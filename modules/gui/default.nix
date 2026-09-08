@@ -25,6 +25,7 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
+    services.speechd.enable = false;
     custom.user.extraGroups = [ "video" ];
   };
 }
