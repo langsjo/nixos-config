@@ -14,6 +14,7 @@
   swaybg,
   yubikey-oath-dmenu,
 
+  extraConfig ? "",
   xcursor-size ? 24,
 }:
 let
@@ -298,5 +299,7 @@ in
         // which ensures niri always processes them, even when an inhibitor is active.
         Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     }
+
+    ${extraConfig}
   '';
 }

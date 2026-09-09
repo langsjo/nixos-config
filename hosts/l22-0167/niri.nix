@@ -17,21 +17,35 @@ let
     exec swaylock "$@"
   '';
 
+  # for whatever reason, the xwayland-satellite from Nixpkgs doesn't work.
   xwayland-satellite-script = pkgs.writeShellScriptBin "xwayland-satellite-proxy" ''
+    unset LD_LIBRARY_PATH
     exec /usr/local/bin/xwayland-satellite "$@"
   '';
 
-  niriConfig = (customPkgs.niri-wrapped.override {
+  niri-wrapped = (customPkgs.niri-wrapped.override {
     firefox = firefox-script;
     swaylock = swaylock-script;
     kitty-wrapped = lib.findFirst (x: x.pname or x.name == "kitty-nixGL") null config.home.packages;
     xwayland-satellite = xwayland-satellite-script;
 
     xcursor-size = 16;
-  }).envPaths.NIRI_CONFIG;
+
+    # don't pass LD_LIBRARY_PATH from nixGL, messes things up
+    extraConfig = /* kdl */ ''
+      environment {
+        LD_LIBRARY_PATH null
+      }
+    '';
+  });
+  niri-wrapped-nixGL = customPkgs.niri-wrapped-nixGL.override {
+    inherit niri-wrapped;
+    nixGL = config.custom.nixGL;
+  };
 in
 {
-  home.file.".config/niri/config.kdl".source = niriConfig;
+  home.packages = [ niri-wrapped-nixGL ];
+  systemd.user.packages = [ niri-wrapped-nixGL ];
   services.swayidle = {
     enable = true;
     package = customPkgs.swayidle-wrapped.override {
