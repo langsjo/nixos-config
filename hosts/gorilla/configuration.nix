@@ -8,6 +8,7 @@
     ./networking.nix
     ./nginx.nix
     ./exthdd.nix
+    ./sshd.nix
     ../../modules
   ];
 
@@ -56,7 +57,6 @@
       httpsPort = 2985;
     };
 
-    openssh.enable = true;
     programs = {
       enable = false;
       nvim.enable = true;
