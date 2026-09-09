@@ -21,14 +21,40 @@ jobs:
         with:
           ref: ${{ inputs.ref }}
       - uses: cachix/install-nix-action@v31
+      - name: Configure attic
+        run: |
+          nix profile add nixpkgs#attic-client
+          attic login main https://cache.gorilla.gay "${{ secrets.ATTIC_TOKEN }}"
+          attic use main
+
+      # only puts configs that were not already cached into the matrix
       - id: generate_matrix
         run: |
-          nix flake show --json > flake.json
-          configs=$(jq -c ".nixosConfigurations | keys" < flake.json)
-          echo "configs=$configs" >> "$GITHUB_OUTPUT"
+          nixosConfigs=$(
+              nix eval .#nixosConfigurations \
+                  --apply '
+                    attrs:
+                    builtins.concatStringsSep "\n" (
+                      map (name: "${name} ${attrs.${name}.config.system.build.toplevel.outPath}") (
+                        builtins.attrNames attrs
+                      )
+                    )
+                  ' \
+                  --raw
+          )
+
+          configs_json="[]"
+          while read -r config outpath || [[ -n "$config" && -n "$outpath" ]]; do
+              nix path-info --store https://cache.gorilla.gay/main "$outpath" >/dev/null && continue
+              configs_json=$(jq -c --arg v "$config" '. += [$v]' <<< "$configs_json")
+          done <<< "$nixosConfigs"
+
+          echo "configs=$configs_json" >> "$GITHUB_OUTPUT"
 
   build_configs:
     needs: generate_matrix
+    # skip job completely if all configs were cached
+    if: fromJson(needs.generate_matrix.outputs.configs)[0] != null
     strategy:
       fail-fast: false
       matrix:
