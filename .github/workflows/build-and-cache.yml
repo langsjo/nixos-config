@@ -28,7 +28,8 @@ jobs:
           attic use main
 
       # only puts configs that were not already cached into the matrix
-      - id: generate_matrix
+      - name: Generate matrix of non-cached configs
+        id: generate_matrix
         run: |
           nixosConfigs=$(
               nix eval .#nixosConfigurations \
