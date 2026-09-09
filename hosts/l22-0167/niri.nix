@@ -23,21 +23,23 @@ let
     exec /usr/local/bin/xwayland-satellite "$@"
   '';
 
-  niri-wrapped = (customPkgs.niri-wrapped.override {
-    firefox = firefox-script;
-    swaylock = swaylock-script;
-    kitty-wrapped = lib.findFirst (x: x.pname or x.name == "kitty-nixGL") null config.home.packages;
-    xwayland-satellite = xwayland-satellite-script;
+  niri-wrapped = (
+    customPkgs.niri-wrapped.override {
+      firefox = firefox-script;
+      swaylock = swaylock-script;
+      kitty-wrapped = lib.findFirst (x: x.pname or x.name == "kitty-nixGL") null config.home.packages;
+      xwayland-satellite = xwayland-satellite-script;
 
-    xcursor-size = 16;
+      xcursor-size = 16;
 
-    # don't pass LD_LIBRARY_PATH from nixGL, messes things up
-    extraConfig = /* kdl */ ''
-      environment {
-        LD_LIBRARY_PATH null
-      }
-    '';
-  });
+      # don't pass LD_LIBRARY_PATH from nixGL, messes things up
+      extraConfig = /* kdl */ ''
+        environment {
+          LD_LIBRARY_PATH null
+        }
+      '';
+    }
+  );
   niri-wrapped-nixGL = customPkgs.niri-wrapped-nixGL.override {
     inherit niri-wrapped;
     nixGL = config.custom.nixGL;
