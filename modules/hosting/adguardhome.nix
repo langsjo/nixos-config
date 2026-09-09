@@ -33,7 +33,7 @@ in
 
       settings = {
         dns = {
-          bind_hosts = [ "100.64.0.2" ];
+          bind_hosts = [ "0.0.0.0" ];
           port = 53;
           ratelimit = 0;
           upstream_dns = [
@@ -68,12 +68,14 @@ in
     };
     users.groups."adguardhome-cert" = { };
     systemd.services."adguardhome".serviceConfig.SupplementaryGroups = [ "adguardhome-cert" ];
-    networking.firewall.interfaces."tailscale0" = {
+    networking.firewall = {
       allowedUDPPorts = [ 53 ]; # basic DNS
-      allowedTCPPorts = [
-        853 # DNS over TLS
-        cfg.httpsPort # https webui, intentionally not opening http (not needed)
-      ];
+      allowedTCPPorts = [ 853 ]; # DNS over TLS
+      interfaces."tailscale0" = {
+        allowedTCPPorts = [
+          cfg.httpsPort # https webui, intentionally not opening http (not needed)
+        ];
+      };
     };
   };
 }
