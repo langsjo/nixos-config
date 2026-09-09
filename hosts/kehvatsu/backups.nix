@@ -10,11 +10,9 @@
       };
       "restic-encryption-passwd" = {
         sopsFile = ../../modules/secrets/kehvatsu/default.yaml;
-        owner = config.custom.user.username;
       };
     };
     templates."restic-env-file" = {
-      owner = config.custom.user.username;
       content = ''
         RESTIC_REST_USERNAME=kehvatsu
         RESTIC_REST_PASSWORD=${config.sops.placeholder."restic-server-passwd"}
@@ -25,7 +23,7 @@
   custom.backups = {
     environmentFile = config.sops.templates."restic-env-file".path;
     jobs."home" = {
-      user = config.custom.user.username;
+      user = "root";
       repo = "kehvatsu";
       paths = [
         config.custom.user.homeDirectory
