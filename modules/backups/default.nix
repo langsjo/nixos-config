@@ -86,12 +86,12 @@ in
         passwordFile
         exclude
         ;
-      repository = "rest:https://restic.intra.gorilla.gay/${cfg.repo}";
+      repository = "rest:https://restic.intra.gorilla.gay:3987/${cfg.repo}";
       initialize = true;
       extraBackupArgs = cfg.backupArgs ++ [ "--tag ${cfg.tag}" ];
       pruneOpts = cfg.pruneOpts ++ lib.optionals (cfg.pruneOpts != [ ]) [ "--tag ${cfg.tag}" ];
       checkOpts = cfg.checkOpts ++ [ "--with-cache" ];
-      progressFps = 0.0167; # Once per min
+      progressFps = 0.1; # Once per 10s
       environmentFile = config.custom.backups.environmentFile;
       timerConfig = {
         OnCalendar = cfg.dates;

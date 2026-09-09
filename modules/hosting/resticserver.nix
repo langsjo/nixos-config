@@ -29,31 +29,25 @@ in
     services.restic.server = {
       enable = true;
       dataDir = "/mnt/backup";
-      listenAddress = toString cfg.port;
+      listenAddress = "100.64.0.2:${toString cfg.port}";
       htpasswd-file = config.sops.secrets."restic_server_htpasswd".path;
       privateRepos = true;
+      extraFlags = [
+        "--tls"
+        "--tls-cert"
+        "/var/lib/acme/${cfg.domain}/fullchain.pem"
+        "--tls-key"
+        "/var/lib/acme/${cfg.domain}/key.pem"
+      ];
     };
+
+    networking.firewall.interfaces."tailscale0".allowedTCPPorts = [
+      cfg.port
+    ];
 
     custom.certs.dns01Domains.${cfg.domain} = {
       domains = [ cfg.domain ];
-      group = "nginx";
-    };
-    services.nginx.virtualHosts.${cfg.domain} = {
-      forceSSL = true;
-      useACMEHost = cfg.domain;
-      # Only reachable from Tailscale or the local network.
-      extraConfig = ''
-        allow 100.64.0.0/10;       # Tailscale/headscale IPv4 (CGNAT range)
-        allow fd7a:115c:a1e0::/48; # Tailscale/headscale IPv6
-        allow 192.168.1.0/24;      # LAN
-        deny all;
-      '';
-      locations."/" = {
-        proxyPass = "http://localhost:${toString cfg.port}";
-        extraConfig = ''
-          client_max_body_size 150M;
-        '';
-      };
+      group = "restic";
     };
   };
 }
