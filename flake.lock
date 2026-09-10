@@ -252,11 +252,11 @@
     },
     "wrapper-lib": {
       "locked": {
-        "lastModified": 1785253747,
-        "narHash": "sha256-GLruiJFZEstbjWPfqlmz5tjslswRd3AviJRNkaWiP9o=",
+        "lastModified": 1789047454,
+        "narHash": "sha256-VxubkOkb0Swts+f4TJ8c4uOwWMlMSu0cCQiD2y10HFg=",
         "owner": "langsjo",
         "repo": "wrapper-lib",
-        "rev": "4bd9f98020ef060527e00e48facaf25e8a5b18eb",
+        "rev": "ac81f72117955d7c54f963c094aa5bd5e43d603c",
         "type": "github"
       },
       "original": {
