@@ -71,11 +71,6 @@ in
     networking.firewall = {
       allowedUDPPorts = [ 53 ]; # basic DNS
       allowedTCPPorts = [ 853 ]; # DNS over TLS
-      interfaces."tailscale0" = {
-        allowedTCPPorts = [
-          cfg.httpsPort # https webui, intentionally not opening http (not needed)
-        ];
-      };
     };
   };
 }

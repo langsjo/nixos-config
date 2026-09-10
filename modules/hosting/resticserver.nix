@@ -41,10 +41,6 @@ in
       ];
     };
 
-    networking.firewall.interfaces."tailscale0".allowedTCPPorts = [
-      cfg.port
-    ];
-
     custom.certs.dns01Domains.${cfg.domain} = {
       domains = [ cfg.domain ];
       group = "restic";
