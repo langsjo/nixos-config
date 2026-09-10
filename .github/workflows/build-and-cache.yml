@@ -38,9 +38,9 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: ${{ inputs.ref }}
-      - uses: jlumbroso/free-disk-space@main
-        with:
-          tool-cache: true
+      # - uses: jlumbroso/free-disk-space@main
+      #   with:
+      #     tool-cache: true
       - uses: cachix/install-nix-action@v31
       - name: Configure attic
         run: |
@@ -48,9 +48,24 @@ jobs:
             "(builtins.getFlake (toString ./.)).inputs.nixpkgs.legacyPackages.$(uname -m)-linux.attic-client"
           attic login main https://cache.gorilla.gay "${{ secrets.ATTIC_TOKEN }}"
           attic use main
-      - name: Build config
+      - name: Build uncached derivations
         run: |
-          nix build .#nixosConfigurations."${{ matrix.config }}".config.system.build.toplevel
+          if nix build \
+            .#nixosConfigurations."${{ matrix.config }}".config.system.build.toplevel \
+            --dry-run 2>&1 >/dev/null | tee dry_run_output.txt \
+            | awk '
+                /these [0-9]+ paths will be fetched/{exit}
+                /these [0-9]+ derivations will be built/{next}
+                {print}
+            ' | grep '\.drv$' \
+            | xargs grep -vlE '\\"preferLocalBuild\\":true|\("preferLocalBuild","1"\)' > build_drvs.txt; \
+          then
+            xargs nix-store --realise < build_drvs.txt
+          else
+            echo "Seemingly no derivations to be built; output from dry-run:"
+            cat dry_run_output.txt
+          fi
+
       - name: Push to attic
         run: |
-          attic push main result
+          xargs nix-store --query --outputs < build_drvs.txt | attic push main --stdin
