@@ -97,7 +97,6 @@ in
         alias -- tmpdir='cd $(mktemp -d)'
         ${lib.optionalString withKitty ''
           alias -- icat="kitten icat"
-          alias -- rg="kitten hyperlinked-grep"
         ''}
         alias -- ssh="TERM=xterm-256color ssh" # for ssh with uncommon terminals
         alias -- diff="git diff --no-index"
