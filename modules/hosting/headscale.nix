@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }:
@@ -33,6 +34,20 @@ in
             "100.64.0.2"
           ];
         };
+        policy.path = pkgs.writeText "headscale-policies" (
+          builtins.toJSON {
+            tagOwners = {
+              "tag:gorilla" = [ ];
+            };
+            acls = [
+              {
+                action = "accept";
+                src = [ "autogroup:member" ];
+                dst = [ "tag:gorilla:*" ];
+              }
+            ];
+          }
+        );
       };
     };
 
