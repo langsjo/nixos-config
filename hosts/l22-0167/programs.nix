@@ -47,7 +47,7 @@ in
 
     customPkgs.yubikey-add-totp
     customPkgs.neovim
-    customPkgs.zsh-wrapped
+    (customPkgs.zsh-wrapped.override { aalto = true; })
     customPkgs.tmux-wrapped
     customPkgs.showcerts
     customPkgs.networkmanager_dmenu-wrapped
@@ -61,7 +61,7 @@ in
   services.playerctld.enable = true;
   programs.bash = {
     enable = true;
-    initExtra = ''
+    initExtra = /* bash */ ''
       if [[ -z "$BASHRC_SOURCED" ]]; then
         export BASHRC_SOURCED=1
         exec zsh

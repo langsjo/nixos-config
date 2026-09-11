@@ -17,6 +17,7 @@
   makeWrapper,
 
   withKitty ? true,
+  aalto ? false,
   autostartTmux ? false,
 }:
 let
@@ -95,11 +96,14 @@ in
         alias -- nish='NIXPKGS_ALLOW_UNFREE=1 nix-shell --run zsh -p'
         alias -- open=xdg-open
         alias -- tmpdir='cd $(mktemp -d)'
-        ${lib.optionalString withKitty ''
-          alias -- icat="kitten icat"
-        ''}
         alias -- ssh="TERM=xterm-256color ssh" # for ssh with uncommon terminals
         alias -- diff="git diff --no-index"
+        ${lib.optionalString withKitty /* zsh */ ''
+          alias -- icat="kitten icat"
+        ''}
+        ${lib.optionalString aalto /* zsh */ ''
+          alias -- sudo='TERM=xterm-256color sudo -u "wa.''${USER}" sudo'
+        ''}
 
         function rewi() {
           local executable="$1"
