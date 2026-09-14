@@ -70,7 +70,7 @@ in
       nixpkgs.flake = inputs.nixpkgs;
       templates.flake = inputs.flake-templates;
       unstable = mkNixpkgsRegistry "unstable" "nixos-unstable";
-      stable = mkNixpkgsRegistry "stable" "nixos-25.11";
+      stable = mkNixpkgsRegistry "stable" "nixos-26.05";
       master = mkNixpkgsRegistry "master" "master";
     };
   };
