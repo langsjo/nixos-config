@@ -53,6 +53,7 @@ in
         environmentFile = config.sops.templates."acme-cloudflare-envfile".path;
         extraDomainNames = v.domains;
         dnsProvider = "cloudflare";
+        dnsResolver = "1.1.1.1:53";
         group = v.group;
       }) cfg.dns01Domains;
     };

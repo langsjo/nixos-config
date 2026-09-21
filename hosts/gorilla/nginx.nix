@@ -4,8 +4,8 @@
 }:
 {
   custom.dyndns.domains = [
-    "gorilla.gay"
-    "ip.gorilla.gay"
+    "langsjo.dev"
+    "ip.langsjo.dev"
   ];
   services.nginx = {
     enable = true;
@@ -17,7 +17,7 @@
           return = "404";
         };
       };
-      "gorilla.gay" = {
+      "langsjo.dev" = {
         enableACME = true;
         forceSSL = true;
         locations = {
@@ -39,7 +39,7 @@
         };
       };
 
-      "ip.gorilla.gay" = {
+      "ip.langsjo.dev" = {
         enableACME = true;
         addSSL = true;
         locations."/" = {

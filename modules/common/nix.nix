@@ -40,7 +40,7 @@ in
         "flakes"
       ];
       extra-substituters = [
-        "https://cache.gorilla.gay/main"
+        "https://cache.langsjo.dev/main"
       ];
       extra-trusted-public-keys = [
         "main:K95Z16k90VtpAeOr3YEqNZgVLN2eP9lfIEfPuIAKKE0="

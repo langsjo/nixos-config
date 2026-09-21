@@ -3,7 +3,7 @@
     enable = true;
     openFirewall = true;
     extraUpFlags = [
-      "--login-server=https://headscale.gorilla.gay"
+      "--login-server=https://headscale.langsjo.dev"
     ];
   };
 }

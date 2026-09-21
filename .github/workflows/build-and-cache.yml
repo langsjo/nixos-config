@@ -46,7 +46,7 @@ jobs:
         run: |
           nix profile add --impure --expr \
             "(builtins.getFlake (toString ./.)).inputs.nixpkgs.legacyPackages.$(uname -m)-linux.attic-client"
-          attic login main https://cache.gorilla.gay "${{ secrets.ATTIC_TOKEN }}"
+          attic login main https://cache.langsjo.dev "${{ secrets.ATTIC_TOKEN }}"
           attic use main
       - name: Build uncached derivations
         run: |

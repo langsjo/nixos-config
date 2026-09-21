@@ -37,22 +37,22 @@
     dyndns.enable = true;
     attic = {
       enable = true;
-      domain = "cache.gorilla.gay";
+      domain = "cache.langsjo.dev";
       port = 9874;
     };
     headscale = {
       enable = true;
-      domain = "headscale.gorilla.gay";
+      domain = "headscale.langsjo.dev";
       port = 6521;
     };
     resticServer = {
       enable = true;
-      domain = "restic.intra.gorilla.gay";
+      domain = "restic.intra.langsjo.dev";
       port = 3987;
     };
     adguardhome = {
       enable = true;
-      domain = "adguard.intra.gorilla.gay";
+      domain = "adguard.intra.langsjo.dev";
       httpPort = 2984;
       httpsPort = 2985;
     };
