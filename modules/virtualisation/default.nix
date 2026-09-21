@@ -21,11 +21,6 @@ in
     };
     programs.virt-manager.enable = true;
 
-    custom.user.extraGroups = [
-      "docker"
-      "libvirtd"
-    ];
-
     environment.systemPackages = [
       pkgs.distrobox
     ];
