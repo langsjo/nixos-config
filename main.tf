@@ -19,7 +19,12 @@ variable "cloudflare_api_token" {
   sensitive = true
 }
 
-variable "cloudflare_zone_id" {
+variable "gorilla_zone_id" {
+  type      = string
+  sensitive = true
+}
+
+variable "langsjo_zone_id" {
   type      = string
   sensitive = true
 }
@@ -35,10 +40,21 @@ locals {
   }
 }
 
-resource "cloudflare_record" "homelab" {
+resource "cloudflare_record" "langsjo" {
   for_each = local.dns_records
 
-  zone_id = var.cloudflare_zone_id
+  zone_id = var.langsjo_zone_id
+  name    = each.key
+  content = each.value
+  type    = "A"
+  ttl     = 1
+  proxied = false
+}
+
+resource "cloudflare_record" "gorilla" {
+  for_each = local.dns_records
+
+  zone_id = var.gorilla_zone_id
   name    = each.key
   content = each.value
   type    = "A"
