@@ -22,10 +22,6 @@ in
     default = config.custom.gui.enable && config.custom.programs.enable;
   };
 
-  imports = [
-    ./matrix.nix
-  ];
-
   config = lib.mkIf cfg.enable {
     custom.wrappers.kitty = kitty-wrapped;
 
