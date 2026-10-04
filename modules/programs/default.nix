@@ -31,9 +31,7 @@ in
   ];
 
   options.custom.programs = {
-    enable = lib.mkEnableOption "bunch of programs" // {
-      default = true;
-    };
+    enable = lib.mkEnableOption "bunch of programs";
   };
 
   config = lib.mkIf cfg.enable {

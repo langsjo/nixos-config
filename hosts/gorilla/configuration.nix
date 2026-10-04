@@ -56,11 +56,6 @@
       httpPort = 2984;
       httpsPort = 2985;
     };
-
-    programs = {
-      enable = false;
-      nvim.enable = true;
-    };
   };
 
   system.autoUpgrade = {

@@ -27,6 +27,7 @@
 
   custom = {
     isLaptop = true;
+    programs.enable = true;
 
     user = {
       username = "langsjo";
