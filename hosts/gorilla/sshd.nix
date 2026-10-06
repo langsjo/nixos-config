@@ -34,6 +34,15 @@
       "network-online.target"
       "tailscaled.service"
     ];
+    unitConfig = {
+      StartLimitIntervalSec = "0s";
+    };
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = "5s";
+      RestartMaxDelaySec = "5min";
+      RestartSteps = 10;
+    };
   };
 
   users.users.${config.custom.user.username} = {
