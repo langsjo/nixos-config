@@ -41,6 +41,7 @@ in
       jsonls.enable = true;
       ruby_lsp.enable = true;
       perlnavigator.enable = true;
+      tinymist.enable = true;
       gh_actions_ls = {
         enable = true;
         package = customPkgs.actions-languageserver;
