@@ -23,6 +23,10 @@ let
     exec /usr/local/bin/xwayland-satellite "$@"
   '';
 
+  niri-script = pkgs.writeShellScript "niri-opener-proxy" ''
+    exec /opt/niri "$@"
+  '';
+
   niri-wrapped = (
     customPkgs.niri-wrapped.override {
       firefox = firefox-script;
@@ -32,22 +36,16 @@ let
 
       xcursor-size = 16;
 
-      # don't pass LD_LIBRARY_PATH from nixGL, messes things up
-      extraConfig = /* kdl */ ''
-        environment {
-          LD_LIBRARY_PATH null
-        }
+      preBuild = ''
+        rm $out/bin/niri
+        cp ${niri-script} $out/bin/niri
       '';
     }
   );
-  niri-wrapped-nixGL = customPkgs.niri-wrapped-nixGL.override {
-    inherit niri-wrapped;
-    nixGL = config.custom.nixGL;
-  };
 in
 {
-  home.packages = [ niri-wrapped-nixGL ];
-  systemd.user.packages = [ niri-wrapped-nixGL ];
+  home.packages = [ niri-wrapped ];
+  systemd.user.packages = [ niri-wrapped ];
   services.swayidle = {
     enable = true;
     package = customPkgs.swayidle-wrapped.override {

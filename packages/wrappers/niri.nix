@@ -14,6 +14,7 @@
   swaybg,
   yubikey-oath-dmenu,
 
+  preBuild ? "",
   extraConfig ? "",
   xcursor-size ? 24,
 }:
@@ -28,6 +29,7 @@ in
 {
   package = niri;
   includeBins = [ "niri" ];
+  inherit preBuild;
   env.prefixes."XCURSOR_PATH" = "${vanilla-dmz}/share/icons";
   env.paths."NIRI_CONFIG"."/".text = /* kdl */ ''
     input {
