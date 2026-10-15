@@ -22,6 +22,16 @@ in
               description = "the group that has access to the key";
               type = lib.types.str;
             };
+            reloadServices = lib.mkOption {
+              description = "systemd services to try-reload-or-restart";
+              default = [ ];
+              type = with lib.types; listOf str;
+            };
+            postRun = lib.mkOption {
+              description = "commands to run after renewal";
+              default = "";
+              type = lib.types.lines;
+            };
           };
         }
       );

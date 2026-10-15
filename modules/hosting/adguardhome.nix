@@ -65,6 +65,7 @@ in
     custom.certs.dns01Domains.${cfg.domain} = {
       domains = [ cfg.domain ];
       group = "adguardhome-cert";
+      reloadServices = [ "adguardhome.service" ];
     };
     users.groups."adguardhome-cert" = { };
     systemd.services."adguardhome".serviceConfig.SupplementaryGroups = [ "adguardhome-cert" ];

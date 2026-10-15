@@ -9,6 +9,11 @@
   ];
   services.nginx = {
     enable = true;
+    defaultListenAddresses = [
+      "192.168.1.10"
+      "[::0]"
+    ];
+
     virtualHosts = {
       "_" = {
         rejectSSL = true;

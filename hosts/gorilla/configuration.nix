@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./nginx.nix
+    ./caddy.nix
     ./exthdd.nix
     ./sshd.nix
     ../../modules
@@ -55,6 +56,12 @@
       domain = "adguard.intra.langsjo.dev";
       httpPort = 2984;
       httpsPort = 2985;
+    };
+    qbittorrent = {
+      enable = true;
+      torrentPort = 5843;
+      webUIPort = 4387;
+      webUIDomain = "qbit.intra.langsjo.dev";
     };
   };
 

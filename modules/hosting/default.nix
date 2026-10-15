@@ -6,6 +6,7 @@
     ./dyndns.nix
     ./headscale.nix
     ./resticserver.nix
+    ./qbittorrent.nix
   ];
 
   services.nginx = {
