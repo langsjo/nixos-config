@@ -7,6 +7,7 @@
     ./headscale.nix
     ./resticserver.nix
     ./qbittorrent.nix
+    ./jellyfin.nix
   ];
 
   services.nginx = {

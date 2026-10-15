@@ -63,6 +63,12 @@
       webUIPort = 4387;
       webUIDomain = "qbit.intra.langsjo.dev";
     };
+    jellyfin = {
+      enable = true;
+      port = 8437;
+      domain = "jelly.intra.langsjo.dev";
+      hwAccDev = "/dev/dri/renderD128";
+    };
   };
 
   system.autoUpgrade = {

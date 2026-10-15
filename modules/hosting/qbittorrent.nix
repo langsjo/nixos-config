@@ -66,6 +66,12 @@ in
         }
       ];
     };
+
+    systemd.tmpfiles.rules = [
+      "d /srv/torrents 2750 ${config.services.qbittorrent.user} ${config.services.qbittorrent.group} -"
+    ];
+    custom.user.extraGroups = [ config.services.qbittorrent.group ];
+
     services.qbittorrent = {
       enable = true;
       webuiPort = cfg.webUIPort;
