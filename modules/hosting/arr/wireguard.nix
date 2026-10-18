@@ -1,4 +1,5 @@
 {
+  options,
   config,
   pkgs,
   lib,
@@ -9,6 +10,25 @@ let
   ip = "${pkgs.iproute2}/bin/ip";
   resolvConf = pkgs.writeText "wg-resolv.conf" ''
     nameserver 10.128.0.1
+  '';
+
+  nftRules = pkgs.writeText "${cfg.ns}.nft" ''
+    table inet filter {
+      chain input {
+        type filter hook input priority 0; policy drop;
+        ct state established,related accept
+        iifname "lo" accept
+        meta l4proto { icmp, ipv6-icmp } accept
+
+        ${lib.concatMapStringsSep "\n" (port: ''
+          iifname "${cfg.ns}" tcp dport ${toString port} accept
+        '') cfg.allowedTCPPorts}
+
+        ${lib.concatMapStringsSep "\n" (port: ''
+          iifname "${cfg.ns}" udp dport ${toString port} accept
+        '') cfg.allowedUDPPorts}
+      }
+    }
   '';
 in
 {
@@ -23,6 +43,8 @@ in
       description = "systemd services to proxy traffic to";
       type = with lib.types; attrsOf port;
     };
+
+    inherit (options.networking.firewall) allowedTCPPorts allowedUDPPorts;
 
     netnsConfig = lib.mkOption {
       type = lib.types.attrs;
@@ -58,6 +80,9 @@ in
       preSetup = ''
         ${ip} netns add ${cfg.ns} || true
         ${ip} -n ${cfg.ns} link set lo up
+      '';
+      postSetup = ''
+        ${ip} netns exec ${cfg.ns} ${lib.getExe pkgs.nftables} -f ${nftRules}
       '';
       postShutdown = ''
         ${ip} netns del ${cfg.ns} || true

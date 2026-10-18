@@ -31,6 +31,7 @@ in
         hardwareAcceleration = {
           enable = true;
           device = cfg.hwAccDev;
+          type = "vaapi";
         };
       };
     };

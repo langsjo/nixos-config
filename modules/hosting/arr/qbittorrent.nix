@@ -36,6 +36,10 @@ in
       torrentingPort = cfg.torrentPort;
       openFirewall = false;
     };
+    custom.arr.wireguard = {
+      allowedTCPPorts = [ cfg.torrentPort ];
+      allowedUDPPorts = [ cfg.torrentPort ];
+    };
 
     systemd.services.qbittorrent = lib.mkMerge [
       config.custom.arr.wireguard.netnsConfig
