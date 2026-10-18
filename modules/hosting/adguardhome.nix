@@ -28,10 +28,9 @@ in
       enable = true;
       mutableSettings = true;
       openFirewall = false;
-      host = "100.64.0.2";
-      port = cfg.httpPort;
 
       settings = {
+        http.address = "100.64.0.2:${toString cfg.httpPort}";
         dns = {
           bind_hosts = [ "0.0.0.0" ];
           port = 53;

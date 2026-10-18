@@ -4,11 +4,10 @@
   ...
 }:
 let
-  cfg = config.custom.jellyfin;
+  cfg = config.custom.arr.jellyfin;
 in
 {
-  options.custom.jellyfin = {
-    enable = lib.mkEnableOption "jellyfin";
+  options.custom.arr.jellyfin = {
     port = lib.mkOption {
       description = "jellyfin port";
       type = lib.types.port;
@@ -23,9 +22,10 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.custom.arr.enable {
     hardware.graphics.enable = true;
-    users.users.${config.services.jellyfin.user}.extraGroups = [ "qbittorrent" ];
+    users.users.${config.services.jellyfin.user}.extraGroups = [ "media" ];
+
     services = {
       jellyfin = {
         enable = true;
@@ -45,6 +45,8 @@ in
         };
       };
     };
+    systemd.services.jellyfin = config.custom.arr.wireguard.netnsConfig;
+    custom.arr.wireguard.netnsProxies."jellyfin" = cfg.port;
     custom.certs.dns01Domains.${cfg.domain} = {
       domains = [ cfg.domain ];
       group = "caddy";

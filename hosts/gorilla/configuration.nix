@@ -57,17 +57,19 @@
       httpPort = 2984;
       httpsPort = 2985;
     };
-    qbittorrent = {
+
+    arr = {
       enable = true;
-      torrentPort = 5843;
-      webUIPort = 4387;
-      webUIDomain = "qbit.intra.langsjo.dev";
-    };
-    jellyfin = {
-      enable = true;
-      port = 8437;
-      domain = "jelly.intra.langsjo.dev";
-      hwAccDev = "/dev/dri/renderD128";
+      qbittorrent = {
+        torrentPort = 5843;
+        webUIPort = 4387;
+        webUIDomain = "qbit.intra.langsjo.dev";
+      };
+      jellyfin = {
+        port = 8437;
+        domain = "jelly.intra.langsjo.dev";
+        hwAccDev = "/dev/dri/renderD128";
+      };
     };
   };
 
@@ -85,6 +87,7 @@
     git
     btop
     dust
+    vim
   ];
 
   system.stateVersion = "26.05";

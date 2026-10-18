@@ -1,13 +1,12 @@
 {
   imports = [
     ./adguardhome.nix
+    ./arr
     ./attic.nix
     ./certs.nix
     ./dyndns.nix
     ./headscale.nix
     ./resticserver.nix
-    ./qbittorrent.nix
-    ./jellyfin.nix
   ];
 
   services.nginx = {
