@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -11,6 +12,7 @@
     ./exthdd.nix
     ./sshd.nix
     ../../modules
+    "${inputs.nixos-hardware}/common/cpu/intel/ice-lake"
   ];
 
   services.logind.settings.Login.HandleLidSwitch = "ignore";
