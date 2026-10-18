@@ -12,6 +12,8 @@ let
     nameserver 10.128.0.1
   '';
 
+  wg-endpoint = "79.142.77.189:1637";
+
   nftRules = pkgs.writeText "${cfg.ns}.nft" ''
     table inet filter {
       chain input {
@@ -98,7 +100,7 @@ in
         {
           publicKey = "PyLCXAQT8KkM4T+dUsOQfn+Ub3pGxfGlxkIApuig+hk=";
           presharedKeyFile = config.sops.secrets."airvpn-psk".path;
-          endpoint = "79.142.77.189:1637";
+          endpoint = wg-endpoint;
           allowedIPs = [
             "0.0.0.0/0"
             "::/0"
@@ -132,5 +134,24 @@ in
         ];
       }) cfg.netnsProxies
     );
+
+    networking.networkmanager.ensureProfiles.profiles."wired-wireguard" = {
+      connection = {
+        id = "wired-vpn";
+        type = "ethernet";
+        interface-name = "enp0s20f0u2";
+        autoconnect = true;
+        autoconnect-priority = 10;
+      };
+      ipv4 = {
+        method = "auto";
+        route-table = 100;
+        routing-rule1 = "priority 100 to ${lib.head (lib.splitString ":" wg-endpoint)}/32 table 100";
+      };
+      ipv6 = {
+        method = "auto";
+        route-table = 100;
+      };
+    };
   };
 }
