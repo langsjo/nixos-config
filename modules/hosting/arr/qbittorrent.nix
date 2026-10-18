@@ -41,9 +41,13 @@ in
       allowedUDPPorts = [ cfg.torrentPort ];
     };
 
+    # fix problems with system clock resetting
+    systemd.additionalUpstreamSystemUnits = [ "systemd-time-wait-sync.service" ];
     systemd.services.qbittorrent = lib.mkMerge [
       config.custom.arr.wireguard.netnsConfig
       {
+        wants = [ "time-sync.target" ];
+        after = [ "time-sync.target" ];
         serviceConfig.UMask = "0002"; # allow group to write
       }
     ];
