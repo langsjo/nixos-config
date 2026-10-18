@@ -70,6 +70,18 @@
         domain = "jelly.intra.langsjo.dev";
         hwAccDev = "/dev/dri/renderD128";
       };
+      prowlarr = {
+        port = 3928;
+        domain = "prowlarr.intra.langsjo.dev";
+      };
+      radarr = {
+        port = 3945;
+        domain = "radarr.intra.langsjo.dev";
+      };
+      sonarr = {
+        port = 8531;
+        domain = "sonarr.intra.langsjo.dev";
+      };
     };
   };
 

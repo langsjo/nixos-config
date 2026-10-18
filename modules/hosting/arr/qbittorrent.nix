@@ -44,18 +44,7 @@ in
       }
     ];
 
-    custom.certs.dns01Domains.${cfg.webUIDomain} = {
-      domains = [ cfg.webUIDomain ];
-      group = "caddy";
-    };
-    services.caddy.virtualHosts = {
-      ${cfg.webUIDomain} = {
-        extraConfig = ''
-          reverse_proxy 127.0.0.1:${toString cfg.webUIPort}
-        '';
-        useACMEHost = cfg.webUIDomain;
-      };
-    };
+    custom.intraWebsites.${cfg.webUIDomain} = cfg.webUIPort;
     custom.arr.wireguard.netnsProxies."qbittorrent" = cfg.webUIPort;
   };
 }
