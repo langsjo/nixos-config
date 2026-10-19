@@ -37,6 +37,6 @@ in
     };
     systemd.services.jellyfin = config.custom.arr.wireguard.netnsConfig;
     custom.arr.wireguard.netnsProxies."jellyfin" = cfg.port;
-    custom.intraWebsites.${cfg.domain} = cfg.port;
+    custom.intrasites.sites.${cfg.domain} = cfg.port;
   };
 }

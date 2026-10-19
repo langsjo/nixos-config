@@ -7,6 +7,7 @@
     ./dyndns.nix
     ./headscale.nix
     ./resticserver.nix
+    ./intrasites.nix
   ];
 
   services.nginx = {

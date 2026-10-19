@@ -85,7 +85,7 @@ in
       prowlarr = netnsConfig;
     };
 
-    custom.intraWebsites = lib.genAttrs' [ "prowlarr" "radarr" "sonarr" ] (
+    custom.intrasites.sites = lib.genAttrs' [ "prowlarr" "radarr" "sonarr" ] (
       name: lib.nameValuePair cfg.${name}.domain cfg.${name}.port
     );
 

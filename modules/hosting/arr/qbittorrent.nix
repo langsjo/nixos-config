@@ -5,7 +5,6 @@
 }:
 let
   cfg = config.custom.arr.qbittorrent;
-  ns = config.custom.arr.wireguard.ns;
 in
 {
   options.custom.arr.qbittorrent = {
@@ -52,7 +51,7 @@ in
       }
     ];
 
-    custom.intraWebsites.${cfg.webUIDomain} = cfg.webUIPort;
+    custom.intrasites.sites.${cfg.webUIDomain} = cfg.webUIPort;
     custom.arr.wireguard.netnsProxies."qbittorrent" = cfg.webUIPort;
   };
 }

@@ -8,7 +8,6 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./nginx.nix
-    ./caddy.nix
     ./exthdd.nix
     ./sshd.nix
     ../../modules
@@ -37,6 +36,10 @@
       graphics.enable = false;
     };
     certs.enable = true;
+    intrasites = {
+      enable = true;
+      bindIP = "100.64.0.2";
+    };
     dyndns.enable = true;
     attic = {
       enable = true;
