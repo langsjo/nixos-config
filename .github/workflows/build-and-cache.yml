@@ -50,9 +50,16 @@ jobs:
           attic use main
       - name: Build uncached derivations
         run: |
-          if nix build \
+          if ! nix_build_output=$(
+            nix build \
             .#nixosConfigurations."${{ matrix.config }}".config.system.build.toplevel \
-            --dry-run 2>&1 >/dev/null | tee dry_run_output.txt \
+            --dry-run 2>&1 >/dev/null
+          ); then
+            printf "%s" "$nix_build_output"
+            exit 1
+          fi
+
+          if tee dry_run_output.txt <<< "$nix_build_output" \
             | awk '
                 /these [0-9]+ paths will be fetched/{exit}
                 /these [0-9]+ derivations will be built/{next}
