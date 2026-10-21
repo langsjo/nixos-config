@@ -13,7 +13,6 @@
   zoxide,
   oh-my-posh,
   runCommand,
-  fetchpatch2,
   makeWrapper,
 
   withKitty ? true,
@@ -31,17 +30,6 @@ let
     pname = "direnv-with-nix-direnv";
     nativeBuildInputs = old.nativeBuildInputs or [ ] ++ [
       makeWrapper
-    ];
-    patches = old.patches or [ ] ++ [
-      # Add support for DIRENV_EXE_PATH env var
-      (fetchpatch2 {
-        url = "https://github.com/direnv/direnv/commit/0aa2083782a9a1723b52e2061c46a24658254cec.patch";
-        hash = "sha256-ONfxP2kDET1rNABzaxpmw7YAfaMeVP70RmlEskecCp8=";
-      })
-      (fetchpatch2 {
-        url = "https://github.com/direnv/direnv/commit/4e834f252990d907f3f477ca3ebbf084fecaee34.patch";
-        hash = "sha256-orpATJ5/FiSLEThuv1WKk2XRcx9tuAH9hnRtvQbv+pk=";
-      })
     ];
     postFixup = ''
       wrapProgram $out/bin/direnv \
