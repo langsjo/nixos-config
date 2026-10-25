@@ -28,7 +28,7 @@
       "fido2-device=auto"
     ];
   };
-  boot.initrd.systemd.enable = true;
+
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
