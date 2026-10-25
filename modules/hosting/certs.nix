@@ -14,8 +14,8 @@ in
       type = lib.types.attrsOf (
         lib.types.submodule {
           options = {
-            domains = lib.mkOption {
-              description = "the domains this cert has";
+            extraDomains = lib.mkOption {
+              description = "extra domains this cert has";
               type = with lib.types; listOf str;
             };
             group = lib.mkOption {
@@ -61,7 +61,7 @@ in
       acceptTerms = true;
       certs = builtins.mapAttrs (k: v: {
         environmentFile = config.sops.templates."acme-cloudflare-envfile".path;
-        extraDomainNames = v.domains;
+        extraDomainNames = v.extraDomains;
         dnsProvider = "cloudflare";
         dnsResolver = "1.1.1.1:53";
         group = v.group;

@@ -62,7 +62,6 @@ in
       };
     };
     custom.certs.dns01Domains.${cfg.domain} = {
-      domains = [ cfg.domain ];
       group = "adguardhome-cert";
       reloadServices = [ "adguardhome.service" ];
     };

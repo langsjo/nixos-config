@@ -42,7 +42,6 @@ in
     };
 
     custom.certs.dns01Domains.${cfg.domain} = {
-      domains = [ cfg.domain ];
       group = "restic";
       reloadServices = [ "restic-rest-server.service" ];
     };

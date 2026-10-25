@@ -37,7 +37,6 @@ in
     custom.certs = {
       enable = true;
       dns01Domains = lib.mapAttrs (domain: _: {
-        domains = [ domain ];
         group = "caddy";
       }) cfg.sites;
     };
