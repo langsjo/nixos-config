@@ -25,7 +25,6 @@
 
   security.pki.caCertificateBlacklist = [
     "Comodo AAA Services root"
-    "emSign ECC Root CA - G3"
   ];
 
   _module.args.myPkgs = inputs.self.packages.${pkgs.stdenv.hostPlatform.system};
