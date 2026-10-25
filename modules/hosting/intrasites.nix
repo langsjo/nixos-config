@@ -52,6 +52,7 @@ in
         RestartSec = "5s";
         RestartMaxDelaySec = "5min";
         RestartSteps = 10;
+        RestartPreventExitStatus = lib.mkForce "";
       };
     };
   };
