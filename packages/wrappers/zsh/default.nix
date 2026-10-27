@@ -153,7 +153,6 @@ in
 
         bindkey '^[[1;5C' forward-word
         bindkey '^[[1;5D' backward-word
-        WORDCHARS="''${WORDCHARS//[\/.-]}"
 
         source ${nix-index-with-db}/etc/profile.d/command-not-found.sh
 
