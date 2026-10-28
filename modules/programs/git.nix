@@ -79,6 +79,7 @@ in
           tool = "nvimdiff";
           conflictStyle = "zdiff3";
         };
+        worktree.useRelativePaths = true;
       };
     };
   };
