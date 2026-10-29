@@ -43,6 +43,7 @@ in
     sonarr = mkOptions "sonarr";
     radarr = mkOptions "radarr";
     prowlarr = mkOptions "prowlarr";
+    bazarr = mkOptions "bazarr";
   };
 
   config = lib.mkIf cfg.enable {
@@ -67,6 +68,27 @@ in
         openFirewall = false;
         settings = mkArrSettings cfg.prowlarr.port;
       };
+      bazarr = {
+        enable = true;
+        group = "media";
+        settings = {
+          general = {
+            inherit (cfg.bazarr) port;
+            ip = "127.0.0.1";
+            use_sonarr = true;
+            use_radarr = true;
+          };
+          analytics.enabled = false;
+          sonarr = {
+            ip = "127.0.0.1";
+            port = cfg.sonarr.port;
+          };
+          radarr = {
+            ip = "127.0.0.1";
+            port = cfg.radarr.port;
+          };
+        };
+      };
     };
 
     # Need write access to /srv/media
@@ -82,10 +104,14 @@ in
         netnsConfig
         { serviceConfig.UMask = lib.mkForce "0002"; }
       ];
+      bazarr = lib.mkMerge [
+        netnsConfig
+        { serviceConfig.UMask = lib.mkForce "0002"; }
+      ];
       prowlarr = netnsConfig;
     };
 
-    custom.intrasites.sites = lib.genAttrs' [ "prowlarr" "radarr" "sonarr" ] (
+    custom.intrasites.sites = lib.genAttrs' [ "prowlarr" "radarr" "sonarr" "bazarr" ] (
       name: lib.nameValuePair cfg.${name}.domain cfg.${name}.port
     );
 
@@ -93,6 +119,7 @@ in
       sonarr = cfg.sonarr.port;
       radarr = cfg.radarr.port;
       prowlarr = cfg.prowlarr.port;
+      bazarr = cfg.bazarr.port;
     };
   };
 }

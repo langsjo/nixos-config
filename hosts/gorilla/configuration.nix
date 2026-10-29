@@ -86,6 +86,10 @@
         port = 8531;
         domain = "sonarr.intra.langsjo.dev";
       };
+      bazarr = {
+        port = 9843;
+        domain = "bazarr.intra.langsjo.dev";
+      };
     };
   };
 
