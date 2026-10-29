@@ -27,7 +27,6 @@
 
     gui.enable = false;
     providers.enable = false;
-    virt.enable = false;
     gpg.enable = false;
 
     hardware = {

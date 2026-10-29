@@ -23,7 +23,6 @@
   custom = {
     isLaptop = false;
     programs.enable = true;
-    virt.enable = false;
 
     user = {
       username = "langsjo";
