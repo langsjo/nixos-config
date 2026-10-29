@@ -11,6 +11,7 @@ let
     neovim = import ./neovim { inherit pkgs inputs; };
     yubikey-oath-dmenu = callPackage ./yubikey-oath-dmenu.nix { };
     yubikey-add-totp = callPackage ./yubikey-add-totp.nix { };
+    llm-jail = callPackage ./llm-jail.nix { };
   }
   // (import ./wrappers { inherit pkgs inputs customPkgs; });
 in

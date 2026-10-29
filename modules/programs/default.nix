@@ -61,6 +61,7 @@ in
         rebuild
         tmux-wrapped
         nixpkgs-review-gha
+        llm-jail
       ]);
 
     hardware.acpilight.enable = config.custom.isLaptop;
