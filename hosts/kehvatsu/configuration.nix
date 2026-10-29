@@ -28,6 +28,9 @@
   custom = {
     isLaptop = true;
     programs.enable = true;
+    virt = {
+      podman.enable = true;
+    };
 
     user = {
       username = "langsjo";
