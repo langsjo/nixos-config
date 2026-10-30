@@ -36,6 +36,7 @@ let
       eap = "peap;";
       ca-cert = cert.outPath;
       domain-match = "radius.org.aalto.fi";
+      anonymous-identity = "anonymous@aalto.fi";
       identity = "$EDUROAM_ID";
       password = "$EDUROAM_PASS";
       phase2-auth = "mschapv2";
@@ -60,7 +61,7 @@ in
     ];
 
     profiles = {
-      # "eduroam" = mkAaltoProfile "eduroam" 100;
+      "eduroam" = mkAaltoProfile "eduroam" 100;
       "aalto" = mkAaltoProfile "aalto" 150;
     };
   };
