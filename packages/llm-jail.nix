@@ -31,6 +31,9 @@ writeShellApplication {
       printf "%q " "''${command[@]}"; printf "\n"
       exit 0
     fi
+
+    # fix problems with the jail not having kitty's terminfo
+    export TERM=xterm-256color
     exec "''${command[@]}"
   '';
 }
