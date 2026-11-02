@@ -51,6 +51,7 @@ in
     customPkgs.tmux-wrapped
     customPkgs.showcerts
     customPkgs.networkmanager_dmenu-wrapped
+    customPkgs.llm-jail
     kitty-nixGL
     monitorSetUp
   ];
