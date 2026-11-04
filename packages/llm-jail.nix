@@ -12,7 +12,7 @@ writeShellApplication {
     fi
 
     command=(
-      nix run "github:braiins/llm-jail#$tool.virtiofs"
+      nix run "github:langsjo/llm-jail#$tool.virtiofs"
       --option tarball-ttl 86400
       --
       --dangerous
