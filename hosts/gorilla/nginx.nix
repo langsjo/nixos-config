@@ -1,7 +1,14 @@
 {
   config,
+  pkgs,
   ...
 }:
+let
+  robotsTxt = pkgs.writeText "robots.txt" ''
+    User-agent: *
+    Disallow: /files
+  '';
+in
 {
   custom.dyndns.domains = [
     "langsjo.dev"
@@ -41,8 +48,17 @@
               default_type application/pgp-keys;
             '';
           };
+          "= /robots.txt" = {
+            alias = robotsTxt;
+            extraConfig = ''
+              default_type text/plain;
+            '';
+          };
           "/files/" = {
             alias = "/srv/nginx-public/";
+            extraConfig = ''
+              add_header X-Robots-Tag "noindex, nofollow" always;
+            '';
           };
         };
       };
