@@ -24,8 +24,16 @@ writeShellApplication {
       --allow-domain channels.nixos.org
       --allow-domain github.com
       --allow-domain githubusercontent.com
-      "$@"
     )
+    case "$tool" in
+      omp)
+        command+=(
+          --allow-domain search.parallel.ai
+        )
+        ;;
+    esac
+
+    command+=("$@")
 
     if [[ "$is_cat" -eq 1 ]]; then
       printf "%q " "''${command[@]}"; printf "\n"
