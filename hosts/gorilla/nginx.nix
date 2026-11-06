@@ -41,6 +41,9 @@
               default_type application/pgp-keys;
             '';
           };
+          "/files/" = {
+            alias = "/srv/nginx-public/";
+          };
         };
       };
 
@@ -56,4 +59,7 @@
       };
     };
   };
+  systemd.tmpfiles.rules = [
+    "d /srv/nginx-public 0755 ${config.custom.user.username} ${config.services.nginx.group} -"
+  ];
 }
