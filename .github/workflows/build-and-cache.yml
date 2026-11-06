@@ -38,9 +38,6 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: ${{ inputs.ref }}
-      # - uses: jlumbroso/free-disk-space@main
-      #   with:
-      #     tool-cache: true
       - uses: cachix/install-nix-action@v31
       - name: Configure attic
         run: |
@@ -50,29 +47,12 @@ jobs:
           attic use main
       - name: Build uncached derivations
         run: |
-          if ! nix_build_output=$(
-            nix build \
-            .#nixosConfigurations."${{ matrix.config }}".config.system.build.toplevel \
-            --dry-run 2>&1 >/dev/null
-          ); then
-            printf "%s" "$nix_build_output"
-            exit 1
-          fi
-
-          if tee dry_run_output.txt <<< "$nix_build_output" \
-            | awk '
-                /these [0-9]+ paths will be fetched/{exit}
-                /these [0-9]+ derivations will be built/{next}
-                {print}
-            ' | grep '\.drv$' \
-            | xargs grep -vlE '\\"preferLocalBuild\\":true|\("preferLocalBuild","1"\)' > build_drvs.txt; \
-          then
-            xargs nix-store --realise < build_drvs.txt
-          else
-            echo "Seemingly no derivations to be built; output from dry-run:"
-            cat dry_run_output.txt
-          fi
+          nix run github:langsjo/nix-build-substitutable -- \
+            --skip-prefer-local .#nixosConfigurations."${{ matrix.config }}".config.system.build.toplevel \
+            -- --print-build-logs > out_paths.txt
 
       - name: Push to attic
         run: |
-          xargs nix-store --query --outputs < build_drvs.txt | attic push main --stdin
+          if [ -s out_paths.txt ]; then
+            attic push main --stdin < out_paths.txt
+          fi
