@@ -36,14 +36,14 @@ in
           port = 53;
           ratelimit = 0;
           upstream_dns = [
-            "1.1.1.1"
+            "tls://1.1.1.1"
           ];
           fallback_dns = [
-            "8.8.8.8"
+            "tls://8.8.8.8"
           ];
           bootstrap_dns = [
-            "1.1.1.1"
-            "8.8.8.8"
+            "tls://1.1.1.1"
+            "tls://8.8.8.8"
           ];
 
           cache_enabled = true;
