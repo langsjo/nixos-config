@@ -20,6 +20,10 @@ writeShellApplication {
       --tmpdir "$HOME/.local/share/llm-jail"
       --mem 8000
       --vcpu 8
+      --mask .env
+      --mask .direnv
+      --mask terraform.tfvars
+      --mask .terraform/terraform.tfstate
       --allow-domain cache.nixos.org
       --allow-domain channels.nixos.org
       --allow-domain github.com
