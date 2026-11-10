@@ -41,8 +41,7 @@ jobs:
       - uses: cachix/install-nix-action@v31
       - name: Configure attic
         run: |
-          nix profile add --impure --expr \
-            "(builtins.getFlake (toString ./.)).inputs.nixpkgs.legacyPackages.$(uname -m)-linux.attic-client"
+          nix profile add --inputs-from . nixpkgs#attic-client
           attic login main https://cache.langsjo.dev "${{ secrets.ATTIC_TOKEN }}"
           attic use main
       - name: Build uncached derivations
