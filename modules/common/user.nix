@@ -10,7 +10,7 @@ let
 
   pgpFileDefault = pkgs.fetchurl {
     url = "https://keys.openpgp.org/vks/v1/by-fingerprint/${cfg.pgpKey.fingerprint}";
-    hash = "sha256-kB6xIF9TTe7P5TO1zkTcVILxc3ZlG0Q3FUsRy30kFrk=";
+    hash = "sha256-9ALrtbA7bLIBIcGvTV49jE+w8asfsGDv2ivrLwpi8BE=";
   };
 in
 {
