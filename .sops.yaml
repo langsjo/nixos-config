@@ -1,27 +1,29 @@
 keys:
   - &desktop-host age1426exnrvr5fmalhhh0vgajar2k92xhr0nshhgnqhpycvcgautdlsvqedq6
-  - &desktop-langsjo age1yubikey1q0garr0k6y39vc05kyt5p858zrunk7lupg926l3rmv6any7as3gduvgu6v5
   - &kehvatsu-host age19w9wmdra2frq9f7hv0883xprnzzgfulv29fru25wgyfgwuxt6yjqnsvg04
-  - &kehvatsu-langsjo age1yubikey1q0garr0k6y39vc05kyt5p858zrunk7lupg926l3rmv6any7as3gduvgu6v5
   - &gorilla-host age1urqqvjhryzm742tmt6yrzxp6g7h45r4mnz4fdfx0r4d7ygspd5uqelpzh2
+  - &langsjo-main   age1yubikey1q0garr0k6y39vc05kyt5p858zrunk7lupg926l3rmv6any7as3gduvgu6v5
+  - &langsjo-backup age1yubikey1q0lx0t0wf0lmfltavzutw2j6tr7y8ttd3gxzt2vdgqgd7fggzsk6uw97ckh
 
 creation_rules:
   - path_regex: modules/secrets/[^/]+$
     key_groups:
       - age:
-          - *desktop-langsjo
           - *desktop-host
-          - *kehvatsu-langsjo
           - *kehvatsu-host
           - *gorilla-host
+          - *langsjo-main
+          - *langsjo-backup
   - path_regex: modules/secrets/kehvatsu/[^/]+$
     key_groups:
       - age:
-          - *kehvatsu-langsjo
           - *kehvatsu-host
+          - *langsjo-main
+          - *langsjo-backup
 
   - path_regex: modules/secrets/gorilla/[^/]+$
     key_groups:
       - age:
-          - *kehvatsu-langsjo
           - *gorilla-host
+          - *langsjo-main
+          - *langsjo-backup
