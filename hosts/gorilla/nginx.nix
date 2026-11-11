@@ -34,6 +34,9 @@ in
         forceSSL = true;
         locations = {
           "/" = {
+            return = "302 /";
+          };
+          "= /" = {
             return = ''
               200
               "gorilloidaan\n${config.custom.user.pgpKey.fingerprint}"
