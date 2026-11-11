@@ -19,7 +19,7 @@ in
       config = {
         user = {
           name = "langsjo";
-          email = "104687438+langsjo@users.noreply.github.com";
+          email = "roylangsjo@gmail.com";
           signingkey = "0x932CF958F022A14B";
         };
 
