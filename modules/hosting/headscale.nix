@@ -38,12 +38,22 @@ in
           builtins.toJSON {
             tagOwners = {
               "tag:gorilla" = [ ];
+              "tag:kehvatsu" = [ ];
+              "tag:phone" = [ ];
             };
             acls = [
               {
                 action = "accept";
-                src = [ "autogroup:member" ];
+                src = [
+                  "tag:phone"
+                  "tag:kehvatsu"
+                ];
                 dst = [ "tag:gorilla:*" ];
+              }
+              {
+                action = "accept";
+                src = [ "tag:phone" ];
+                dst = [ "tag:kehvatsu:4562" ];
               }
             ];
           }
