@@ -53,7 +53,7 @@ in
               {
                 action = "accept";
                 src = [ "tag:phone" ];
-                dst = [ "tag:kehvatsu:4562" ];
+                dst = [ "tag:kehvatsu:*" ];
               }
             ];
           }
