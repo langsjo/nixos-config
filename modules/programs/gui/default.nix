@@ -3,6 +3,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 let
@@ -32,6 +33,7 @@ in
       ayugram-desktop
       signal-desktop
       wl-clipboard
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.t3code-desktop
 
       less685 # newest less is broken with kitty
       kitty-wrapped

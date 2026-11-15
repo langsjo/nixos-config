@@ -103,6 +103,10 @@
       url = "github:nix-community/nixGL/320297bd99179701d63e3670e64e636d6165afe2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     flake-templates.url = "github:langsjo/flake-templates";
     wrapper-lib.url = "github:langsjo/wrapper-lib";

@@ -12,6 +12,7 @@ let
     yubikey-oath-dmenu = callPackage ./yubikey-oath-dmenu.nix { };
     yubikey-add-totp = callPackage ./yubikey-add-totp.nix { };
     llm-jail = callPackage ./llm-jail.nix { };
+    t3jail = callPackage ./t3jail.nix { };
   }
   // (import ./wrappers { inherit pkgs inputs customPkgs; });
 in

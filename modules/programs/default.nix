@@ -62,6 +62,7 @@ in
         tmux-wrapped
         nixpkgs-review-gha
         llm-jail
+        t3jail
       ]);
 
     hardware.acpilight.enable = config.custom.isLaptop;
