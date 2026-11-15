@@ -13,6 +13,7 @@ in
   custom.dyndns.domains = [
     "langsjo.dev"
     "ip.langsjo.dev"
+    "spread.langsjo.dev"
   ];
   services.nginx = {
     enable = true;
@@ -75,6 +76,12 @@ in
             add_header Content-Type text/plain;
           '';
         };
+      };
+
+      "spread.langsjo.dev" = {
+        enableACME = true;
+        forceSSL = true;
+        root = "/srv/bahn-demo";
       };
     };
   };
