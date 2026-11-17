@@ -111,4 +111,10 @@
   ];
 
   system.stateVersion = "26.05";
+
+  # just get a cert and use it elsewhere
+  custom.certs.dns01Domains."t3.intra.langsjo.dev" = {
+    group = "root";
+  };
+
 }
