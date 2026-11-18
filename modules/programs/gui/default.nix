@@ -33,7 +33,9 @@ in
       ayugram-desktop
       signal-desktop
       wl-clipboard
-      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.t3code-desktop
+      (inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.t3code-desktop.override (o: {
+        t3code = o.t3code.override { providerPackages = [ ]; };
+      }))
 
       less685 # newest less is broken with kitty
       kitty-wrapped
