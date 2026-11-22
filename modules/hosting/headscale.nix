@@ -40,6 +40,7 @@ in
               "tag:gorilla" = [ ];
               "tag:kehvatsu" = [ ];
               "tag:phone" = [ ];
+              "tag:vimpula" = [ ];
             };
             acls = [
               {
@@ -54,6 +55,20 @@ in
                 action = "accept";
                 src = [ "tag:phone" ];
                 dst = [ "tag:kehvatsu:*" ];
+              }
+              {
+                action = "accept";
+                src = [
+                  "tag:phone"
+                  "tag:gorilla"
+                  "tag:kehvatsu"
+                ];
+                dst = [ "tag:vimpula:*" ];
+              }
+              {
+                action = "accept";
+                src = [ "tag:vimpula" ];
+                dst = [ "tag:kehvatsu:37730" ];
               }
             ];
           }
