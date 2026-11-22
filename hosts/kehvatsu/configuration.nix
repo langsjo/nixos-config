@@ -28,7 +28,10 @@
 
   custom = {
     isLaptop = true;
-    programs.enable = true;
+    programs = {
+      enable = true;
+      gui.enable = true;
+    };
     virt = {
       podman.enable = true;
     };
@@ -48,6 +51,8 @@
         };
       };
     };
+    providers.enable = true;
+    gpg.enable = true;
 
     gaming.enable = true;
 

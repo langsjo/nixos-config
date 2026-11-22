@@ -22,7 +22,10 @@
 
   custom = {
     isLaptop = false;
-    programs.enable = true;
+    programs = {
+      enable = true;
+      gui.enable = true;
+    };
 
     user = {
       username = "langsjo";
@@ -41,6 +44,8 @@
     gaming = {
       enable = true;
     };
+    providers.enable = true;
+    gpg.enable = true;
 
     hardware = {
       audio.enable = true;

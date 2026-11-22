@@ -10,7 +10,6 @@ in
   options.custom.hardware.audio.enable = lib.mkOption {
     type = lib.types.bool;
     description = "Enable audio";
-    default = true;
   };
 
   config = lib.mkIf cfg.enable {

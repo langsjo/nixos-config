@@ -10,7 +10,6 @@ in
   options.custom.hardware.bluetooth.enable = lib.mkOption {
     type = lib.types.bool;
     description = "Enable bluetooth";
-    default = true;
   };
 
   config = lib.mkIf cfg.enable {

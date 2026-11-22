@@ -30,7 +30,6 @@ in
 {
   options.custom.providers = {
     enable = lib.mkEnableOption "setting providers and mimetypes" // {
-      default = true;
     };
 
     browser = mkProviderOption "browser";

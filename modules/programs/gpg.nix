@@ -11,9 +11,7 @@ let
   cfg = config.custom.gpg;
 in
 {
-  options.custom.gpg.enable = lib.mkEnableOption "gpg" // {
-    default = true;
-  };
+  options.custom.gpg.enable = lib.mkEnableOption "gpg";
   config = lib.mkIf cfg.enable {
     services.pcscd.enable = true;
     hardware.gpgSmartcards.enable = true;

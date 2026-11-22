@@ -7,11 +7,7 @@ let
   cfg = config.custom.gui;
 in
 {
-  options.custom.gui.enable = lib.mkOption {
-    type = lib.types.bool;
-    description = "Enable programs that require a GUI";
-    default = true;
-  };
+  options.custom.gui.enable = lib.mkEnableOption "a GUI environment";
 
   imports = [
     ./ly.nix
