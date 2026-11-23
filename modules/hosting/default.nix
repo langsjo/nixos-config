@@ -3,6 +3,7 @@
     ./adguardhome.nix
     ./arr
     ./attic.nix
+    ./cliproxyapi.nix
     ./certs.nix
     ./dyndns.nix
     ./headscale.nix

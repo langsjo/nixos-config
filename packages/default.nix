@@ -13,6 +13,7 @@ let
     yubikey-add-totp = callPackage ./yubikey-add-totp.nix { };
     llm-jail = callPackage ./llm-jail.nix { };
     t3jail = callPackage ./t3jail.nix { };
+    mistral-bridge = callPackage ./mistral-bridge.nix { };
   }
   // (import ./wrappers { inherit pkgs inputs customPkgs; });
 in

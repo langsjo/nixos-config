@@ -55,6 +55,11 @@
       domain = "restic.intra.langsjo.dev";
       port = 3987;
     };
+    cliproxyapi = {
+      enable = true;
+      domain = "cliproxy.intra.langsjo.dev";
+      port = 8317;
+    };
     adguardhome = {
       enable = true;
       domain = "adguard.intra.langsjo.dev";

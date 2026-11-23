@@ -70,6 +70,11 @@ in
                 src = [ "tag:vimpula" ];
                 dst = [ "tag:kehvatsu:37730" ];
               }
+              {
+                action = "accept";
+                src = [ "tag:vimpula" ];
+                dst = [ "tag:gorilla:${toString config.custom.cliproxyapi.port}" ];
+              }
             ];
           }
         );
