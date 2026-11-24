@@ -22,6 +22,23 @@ let
     '';
   };
 
+  t3code-desktop' =
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.t3code-desktop.override
+      (o: {
+        t3code = o.t3code.override { providerPackages = [ ]; };
+      });
+
+  t3code-desktop-nixGL = (inputs.wrapper-lib.lib.mkWrapper pkgs) (_: {
+    package = t3code-desktop';
+    useBinaryWrapper = false;
+    includeBins = [ "t3code-desktop" ];
+    extraMakeWrapperArgs = [
+      # source nixGL variables without running the exec
+      "--run"
+      "source <(grep -v '^\\s*exec' \"${nixGLexe}\")"
+    ];
+  });
+
   customPkgs = inputs.self.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
@@ -52,6 +69,8 @@ in
     customPkgs.showcerts
     customPkgs.networkmanager_dmenu-wrapped
     customPkgs.llm-jail
+    customPkgs.t3jail
+    t3code-desktop-nixGL
     kitty-nixGL
     monitorSetUp
   ];
